@@ -1,0 +1,321 @@
+tree grammar aexptree17;
+//Simplified 
+
+
+options {
+output=AST;
+ASTLabelType=CommonTree;
+}
+
+tokens {
+ALL='ALL';
+AND='&';
+OR= '|';
+NOT='!';
+}
+
+@header{
+package edu.mit.ll.antlr;
+import java.util.HashMap;
+import edu.mit.ll.aexp.model.*;
+import edu.mit.ll.aexpression.*;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.HashSet;
+
+}
+@members{
+HashMap memory = new HashMap();
+RegistryOperators operators = new RegistryOperators();
+DimensionSets dimensionSets = new DimensionSets();
+Dimensions dimensions = new Dimensions();
+TagSchemes tagSchemes = new TagSchemes();
+public void preconfigure(){
+	System.out.println("Preexecuting");
+	Dimension d = new Dimension("domain");
+	DimensionSet ds = new DimensionSet("webwasher");
+	ds.addDimension(d);
+	dimensions.add(d);
+	d = new Dimension("ipv4");
+	ds.addDimension(d);
+  dimensions.add(d);
+  d = new Dimension("fqdn");
+  ds.addDimension(d);
+  dimensions.add(d);
+	dimensionSets.addDimensionSets(ds);
+	
+	
+	List<TagScheme> tagSchemesList = new LinkedList<>();
+	TagScheme s = new TagScheme("_");
+	List<Tag> tagList = new LinkedList<>();
+	
+	Tag t1 = new Tag();
+	t1.setName("dest");
+	t1.setTs(s);
+	tagList.add(t1);
+	Tag t2 = new Tag();
+  t2.setName("src");
+  t2.setTs(s);
+  tagList.add(t2);
+  s.setTags(tagList);
+  
+  tagSchemesList.add(s);
+  tagSchemes.setTagSchemes(tagSchemesList);
+}
+}
+
+start 	
+  @init {
+    preconfigure();
+  }
+	:
+	r_exp  {
+	  System.out.println($r_exp.tree==null?"null":$r_exp.tree.toStringTree());
+	}
+	;
+	
+r_exp	:	
+	period_exp 
+	((AND^|OR^) 
+	period_exp)*
+	
+	|
+	NOT^ r_exp
+	;
+	
+period_exp	
+  : 
+  star_exp  (('#')^ star_exp)*	
+	;
+	
+star_exp
+  : 
+	slash_exp ('*'^ slash_exp)*
+	;
+	
+slash_exp
+	:
+	atom2 (('/'^) atom2)+
+	|
+	atom2 (('?'^))+//Evaluate question
+	|
+	atom ('.'^ durations)*//Evaluate dot
+	;
+	
+atom2	
+  :	
+	set_of_dims ('.'^ durations)*//Evaluate durations
+	|
+	dimSet ('.'^ durations)*//Evaluate durations
+	;	
+
+atom returns[Atom atomicExpression]	
+  @init{
+    $atomicExpression = new Atom();
+  }
+  :
+	a=dims{
+	  $atomicExpression.setDimSet($a.dimSet);
+	}
+	|
+	b=tags{
+    $atomicExpression.setTagSet($b.tagSet);
+  }
+	|
+	'('! r_exp* ')'!//eval expression
+	|
+	'[' (
+	c=dimSet{
+	  $atomicExpression.setDimensions($c.dimensionSet);
+	}
+	|
+	d=set_of_dimSets{
+	  $atomicExpression.setDimensions($d.dimset_set);
+	}
+	) ']'//Evaluate to dimensions
+	;
+	
+dims returns [Set<Dimension> dimSet]
+  @init{
+    $dimSet = new HashSet<>();
+  }
+  @after{
+    System.out.println("Returning dimensionlist:"+$dimSet);
+  }
+  : 
+	ALL {
+	  for(Dimension d: dimensions.getDimensions()){
+	    $dimSet.add(d);
+	  }
+	} 
+	|
+	a=dim{
+	  $dimSet.add($a.d);
+	}
+	|
+	b=set_of_dims{
+	  for(Dimension d: $b.dim_set){
+	    $dimSet.add(d);
+	  }
+	}
+	;
+	
+set_of_dims returns [Set<Dimension> dim_set]
+  @init{
+    $dim_set = new HashSet<>();
+  }
+  @after{
+    System.out.println("Returning set of dims:"+$dim_set);
+  }
+	: '{' a=dim{
+	  $dim_set.add($a.d);
+	} (',' b=dim{
+	  $dim_set.add($b.d);
+	})* '}'	
+	;
+set_of_dimSets returns [Set<DimensionSet> dimset_set]
+  @init{
+    $dimset_set = new HashSet<>();
+  }
+  @after{
+    System.out.println("Returning set of dimsets:"+$dimset_set);
+  }
+	: '{' a=dimSet{
+	for(DimensionSet ds:$a.dimensionSet)
+	  $dimset_set.add(ds);
+	}
+	(',' b=dimSet{
+	for(DimensionSet ds:$b.dimensionSet)
+    $dimset_set.add(ds);
+	})* '}'
+	;
+dim returns [Dimension d]	
+  @after{
+    System.out.println("Returning dimension:"+$d);
+  }
+  :	
+	ID{
+	  Dimension ret = null;
+	  ret = dimensions.getDimension($ID.text);
+	  if(ret == null){
+	    System.out.println("Could not find dimension:"+$ID.text);
+	  }
+	  else
+	    $d = ret;
+	}
+	;	
+tags 	returns [Set<Tag> tagSet]
+  @init{
+    $tagSet = new HashSet<>();
+  }
+  @after{
+     System.out.println("Taglist:"+$tagSet);
+  }
+  :
+	'{' a=tag{
+	  $tagSet.add($a.tag);
+	} 
+	(',' b=tag{
+	  $tagSet.add($b.tag);
+	})* '}'
+	|
+	c=tag{
+	  $tagSet.add($c.tag);
+	}
+	//unnamed tag set
+	;
+
+tag returns [Tag tag]
+  @init{
+    $tag = new Tag();
+  }
+  @after{
+    System.out.println("Returning Tag:"+$tag);
+    if($tag.getName()==null||$tag.getTs()==null){
+      System.out.println("Not enough info for tag");
+    }
+  }
+  :
+	(tagScheme {
+		$tag.setTs($tagScheme.targetTagScheme);
+	}
+	|
+	'_'{
+		$tag.setTs(tagSchemes.getTagScheme("_"));
+	}) 
+	':' ID {
+	  $tag.setName($ID.text);	
+	}
+	
+	;
+	
+tagScheme returns [TagScheme targetTagScheme]
+	:	
+	ID {
+	  TagScheme target = tagSchemes.getTagScheme($ID.text);
+    System.out.println("Finding"+$ID.text);
+    if(target == null){
+      System.out.println("TagScheme not found");
+    }
+    else{
+      System.out.println("TagScheme found");
+      $targetTagScheme = target;
+    }
+	}
+	//UNNAMED TAG SCHEMES
+	;
+
+dimSet returns [Set<DimensionSet> dimensionSet]:	
+  ALL {
+    System.out.println("Dimensionset all");
+    $dimensionSet = new HashSet<>(dimensionSets.getDimensionSets());
+  }
+  |
+	ID {
+	  DimensionSet target = dimensionSets.getDimensionSet($ID.text);
+	  System.out.println("Finding"+$ID.text);
+	  Set<DimensionSet> result = new HashSet<>();
+	  if(target == null){
+	    System.out.println("Dimensionset not found");
+	  }
+	  else{
+	    System.out.println("Dimensionset found");
+	    //Possibly handle unnamed dimset
+	    result.add(target);
+	    $dimensionSet = result;
+	  } 
+	}
+	//RULE FOR UNNAMED DIMSET
+	;
+
+durations returns[List<Duration> durationList]
+  @init{
+    $durationList = new LinkedList<>();
+  }
+  @after{
+    System.out.println("Returning duration list:"+$durationList);
+  }
+	: 	
+	'{' a=duration{
+	  $durationList.add($a.duration);
+	} 
+	(';' b=duration{
+	  $durationList.add($b.duration);
+	})* '}'
+	;
+
+duration returns[Duration duration]
+  :
+	starttime=start_time ','^ endtime=end_time	{
+	  $duration = new Duration($starttime.value,$endtime.value);
+	}
+	;
+	
+start_time returns [long value]
+	:	
+	INT {$value = Long.parseLong($INT.text);}
+	;
+end_time returns [long value]
+	:	
+	INT {$value = Long.parseLong($INT.text);}
+	;

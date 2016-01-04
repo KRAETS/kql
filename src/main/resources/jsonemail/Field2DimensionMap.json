@@ -1,0 +1,60 @@
+{
+"f2dmap":
+        [
+          		{
+ 	                "table" : "email_message_table",
+ 	                "field": "email_attachment",
+                    "dimension": "attachment"
+  				},
+  				{
+ 	                "table" : "email_message_table",
+ 	                "field": "message_body",
+                    "dimension": "email_content_type"
+  				},
+  				{
+ 	                "table" : "email_message_table",
+ 	                "field": "message_folder",
+                    "dimension": "folder"
+  				},
+  				{
+ 	                "table" : "email_message_table",
+ 	                "field": "message_id",
+                    "dimension": "id"
+  				},
+  				{
+ 	                "table" : "email_message_table",
+ 	                "field": "message_mailbox",
+                    "dimension": "id"
+  				},
+  				{
+ 	                "table" : "email_message_table",
+ 	                "field": "message_subject",
+                    "dimension": "header"
+  				},
+  				{
+ 	                "table" : "email_message_table",
+ 	                "field": "received_time",
+                    "dimension": "datetime"
+  				},
+  				{
+ 	                "table" : "email_message_table",
+ 	                "field": "recipient_address",
+                    "dimension": "email_address"
+  				},
+  				{
+ 	                "table" : "email_message_table",
+ 	                "field": "recipient_count",
+                    "dimension": "count"
+  				},
+  				{
+ 	                "table" : "email_message_table",
+ 	                "field": "sender_address",
+                    "dimension": "email_address"
+  				},
+  				{
+ 	                "table" : "email_message_table",
+ 	                "field": "sent_time",
+                    "dimension": "datetime"
+  				}
+  		]		
+}

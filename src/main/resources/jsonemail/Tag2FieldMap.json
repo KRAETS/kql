@@ -1,0 +1,18 @@
+{
+"tag2fieldItems":
+        [
+          	{ "table" : "email_message_table", "field": "email_attachment", "tagScheme": "_","tag": "email_message"},
+          	{ "table" : "email_message_table", "field": "message_body", "tagScheme": "_","tag": "email_message"},
+          	{ "table" : "email_message_table", "field": "message_folder", "tagScheme": "_","tag": "email_message"},
+          	{ "table" : "email_message_table", "field": "message_id", "tagScheme": "_","tag": "email_message"},
+          	{ "table" : "email_message_table", "field": "message_mailbox", "tagScheme": "_","tag": "user"},
+          	{ "table" : "email_message_table", "field": "message_mailbox", "tagScheme": "_","tag": "sender"},
+          	{ "table" : "email_message_table", "field": "message_subject", "tagScheme": "_","tag": "email_subject"},
+          	{ "table" : "email_message_table", "field": "received_time", "tagScheme": "_","tag": "recipient"},
+          	{ "table" : "email_message_table", "field": "recipient_address", "tagScheme": "_","tag": "recipient"},
+          	{ "table" : "email_message_table", "field": "recipient_count", "tagScheme": "_","tag": "recipient"},
+ 			{ "table" : "email_message_table", "field": "sender_address", "tagScheme": "_","tag": "sender"},
+ 			{ "table" : "email_message_table", "field": "sender_address", "tagScheme": "_","tag": "source"},
+ 			{ "table" : "email_message_table", "field": "sent_time", "tagScheme": "_","tag": "sender"}
+ 		]		
+}

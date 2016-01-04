@@ -1,0 +1,16 @@
+{
+"tagSchemes" :
+        [
+          		{
+ 	       			"name": "_",
+                    "tags":  [ 
+                    {"name": "email_message"},
+                    {"name":"user"}, 
+                    {"name":"sender"}, 
+                    {"name":"source"}, 
+                    {"name":"dest"}, 
+                    {"name":"recipient"}    
+                    ]
+  				}
+  		]		
+}

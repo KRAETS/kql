@@ -1,0 +1,17 @@
+{
+"dimensionSets":
+        [
+          		{
+ 	       			"name": "DimensionSet1",
+                    "dimensions":  [ {"name": "Dimension1"},{"name":"Dimension2"} ]
+  				},	
+  				{
+ 	             	"name": "DimensionSet2",
+ 	                "dimensions" : [ {"name": "Dimension1"},{"name":"Dimension3"}]
+  				},
+  				{
+ 	             	"name": "DimensionSet3",
+ 	                "dimensions" : [ {"name": "Dimension4"},{"name":"Dimension3"}]
+  				}
+  		]		
+}

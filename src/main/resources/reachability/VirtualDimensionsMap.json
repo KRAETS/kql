@@ -1,0 +1,9 @@
+{
+"virtualDimensions":
+        [
+          {
+ 	       	"name": "Dimension4",
+            "virtualDimensions": [ {"name": "Dimension1", "position": "1"},{"name":"Dimension2", "position": "2"} ]
+  		  }
+  		]		
+}

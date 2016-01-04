@@ -1,0 +1,15 @@
+{
+"tables":
+        [
+          		{
+ 	                "name" : "email_message_table",
+                    "fields":  [ {"name": "email_attachment"},
+                    {"name":"message_body"},
+                    {"name":"message_folder"},{"name":"message_id"},
+                    {"name":"message_mailbox"},{"name":"message_subject"},
+                    {"name":"received_time"},{"name":"recipient_address"},
+                    {"name":"recipient_count"},{"name":"sent_time"}, {"name":"sender_address"} ],
+                    "durations": [{"start_time": "2001-01-01T00:00:00", "end_time": "2001-12-31T11:59:59"}]
+  				}
+  		]		
+}

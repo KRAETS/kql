@@ -1,0 +1,74 @@
+{
+"operators": [
+					{	"name": "op1",
+						"dimensionSetIn": 
+						[ {
+							"name": "ds15"
+						  },
+						  { 
+						  	"name": "ds14"
+						  }
+						],
+						"dimensionSetOut": 
+						{
+							"name": "ds13"
+						}
+					},
+					{	"name": "op2",
+						"dimensionSetIn": 
+						[
+							{
+							"name": "ds14"
+							}
+						],
+						"dimensionSetOut": {
+							"name": "ds13"
+						}
+					}, 
+					{	"name": "op3",
+						"dimensionSetIn": 
+						[
+							{
+							"name": "ds13"
+							}
+						],
+						"dimensionSetOut": {
+							"name": "ds12"
+						}
+					},
+					{	"name": "op4",
+						"dimensionSetIn": 
+						[
+							{
+							"name": "ds12"
+							}
+						],
+						"dimensionSetOut": {
+							"name": "ds11"
+						}
+					},
+					{	"name": "op5",
+						"dimensionSetIn": 
+						[
+							{
+							"name": "ds13"
+							}
+						],
+						"dimensionSetOut": {
+							"name": "ds11"
+						}
+					},
+					{	"name": "op6",
+						"dimensionSetIn": 
+						[
+							{
+							"name": "ds12"
+							}
+						],
+						"dimensionSetOut": {
+							"name": "ds14"
+						}
+					}
+			]
+
+}

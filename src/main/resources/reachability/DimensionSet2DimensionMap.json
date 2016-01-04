@@ -1,0 +1,26 @@
+{
+"dimensionSets":
+        [
+          		{
+ 	       			"name": "ds11",
+                    "dimensions":  [ {"name": "d1"},{"name":"d2"} ]
+  				},	
+  				{
+ 	             	"name": "ds12",
+ 	                "dimensions" : [ {"name": "d3"},{"name":"d4"},{"name":"d5"}]
+  				},
+  				{
+ 	             	"name": "ds13",
+ 	                "dimensions" : [ {"name": "d2"},{"name":"d4"},{"name":"d3"}]
+  				},
+  				{
+ 	             	"name": "ds14",
+ 	                "dimensions" : [ {"name": "d3"},{"name":"d2"},{"name":"d4"}]
+  				},
+  				{
+ 	             	"name": "ds15",
+ 	                "dimensions" : [ {"name": "d2"},{"name":"d6"}]
+  				}
+  				
+  		]		
+}

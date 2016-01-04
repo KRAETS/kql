@@ -1,0 +1,52 @@
+SELECT 'a,b,c' 
+          from 'some_table an_alias'
+	where 'd > 5;'
+Array
+(
+    [SELECT] => Array
+        (
+            [0] => Array
+                (
+                    [expr_type] => const
+                    [alias] => 
+                    [base_expr] => 'a,b,c'
+                    [sub_tree] => 
+                    [delim] => 
+                    [position] => 7
+                )
+
+        )
+
+    [FROM] => Array
+        (
+            [0] => Array
+                (
+                    [expr_type] => table
+                    [table] => 'some_table an_alias'
+                    [no_quotes] => some_table an_alias
+                    [alias] => 
+                    [join_type] => JOIN
+                    [ref_type] => 
+                    [ref_clause] => 
+                    [base_expr] => 'some_table an_alias'
+                    [sub_tree] => 
+                    [position] => 31
+                )
+
+        )
+
+    [WHERE] => Array
+        (
+            [0] => Array
+                (
+                    [expr_type] => const
+                    [base_expr] => 'd > 5;'
+                    [sub_tree] => 
+                    [position] => 60
+                )
+
+        )
+
+)
+Printing as json
+{"SELECT":[{"expr_type":"const","alias":false,"base_expr":"'a,b,c'","sub_tree":false,"delim":false,"position":7}],"FROM":[{"expr_type":"table","table":"'some_table an_alias'","no_quotes":"some_table an_alias","alias":false,"join_type":"JOIN","ref_type":false,"ref_clause":false,"base_expr":"'some_table an_alias'","sub_tree":false,"position":31}],"WHERE":[{"expr_type":"const","base_expr":"'d > 5;'","sub_tree":false,"position":60}]}

@@ -1,0 +1,11 @@
+{
+"tag2fieldItems":
+        [
+          	{ "table" : "EventTable1", "field": "Field1", "tagScheme": "TagScheme1","tag": "Tag1"},
+  			{  "table" : "EventTable1","field": "Field2", "tagScheme": "TagScheme1","tag": "Tag1"},
+			{  "table" : "EventTable2","field": "Field3","tagScheme": "TagScheme1", "tag": "Tag2"},
+			{  "table" : "EventTable2","field": "Field3","tagScheme": "TagScheme2", "tag": "Tag1"},  				
+  			{  "table" : "EventTable2","field": "Field4","tagScheme": "TagScheme1","tag": "Tag3"},
+  			{  "table" : "EventTable2","field": "Field5","tagScheme": "TagScheme2","tag": "Tag2"}
+  		]		
+}

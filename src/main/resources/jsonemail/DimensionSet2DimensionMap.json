@@ -1,0 +1,9 @@
+{
+"dimensionSets":
+        [
+        {
+   			"name": "emailmessage",
+            "dimensions":  [ {"name": "id"},{"name":"attachment"},{"name": "email_content_type"},{"name":"folder"},{"name": "header"},{"name":"header"},{"name": "datetime"},{"name":"email_address"},{"name": "count"} ]
+		}
+  		]		
+}
