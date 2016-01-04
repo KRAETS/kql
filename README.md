@@ -6,7 +6,7 @@ A-Expression compiler: A-Expression compiler consists of a lexer and a  parser, 
 
 Knowledge Query Language (KQL) implementation: KQL is an enhanced version of SQL that allows embedding of A-Expressions in SQL queries. A KQL may have one or more A-Expressions. All of the A-Expressions are translated into tables, rows, and column information of the underlying datastore.in this case, implemented using MongoDB. The SQL statements resulting from the translation of KQL statements are processed with UnityJDBC, a Java based commercial library. This library translates SQL statements into queries that  can be processed by SQL and NoSQL databases. In KRAETS, the SQL statements are translated into MongoDB queries.
 
-Common Cyber Environment Representation (CCER) ontology schema: The Registry Ontology schema is defined using Common Cyber Environment Representation (CCER) ontology.  Ontology topics represented by CCER are: Networks (OSI Layer 3 and Layer 2); Computers/Hosts and Servers; Applications and OS; Services (DHCP, DNS, ADDS, Proxy, HTTP); Control Plane entities and servers; Instrumentation Plane entities, servers, and Probes.
+Common Cyber Environment Representation (CCER) ontology schema: The Registry Ontology schema is defined using Common Cyber Environment Representation (CCER) ontology.  Ontology topics represented by CCER are: Networks (OSI Layer 3 and Layer 2); Computers/Hosts and Servers; Applications and OS; Services (DHCP, DNS, ADDS, Proxy, HTTP);and Probes.
 
 An email data ontology instance conforming to the CCER ontology schema. This ontology is an instance of  the CCER based Knowledge Registry ontology schema. The Knowledge Registry and the email ontology instance are implemented using a set of JSON files.
 
@@ -61,4 +61,5 @@ Run mongodb server from the commandline
  
 <h3> Import data to MongoDB </h3>
 
-1. clone email-modeler
+1. Clone and set-up email-modeler project, including downloading Enron corpus
+2. Run importScript.py
