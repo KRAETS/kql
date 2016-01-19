@@ -98,7 +98,7 @@ public class QueryExecutor {
 		this.query=query;
 		Date start = new Date();
 		System.out.println("Making a connection to: " + url);
-		con = DriverManager.getConnection(url, "dbuser", "dbuser");
+		con = DriverManager.getConnection(url, "dbuser", "");
 		System.out.println("Connection successful.\n");
 		Date finish = new Date();
 		long time = finish.getTime() - start.getTime();

@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 
 public class JavaPhpSqlWrapper {
     private String query;
-    private String defaultScript = "src/main/java/com/ll/mit/edu/php/sqlparser/examples/simplerexample.php";
+    private String defaultScript = "src/main/java/edu/mit/ll/php/sqlparser/examples/simplerexample.php";
 
     public String execPHP(String scriptName, String param) {
         if(scriptName == null) {

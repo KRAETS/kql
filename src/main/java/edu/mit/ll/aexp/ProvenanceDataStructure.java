@@ -8,6 +8,7 @@ import java.util.Set;
 import org.apache.commons.codec.binary.StringUtils;
 
 import edu.mit.ll.aexpression.Dimension;
+import edu.mit.ll.aexpression.DimensionSet;
 import edu.mit.ll.aexpression.Field;
 import edu.mit.ll.aexpression.PreProcessMaps;
 import edu.mit.ll.aexpression.RegistryOperators;
@@ -117,7 +118,7 @@ public class ProvenanceDataStructure {
 			newString2+=line+"\n";
 			previousIndentation = currentIndentation;
 		}
-		return text;
+		return newString2;
 	}
 	public ProvenanceDataStructure(Object data, TYPE type){
 		this.setData(data,type);
@@ -171,8 +172,13 @@ public class ProvenanceDataStructure {
 				break;
 			case DIMENSIONSET:
 				Set<Dimension> allDim = new HashSet<>(); 
-				for(Dimension d:((Set<Dimension>)child.getData())){
-					allDim.add(d);
+				for(Object d:((Set<Dimension>)child.getData())){
+					if(d instanceof Dimension)
+					allDim.add((Dimension)d);
+					else{
+						for(Dimension d1:((DimensionSet)d).getDimensions())
+						allDim.add(d1);
+					}
 				}
 				List<Field> matchedFields = RegistryOperators.matchFieldsDimensionsFields(folderlocation.getFields().getAllFieldsList(), allDim);
 				levelString+="{Fields:[";

@@ -32,11 +32,11 @@ import edu.mit.ll.sqlutils.Parser;
 
 
 
-public class ProvenanceTest2 {
+public class ProvenanceTest4 {
 	
 
     static String testName = "Test1";    
-    static Logger log = Logger.getLogger(ProvenanceTest2.class);
+    static Logger log = Logger.getLogger(ProvenanceTest4.class);
 
 
     
@@ -50,7 +50,7 @@ public class ProvenanceTest2 {
     
     @Test
     public void test() {
-    	String query = "SELECT \\ALL/DimensionSet2*Dimension3*TagScheme1:Tag3\\";
+    	String query = "SELECT \\ALL*{_:email_message}\\ from \\ALL/{email_address}\\ where \\ALL*email_address*{_:sender}\\='alan.aronowitz@enron.com'";
     	Parser p = new Parser();
         List<String> aexpqueries = p.stringExtractor("\\\\",query,"POTATO");
         JavaPhpSqlWrapper sqlprocessor = new JavaPhpSqlWrapper(aexpqueries.get(aexpqueries.size()-1));
@@ -59,10 +59,10 @@ public class ProvenanceTest2 {
         for(int i=0; i<aexpqueries.size()-1;i++){
             try {
             	AExpProcessor processor = new AExpProcessor();
-            	processor.setFolderlocation("src/main/resources/json/");
+            	processor.setFolderlocation("src/main/resources/jsonemail/");
             	processor.enableDebug(true);
             	Result r1 = processor.process(aexpqueries.get(i),true);
-            	r1.provenance.fullPrint = false;
+            	r1.provenance.fullPrint = true;
             	System.out.println(r1.provenance);
             } catch (RecognitionException e) {
                 e.printStackTrace();
