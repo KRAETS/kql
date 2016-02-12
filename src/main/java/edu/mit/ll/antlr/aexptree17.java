@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g 2015-12-17 08:35:20
+// $ANTLR 3.5.2 /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g 2016-02-03 00:31:24
 
 package edu.mit.ll.antlr;
 import java.io.File;
@@ -8,6 +8,7 @@ import edu.mit.ll.aexpression.*;
 import java.util.LinkedList;
 import java.util.Set;
 import java.util.HashSet;
+import org.antlr.runtime.tree.CommonTree;
 
 
 
@@ -83,9 +84,10 @@ public class aexptree17 extends TreeParser {
 		return adaptor;
 	}
 	@Override public String[] getTokenNames() { return aexptree17.tokenNames; }
-	@Override public String getGrammarFileName() { return "/Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g"; }
+	@Override public String getGrammarFileName() { return "/Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g"; }
 
 
+	CommonTree t = null;
 	boolean debug = false;
 	DimensionSets allDimensionSets = new DimensionSets();
 	Dimensions allDimensions = new Dimensions();
@@ -95,6 +97,10 @@ public class aexptree17 extends TreeParser {
 	VirtualDimensions allVirtualDimensions = new VirtualDimensions();
 	public static String folderlocation = null;
 	boolean caseInsensitive = false;
+	String expression = "";
+	public void setExpression(String expression){
+	  this.expression = expression;
+	}
 	public void setFolderLocation(String folder)
 	{
 	  File dot = new File(".").getAbsoluteFile();
@@ -105,9 +111,12 @@ public class aexptree17 extends TreeParser {
 	public void enableCaseInsensitive(boolean caseInsensitive) {
 	this.caseInsensitive = caseInsensitive;    
 	}
+	public void setTree(CommonTree t){
+	this.t = t;
+	}
 
 	public void enableDebug(boolean value)
-	{
+	{ 
 	this.debug = value;
 	}
 
@@ -161,7 +170,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "start"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:95:1: start returns [Result r] : a= r_exp ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:104:1: start returns [Result r] : a= r_exp ;
 	public final aexptree17.start_return start() throws RecognitionException {
 		aexptree17.start_return retval = new aexptree17.start_return();
 		retval.start = input.LT(1);
@@ -179,23 +188,23 @@ public class aexptree17 extends TreeParser {
 		    preconfigure();
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:100:2: (a= r_exp )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:101:2: a= r_exp
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:109:2: (a= r_exp )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:110:2: a= r_exp
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
 			_last = (CommonTree)input.LT(1);
-			pushFollow(FOLLOW_r_exp_in_start88);
+			pushFollow(FOLLOW_r_exp_in_start89);
 			a=r_exp();
 			state._fsp--;
 
 			adaptor.addChild(root_0, a.getTree());
 
-
-				  if(this.debug)
+			 
+				  if(this.debug) 
 				  System.out.println("Evaluating rexp");
-				  retval.r = (a!=null?((aexptree17.r_exp_return)a).r:null);
+				  retval.r = (a!=null?((aexptree17.r_exp_return)a).r:null); 
 				
 			}
 
@@ -223,7 +232,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "r_exp"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:108:1: r_exp returns [Result r] : ( ( (a= period_exp ) | ^(b= ( AND | OR ) d= r_exp e= period_exp ) ) | ^( NOT c= r_exp ) );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:117:1: r_exp returns [Result r] : ( ( (a= period_exp ) | ^(b= ( AND | OR ) d= r_exp e= period_exp ) ) | ^( NOT c= r_exp ) );
 	public final aexptree17.r_exp_return r_exp() throws RecognitionException {
 		aexptree17.r_exp_return retval = new aexptree17.r_exp_return();
 		retval.start = input.LT(1);
@@ -247,9 +256,11 @@ public class aexptree17 extends TreeParser {
 
 		    retval.r = new Result();
 		    retval.r.provenance.setData(retval.r, ProvenanceDataStructure.TYPE.REXP);
+		    retval.r.provenance.setTree(t);
+		    retval.r.provenance.setExpression(expression);
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:119:3: ( ( (a= period_exp ) | ^(b= ( AND | OR ) d= r_exp e= period_exp ) ) | ^( NOT c= r_exp ) )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:130:3: ( ( (a= period_exp ) | ^(b= ( AND | OR ) d= r_exp e= period_exp ) ) | ^( NOT c= r_exp ) )
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( ((LA2_0 >= ALL && LA2_0 <= AND)||LA2_0==ID||LA2_0==OR||LA2_0==19||LA2_0==21||(LA2_0 >= 23 && LA2_0 <= 24)||(LA2_0 >= 27 && LA2_0 <= 28)||(LA2_0 >= 30 && LA2_0 <= 31)) ) {
@@ -267,12 +278,12 @@ public class aexptree17 extends TreeParser {
 
 			switch (alt2) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:120:3: ( (a= period_exp ) | ^(b= ( AND | OR ) d= r_exp e= period_exp ) )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:131:3: ( (a= period_exp ) | ^(b= ( AND | OR ) d= r_exp e= period_exp ) )
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:120:3: ( (a= period_exp ) | ^(b= ( AND | OR ) d= r_exp e= period_exp ) )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:131:3: ( (a= period_exp ) | ^(b= ( AND | OR ) d= r_exp e= period_exp ) )
 					int alt1=2;
 					int LA1_0 = input.LA(1);
 					if ( (LA1_0==ALL||LA1_0==ID||LA1_0==19||LA1_0==21||(LA1_0 >= 23 && LA1_0 <= 24)||(LA1_0 >= 27 && LA1_0 <= 28)||(LA1_0 >= 30 && LA1_0 <= 31)) ) {
@@ -290,13 +301,13 @@ public class aexptree17 extends TreeParser {
 
 					switch (alt1) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:121:3: (a= period_exp )
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:132:3: (a= period_exp )
 							{
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:121:3: (a= period_exp )
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:121:4: a= period_exp
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:132:3: (a= period_exp )
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:132:4: a= period_exp
 							{
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_period_exp_in_r_exp135);
+							pushFollow(FOLLOW_period_exp_in_r_exp136);
 							a=period_exp();
 							state._fsp--;
 
@@ -334,7 +345,7 @@ public class aexptree17 extends TreeParser {
 							}
 							break;
 						case 2 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:150:3: ^(b= ( AND | OR ) d= r_exp e= period_exp )
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:161:3: ^(b= ( AND | OR ) d= r_exp e= period_exp )
 							{
 							_last = (CommonTree)input.LT(1);
 							{
@@ -358,14 +369,14 @@ public class aexptree17 extends TreeParser {
 
 							match(input, Token.DOWN, null); 
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_r_exp_in_r_exp159);
+							pushFollow(FOLLOW_r_exp_in_r_exp160);
 							d=r_exp();
 							state._fsp--;
 
 							adaptor.addChild(root_1, d.getTree());
 
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_period_exp_in_r_exp163);
+							pushFollow(FOLLOW_period_exp_in_r_exp164);
 							e=period_exp();
 							state._fsp--;
 
@@ -510,7 +521,7 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:278:3: ^( NOT c= r_exp )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:289:3: ^( NOT c= r_exp )
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -521,7 +532,7 @@ public class aexptree17 extends TreeParser {
 					CommonTree _first_1 = null;
 					CommonTree root_1 = (CommonTree)adaptor.nil();
 					_last = (CommonTree)input.LT(1);
-					NOT1=(CommonTree)match(input,NOT,FOLLOW_NOT_in_r_exp181); 
+					NOT1=(CommonTree)match(input,NOT,FOLLOW_NOT_in_r_exp182); 
 					NOT1_tree = (CommonTree)adaptor.dupNode(NOT1);
 
 
@@ -529,7 +540,7 @@ public class aexptree17 extends TreeParser {
 
 					match(input, Token.DOWN, null); 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_r_exp_in_r_exp185);
+					pushFollow(FOLLOW_r_exp_in_r_exp186);
 					c=r_exp();
 					state._fsp--;
 
@@ -600,7 +611,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "period_exp"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:308:1: period_exp returns [IntermediateResult pr] : (a= star_exp ) ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:319:1: period_exp returns [IntermediateResult pr] : (a= star_exp ) ;
 	public final aexptree17.period_exp_return period_exp() throws RecognitionException {
 		aexptree17.period_exp_return retval = new aexptree17.period_exp_return();
 		retval.start = input.LT(1);
@@ -619,17 +630,17 @@ public class aexptree17 extends TreeParser {
 		    retval.pr.provenance.setData(retval.pr,ProvenanceDataStructure.TYPE.PERIODEXPRESSION);
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:319:3: ( (a= star_exp ) )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:320:3: (a= star_exp )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:330:3: ( (a= star_exp ) )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:331:3: (a= star_exp )
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:320:3: (a= star_exp )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:320:4: a= star_exp
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:331:3: (a= star_exp )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:331:4: a= star_exp
 			{
 			_last = (CommonTree)input.LT(1);
-			pushFollow(FOLLOW_star_exp_in_period_exp233);
+			pushFollow(FOLLOW_star_exp_in_period_exp234);
 			a=star_exp();
 			state._fsp--;
 
@@ -675,7 +686,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "star_exp"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:339:1: star_exp returns [IntermediateResult starr] : ( (a= slash_exp ) | ^( '*' b= star_exp c= slash_exp ) );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:350:1: star_exp returns [IntermediateResult starr] : ( (a= slash_exp ) | ^( '*' b= star_exp c= slash_exp ) );
 	public final aexptree17.star_exp_return star_exp() throws RecognitionException {
 		aexptree17.star_exp_return retval = new aexptree17.star_exp_return();
 		retval.start = input.LT(1);
@@ -698,7 +709,7 @@ public class aexptree17 extends TreeParser {
 		    retval.starr.provenance.setData(retval.starr,ProvenanceDataStructure.TYPE.STAREXPRESSION);
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:350:3: ( (a= slash_exp ) | ^( '*' b= star_exp c= slash_exp ) )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:361:3: ( (a= slash_exp ) | ^( '*' b= star_exp c= slash_exp ) )
 			int alt3=2;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0==ALL||LA3_0==ID||LA3_0==19||(LA3_0 >= 23 && LA3_0 <= 24)||(LA3_0 >= 27 && LA3_0 <= 28)||(LA3_0 >= 30 && LA3_0 <= 31)) ) {
@@ -716,16 +727,16 @@ public class aexptree17 extends TreeParser {
 
 			switch (alt3) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:351:3: (a= slash_exp )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:362:3: (a= slash_exp )
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:351:3: (a= slash_exp )
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:351:4: a= slash_exp
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:362:3: (a= slash_exp )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:362:4: a= slash_exp
 					{
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_slash_exp_in_star_exp287);
+					pushFollow(FOLLOW_slash_exp_in_star_exp288);
 					a=slash_exp();
 					state._fsp--;
 
@@ -749,7 +760,7 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:366:3: ^( '*' b= star_exp c= slash_exp )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:377:3: ^( '*' b= star_exp c= slash_exp )
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -760,7 +771,7 @@ public class aexptree17 extends TreeParser {
 					CommonTree _first_1 = null;
 					CommonTree root_1 = (CommonTree)adaptor.nil();
 					_last = (CommonTree)input.LT(1);
-					char_literal2=(CommonTree)match(input,21,FOLLOW_21_in_star_exp301); 
+					char_literal2=(CommonTree)match(input,21,FOLLOW_21_in_star_exp302); 
 					char_literal2_tree = (CommonTree)adaptor.dupNode(char_literal2);
 
 
@@ -768,14 +779,14 @@ public class aexptree17 extends TreeParser {
 
 					match(input, Token.DOWN, null); 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_star_exp_in_star_exp305);
+					pushFollow(FOLLOW_star_exp_in_star_exp306);
 					b=star_exp();
 					state._fsp--;
 
 					adaptor.addChild(root_1, b.getTree());
 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_slash_exp_in_star_exp309);
+					pushFollow(FOLLOW_slash_exp_in_star_exp310);
 					c=slash_exp();
 					state._fsp--;
 
@@ -898,7 +909,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "slash_exp"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:448:1: slash_exp returns [IntermediateResult sr] : ( ( ^( '/' f= slash_exp b= atom2 ) ) | ( ^( '?' e= slash_exp ) ) | ( (a= atom ) | ^( '.' c= slash_exp d= durations ) ) );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:459:1: slash_exp returns [IntermediateResult sr] : ( ( ^( '/' f= slash_exp b= atom2 ) ) | ( ^( '?' e= slash_exp ) ) | ( (a= atom ) | ^( '.' c= slash_exp d= durations ) ) );
 	public final aexptree17.slash_exp_return slash_exp() throws RecognitionException {
 		aexptree17.slash_exp_return retval = new aexptree17.slash_exp_return();
 		retval.start = input.LT(1);
@@ -932,7 +943,7 @@ public class aexptree17 extends TreeParser {
 		    
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:463:3: ( ( ^( '/' f= slash_exp b= atom2 ) ) | ( ^( '?' e= slash_exp ) ) | ( (a= atom ) | ^( '.' c= slash_exp d= durations ) ) )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:474:3: ( ( ^( '/' f= slash_exp b= atom2 ) ) | ( ^( '?' e= slash_exp ) ) | ( (a= atom ) | ^( '.' c= slash_exp d= durations ) ) )
 			int alt5=3;
 			switch ( input.LA(1) ) {
 			case 24:
@@ -963,13 +974,13 @@ public class aexptree17 extends TreeParser {
 			}
 			switch (alt5) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:464:3: ( ^( '/' f= slash_exp b= atom2 ) )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:475:3: ( ^( '/' f= slash_exp b= atom2 ) )
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:464:3: ( ^( '/' f= slash_exp b= atom2 ) )
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:464:4: ^( '/' f= slash_exp b= atom2 )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:475:3: ( ^( '/' f= slash_exp b= atom2 ) )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:475:4: ^( '/' f= slash_exp b= atom2 )
 					{
 					_last = (CommonTree)input.LT(1);
 					{
@@ -977,7 +988,7 @@ public class aexptree17 extends TreeParser {
 					CommonTree _first_1 = null;
 					CommonTree root_1 = (CommonTree)adaptor.nil();
 					_last = (CommonTree)input.LT(1);
-					char_literal3=(CommonTree)match(input,24,FOLLOW_24_in_slash_exp354); 
+					char_literal3=(CommonTree)match(input,24,FOLLOW_24_in_slash_exp355); 
 					char_literal3_tree = (CommonTree)adaptor.dupNode(char_literal3);
 
 
@@ -985,14 +996,14 @@ public class aexptree17 extends TreeParser {
 
 					match(input, Token.DOWN, null); 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_slash_exp_in_slash_exp358);
+					pushFollow(FOLLOW_slash_exp_in_slash_exp359);
 					f=slash_exp();
 					state._fsp--;
 
 					adaptor.addChild(root_1, f.getTree());
 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_atom2_in_slash_exp362);
+					pushFollow(FOLLOW_atom2_in_slash_exp363);
 					b=atom2();
 					state._fsp--;
 
@@ -1030,20 +1041,20 @@ public class aexptree17 extends TreeParser {
 					//    retval.sr.provenance.setData("Finding the tables that contain the following dimensions( in a dimensionset)"+inputds.getDimSet()+" result:"+resultlist);
 					    //Set up the 2 sublevels
 					    ProvenanceDataStructure operation = new ProvenanceDataStructure("/",ProvenanceDataStructure.TYPE.OPERATION);
-					    
+					    retval.sr.provenance.join(operation);
 					    retval.sr.provenance.join((b!=null?((aexptree17.atom2_return)b).a2:null).provenance);
 					    retval.sr.provenance.join((f!=null?((aexptree17.slash_exp_return)f).sr:null).provenance);
 					  
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:494:3: ( ^( '?' e= slash_exp ) )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:505:3: ( ^( '?' e= slash_exp ) )
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:494:3: ( ^( '?' e= slash_exp ) )
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:494:4: ^( '?' e= slash_exp )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:505:3: ( ^( '?' e= slash_exp ) )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:505:4: ^( '?' e= slash_exp )
 					{
 					_last = (CommonTree)input.LT(1);
 					{
@@ -1051,7 +1062,7 @@ public class aexptree17 extends TreeParser {
 					CommonTree _first_1 = null;
 					CommonTree root_1 = (CommonTree)adaptor.nil();
 					_last = (CommonTree)input.LT(1);
-					char_literal4=(CommonTree)match(input,27,FOLLOW_27_in_slash_exp378); 
+					char_literal4=(CommonTree)match(input,27,FOLLOW_27_in_slash_exp379); 
 					char_literal4_tree = (CommonTree)adaptor.dupNode(char_literal4);
 
 
@@ -1059,7 +1070,7 @@ public class aexptree17 extends TreeParser {
 
 					match(input, Token.DOWN, null); 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_slash_exp_in_slash_exp382);
+					pushFollow(FOLLOW_slash_exp_in_slash_exp383);
 					e=slash_exp();
 					state._fsp--;
 
@@ -1090,12 +1101,12 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 3 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:510:3: ( (a= atom ) | ^( '.' c= slash_exp d= durations ) )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:521:3: ( (a= atom ) | ^( '.' c= slash_exp d= durations ) )
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:510:3: ( (a= atom ) | ^( '.' c= slash_exp d= durations ) )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:521:3: ( (a= atom ) | ^( '.' c= slash_exp d= durations ) )
 					int alt4=2;
 					int LA4_0 = input.LA(1);
 					if ( (LA4_0==ALL||LA4_0==ID||LA4_0==19||LA4_0==28||(LA4_0 >= 30 && LA4_0 <= 31)) ) {
@@ -1113,13 +1124,13 @@ public class aexptree17 extends TreeParser {
 
 					switch (alt4) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:511:3: (a= atom )
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:522:3: (a= atom )
 							{
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:511:3: (a= atom )
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:511:4: a= atom
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:522:3: (a= atom )
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:522:4: a= atom
 							{
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_atom_in_slash_exp403);
+							pushFollow(FOLLOW_atom_in_slash_exp404);
 							a=atom();
 							state._fsp--;
 
@@ -1136,7 +1147,7 @@ public class aexptree17 extends TreeParser {
 							}
 							break;
 						case 2 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:519:3: ^( '.' c= slash_exp d= durations )
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:530:3: ^( '.' c= slash_exp d= durations )
 							{
 							_last = (CommonTree)input.LT(1);
 							{
@@ -1144,7 +1155,7 @@ public class aexptree17 extends TreeParser {
 							CommonTree _first_1 = null;
 							CommonTree root_1 = (CommonTree)adaptor.nil();
 							_last = (CommonTree)input.LT(1);
-							char_literal5=(CommonTree)match(input,23,FOLLOW_23_in_slash_exp417); 
+							char_literal5=(CommonTree)match(input,23,FOLLOW_23_in_slash_exp418); 
 							char_literal5_tree = (CommonTree)adaptor.dupNode(char_literal5);
 
 
@@ -1152,14 +1163,14 @@ public class aexptree17 extends TreeParser {
 
 							match(input, Token.DOWN, null); 
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_slash_exp_in_slash_exp421);
+							pushFollow(FOLLOW_slash_exp_in_slash_exp422);
 							c=slash_exp();
 							state._fsp--;
 
 							adaptor.addChild(root_1, c.getTree());
 
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_durations_in_slash_exp425);
+							pushFollow(FOLLOW_durations_in_slash_exp426);
 							d=durations();
 							state._fsp--;
 
@@ -1226,7 +1237,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "atom2"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:540:1: atom2 returns [Atom2 a2] : ( (a= set_of_dims |b= dimSet ) | ^( '.' c= atom2 d= durations ) ) ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:551:1: atom2 returns [Atom2 a2] : ( (a= set_of_dims |b= dimSet ) | ^( '.' c= atom2 d= durations ) ) ;
 	public final aexptree17.atom2_return atom2() throws RecognitionException {
 		aexptree17.atom2_return retval = new aexptree17.atom2_return();
 		retval.start = input.LT(1);
@@ -1249,13 +1260,13 @@ public class aexptree17 extends TreeParser {
 		    retval.a2 = new Atom2();
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:550:3: ( ( (a= set_of_dims |b= dimSet ) | ^( '.' c= atom2 d= durations ) ) )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:551:3: ( (a= set_of_dims |b= dimSet ) | ^( '.' c= atom2 d= durations ) )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:561:3: ( ( (a= set_of_dims |b= dimSet ) | ^( '.' c= atom2 d= durations ) ) )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:562:3: ( (a= set_of_dims |b= dimSet ) | ^( '.' c= atom2 d= durations ) )
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:551:3: ( (a= set_of_dims |b= dimSet ) | ^( '.' c= atom2 d= durations ) )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:562:3: ( (a= set_of_dims |b= dimSet ) | ^( '.' c= atom2 d= durations ) )
 			int alt7=2;
 			int LA7_0 = input.LA(1);
 			if ( (LA7_0==ALL||LA7_0==ID||LA7_0==31) ) {
@@ -1273,9 +1284,9 @@ public class aexptree17 extends TreeParser {
 
 			switch (alt7) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:552:3: (a= set_of_dims |b= dimSet )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:563:3: (a= set_of_dims |b= dimSet )
 					{
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:552:3: (a= set_of_dims |b= dimSet )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:563:3: (a= set_of_dims |b= dimSet )
 					int alt6=2;
 					int LA6_0 = input.LA(1);
 					if ( (LA6_0==31) ) {
@@ -1293,10 +1304,10 @@ public class aexptree17 extends TreeParser {
 
 					switch (alt6) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:553:3: a= set_of_dims
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:564:3: a= set_of_dims
 							{
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_set_of_dims_in_atom2479);
+							pushFollow(FOLLOW_set_of_dims_in_atom2480);
 							a=set_of_dims();
 							state._fsp--;
 
@@ -1316,10 +1327,10 @@ public class aexptree17 extends TreeParser {
 							}
 							break;
 						case 2 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:566:3: b= dimSet
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:577:3: b= dimSet
 							{
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_dimSet_in_atom2493);
+							pushFollow(FOLLOW_dimSet_in_atom2494);
 							b=dimSet();
 							state._fsp--;
 
@@ -1344,7 +1355,7 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:580:3: ^( '.' c= atom2 d= durations )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:591:3: ^( '.' c= atom2 d= durations )
 					{
 					_last = (CommonTree)input.LT(1);
 					{
@@ -1352,7 +1363,7 @@ public class aexptree17 extends TreeParser {
 					CommonTree _first_1 = null;
 					CommonTree root_1 = (CommonTree)adaptor.nil();
 					_last = (CommonTree)input.LT(1);
-					char_literal6=(CommonTree)match(input,23,FOLLOW_23_in_atom2510); 
+					char_literal6=(CommonTree)match(input,23,FOLLOW_23_in_atom2511); 
 					char_literal6_tree = (CommonTree)adaptor.dupNode(char_literal6);
 
 
@@ -1360,14 +1371,14 @@ public class aexptree17 extends TreeParser {
 
 					match(input, Token.DOWN, null); 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_atom2_in_atom2514);
+					pushFollow(FOLLOW_atom2_in_atom2515);
 					c=atom2();
 					state._fsp--;
 
 					adaptor.addChild(root_1, c.getTree());
 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_durations_in_atom2518);
+					pushFollow(FOLLOW_durations_in_atom2519);
 					d=durations();
 					state._fsp--;
 
@@ -1450,7 +1461,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "atom"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:622:1: atom returns [Atom atomicExp] : (a= dims |b= tags | '(' (c= r_exp )* ')' | '[' (d= dimSet |e= set_of_dimSets ) ']' );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:633:1: atom returns [Atom atomicExp] : (a= dims |b= tags | '(' (c= r_exp )* ')' | '[' (d= dimSet |e= set_of_dimSets ) ']' );
 	public final aexptree17.atom_return atom() throws RecognitionException {
 		aexptree17.atom_return retval = new aexptree17.atom_return();
 		retval.start = input.LT(1);
@@ -1482,7 +1493,7 @@ public class aexptree17 extends TreeParser {
 		    retval.atomicExp = new Atom();
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:634:3: (a= dims |b= tags | '(' (c= r_exp )* ')' | '[' (d= dimSet |e= set_of_dimSets ) ']' )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:645:3: (a= dims |b= tags | '(' (c= r_exp )* ')' | '[' (d= dimSet |e= set_of_dimSets ) ']' )
 			int alt10=4;
 			switch ( input.LA(1) ) {
 			case ALL:
@@ -1648,13 +1659,13 @@ public class aexptree17 extends TreeParser {
 			}
 			switch (alt10) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:635:3: a= dims
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:646:3: a= dims
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_dims_in_atom570);
+					pushFollow(FOLLOW_dims_in_atom571);
 					a=dims();
 					state._fsp--;
 
@@ -1675,13 +1686,13 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:649:3: b= tags
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:660:3: b= tags
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_tags_in_atom584);
+					pushFollow(FOLLOW_tags_in_atom585);
 					b=tags();
 					state._fsp--;
 
@@ -1700,19 +1711,19 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 3 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:661:3: '(' (c= r_exp )* ')'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:672:3: '(' (c= r_exp )* ')'
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					char_literal7=(CommonTree)match(input,19,FOLLOW_19_in_atom597); 
+					char_literal7=(CommonTree)match(input,19,FOLLOW_19_in_atom598); 
 					char_literal7_tree = (CommonTree)adaptor.dupNode(char_literal7);
 
 
 					adaptor.addChild(root_0, char_literal7_tree);
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:661:7: (c= r_exp )*
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:672:7: (c= r_exp )*
 					loop8:
 					while (true) {
 						int alt8=2;
@@ -1723,10 +1734,10 @@ public class aexptree17 extends TreeParser {
 
 						switch (alt8) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:662:3: c= r_exp
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:673:3: c= r_exp
 							{
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_r_exp_in_atom605);
+							pushFollow(FOLLOW_r_exp_in_atom606);
 							c=r_exp();
 							state._fsp--;
 
@@ -1752,7 +1763,7 @@ public class aexptree17 extends TreeParser {
 					}
 
 					_last = (CommonTree)input.LT(1);
-					char_literal8=(CommonTree)match(input,20,FOLLOW_20_in_atom616); 
+					char_literal8=(CommonTree)match(input,20,FOLLOW_20_in_atom617); 
 					char_literal8_tree = (CommonTree)adaptor.dupNode(char_literal8);
 
 
@@ -1761,19 +1772,19 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 4 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:676:3: '[' (d= dimSet |e= set_of_dimSets ) ']'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:687:3: '[' (d= dimSet |e= set_of_dimSets ) ']'
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					char_literal9=(CommonTree)match(input,28,FOLLOW_28_in_atom624); 
+					char_literal9=(CommonTree)match(input,28,FOLLOW_28_in_atom625); 
 					char_literal9_tree = (CommonTree)adaptor.dupNode(char_literal9);
 
 
 					adaptor.addChild(root_0, char_literal9_tree);
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:677:3: (d= dimSet |e= set_of_dimSets )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:688:3: (d= dimSet |e= set_of_dimSets )
 					int alt9=2;
 					int LA9_0 = input.LA(1);
 					if ( (LA9_0==ALL||LA9_0==ID) ) {
@@ -1791,10 +1802,10 @@ public class aexptree17 extends TreeParser {
 
 					switch (alt9) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:678:3: d= dimSet
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:689:3: d= dimSet
 							{
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_dimSet_in_atom635);
+							pushFollow(FOLLOW_dimSet_in_atom636);
 							d=dimSet();
 							state._fsp--;
 
@@ -1816,10 +1827,10 @@ public class aexptree17 extends TreeParser {
 							}
 							break;
 						case 2 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:693:3: e= set_of_dimSets
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:704:3: e= set_of_dimSets
 							{
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_set_of_dimSets_in_atom649);
+							pushFollow(FOLLOW_set_of_dimSets_in_atom650);
 							e=set_of_dimSets();
 							state._fsp--;
 
@@ -1847,7 +1858,7 @@ public class aexptree17 extends TreeParser {
 					}
 
 					_last = (CommonTree)input.LT(1);
-					char_literal10=(CommonTree)match(input,29,FOLLOW_29_in_atom659); 
+					char_literal10=(CommonTree)match(input,29,FOLLOW_29_in_atom660); 
 					char_literal10_tree = (CommonTree)adaptor.dupNode(char_literal10);
 
 
@@ -1885,7 +1896,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "dims"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:715:1: dims returns [Set<Dimension> dimSet] : ( ALL |a= dim |b= set_of_dims );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:726:1: dims returns [Set<Dimension> dimSet] : ( ALL |a= dim |b= set_of_dims );
 	public final aexptree17.dims_return dims() throws RecognitionException {
 		aexptree17.dims_return retval = new aexptree17.dims_return();
 		retval.start = input.LT(1);
@@ -1906,7 +1917,7 @@ public class aexptree17 extends TreeParser {
 		    retval.dimSet = new HashSet<>();
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:725:3: ( ALL |a= dim |b= set_of_dims )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:736:3: ( ALL |a= dim |b= set_of_dims )
 			int alt11=3;
 			switch ( input.LA(1) ) {
 			case ALL:
@@ -1931,13 +1942,13 @@ public class aexptree17 extends TreeParser {
 			}
 			switch (alt11) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:726:3: ALL
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:737:3: ALL
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					ALL11=(CommonTree)match(input,ALL,FOLLOW_ALL_in_dims699); 
+					ALL11=(CommonTree)match(input,ALL,FOLLOW_ALL_in_dims700); 
 					ALL11_tree = (CommonTree)adaptor.dupNode(ALL11);
 
 
@@ -1953,13 +1964,13 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:735:3: a= dim
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:746:3: a= dim
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_dim_in_dims715);
+					pushFollow(FOLLOW_dim_in_dims716);
 					a=dim();
 					state._fsp--;
 
@@ -1973,13 +1984,13 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 3 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:742:3: b= set_of_dims
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:753:3: b= set_of_dims
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_set_of_dims_in_dims729);
+					pushFollow(FOLLOW_set_of_dims_in_dims730);
 					b=set_of_dims();
 					state._fsp--;
 
@@ -2024,7 +2035,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "set_of_dims"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:752:1: set_of_dims returns [Set<Dimension> dim_set] : ( '{' a= dim '}' | '{' ^( ',' (a= dim )+ ) '}' );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:763:1: set_of_dims returns [Set<Dimension> dim_set] : ( '{' a= dim '}' | '{' ^( ',' (a= dim )+ ) '}' );
 	public final aexptree17.set_of_dims_return set_of_dims() throws RecognitionException {
 		aexptree17.set_of_dims_return retval = new aexptree17.set_of_dims_return();
 		retval.start = input.LT(1);
@@ -2052,7 +2063,7 @@ public class aexptree17 extends TreeParser {
 		    retval.dim_set = new HashSet<>();
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:762:3: ( '{' a= dim '}' | '{' ^( ',' (a= dim )+ ) '}' )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:773:3: ( '{' a= dim '}' | '{' ^( ',' (a= dim )+ ) '}' )
 			int alt13=2;
 			int LA13_0 = input.LA(1);
 			if ( (LA13_0==31) ) {
@@ -2086,20 +2097,20 @@ public class aexptree17 extends TreeParser {
 
 			switch (alt13) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:763:3: '{' a= dim '}'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:774:3: '{' a= dim '}'
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					char_literal12=(CommonTree)match(input,31,FOLLOW_31_in_set_of_dims771); 
+					char_literal12=(CommonTree)match(input,31,FOLLOW_31_in_set_of_dims772); 
 					char_literal12_tree = (CommonTree)adaptor.dupNode(char_literal12);
 
 
 					adaptor.addChild(root_0, char_literal12_tree);
 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_dim_in_set_of_dims778);
+					pushFollow(FOLLOW_dim_in_set_of_dims779);
 					a=dim();
 					state._fsp--;
 
@@ -2109,7 +2120,7 @@ public class aexptree17 extends TreeParser {
 					      retval.dim_set.add((a!=null?((aexptree17.dim_return)a).d:null));
 					  
 					_last = (CommonTree)input.LT(1);
-					char_literal13=(CommonTree)match(input,32,FOLLOW_32_in_set_of_dims787); 
+					char_literal13=(CommonTree)match(input,32,FOLLOW_32_in_set_of_dims788); 
 					char_literal13_tree = (CommonTree)adaptor.dupNode(char_literal13);
 
 
@@ -2118,13 +2129,13 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:770:3: '{' ^( ',' (a= dim )+ ) '}'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:781:3: '{' ^( ',' (a= dim )+ ) '}'
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					char_literal14=(CommonTree)match(input,31,FOLLOW_31_in_set_of_dims796); 
+					char_literal14=(CommonTree)match(input,31,FOLLOW_31_in_set_of_dims797); 
 					char_literal14_tree = (CommonTree)adaptor.dupNode(char_literal14);
 
 
@@ -2136,14 +2147,14 @@ public class aexptree17 extends TreeParser {
 					CommonTree _first_1 = null;
 					CommonTree root_1 = (CommonTree)adaptor.nil();
 					_last = (CommonTree)input.LT(1);
-					char_literal15=(CommonTree)match(input,22,FOLLOW_22_in_set_of_dims798); 
+					char_literal15=(CommonTree)match(input,22,FOLLOW_22_in_set_of_dims799); 
 					char_literal15_tree = (CommonTree)adaptor.dupNode(char_literal15);
 
 
 					root_1 = (CommonTree)adaptor.becomeRoot(char_literal15_tree, root_1);
 
 					match(input, Token.DOWN, null); 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:770:11: (a= dim )+
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:781:11: (a= dim )+
 					int cnt12=0;
 					loop12:
 					while (true) {
@@ -2155,10 +2166,10 @@ public class aexptree17 extends TreeParser {
 
 						switch (alt12) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:770:12: a= dim
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:781:12: a= dim
 							{
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_dim_in_set_of_dims802);
+							pushFollow(FOLLOW_dim_in_set_of_dims803);
 							a=dim();
 							state._fsp--;
 
@@ -2183,7 +2194,7 @@ public class aexptree17 extends TreeParser {
 
 
 					_last = (CommonTree)input.LT(1);
-					char_literal16=(CommonTree)match(input,32,FOLLOW_32_in_set_of_dims807); 
+					char_literal16=(CommonTree)match(input,32,FOLLOW_32_in_set_of_dims808); 
 					char_literal16_tree = (CommonTree)adaptor.dupNode(char_literal16);
 
 
@@ -2221,7 +2232,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "virtual_dim"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:775:1: virtual_dim returns [List<Dimension> virtual_dim] : '\\'{' ^( ',' (a= dim )+ ) '}\\'' ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:786:1: virtual_dim returns [List<Dimension> virtual_dim] : '\\'{' ^( ',' (a= dim )+ ) '}\\'' ;
 	public final aexptree17.virtual_dim_return virtual_dim() throws RecognitionException {
 		aexptree17.virtual_dim_return retval = new aexptree17.virtual_dim_return();
 		retval.start = input.LT(1);
@@ -2242,14 +2253,14 @@ public class aexptree17 extends TreeParser {
 		CommonTree string_literal19_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:776:3: ( '\\'{' ^( ',' (a= dim )+ ) '}\\'' )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:777:3: '\\'{' ^( ',' (a= dim )+ ) '}\\''
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:787:3: ( '\\'{' ^( ',' (a= dim )+ ) '}\\'' )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:788:3: '\\'{' ^( ',' (a= dim )+ ) '}\\''
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
 			_last = (CommonTree)input.LT(1);
-			string_literal17=(CommonTree)match(input,33,FOLLOW_33_in_virtual_dim827); 
+			string_literal17=(CommonTree)match(input,33,FOLLOW_33_in_virtual_dim828); 
 			string_literal17_tree = (CommonTree)adaptor.dupNode(string_literal17);
 
 
@@ -2261,14 +2272,14 @@ public class aexptree17 extends TreeParser {
 			CommonTree _first_1 = null;
 			CommonTree root_1 = (CommonTree)adaptor.nil();
 			_last = (CommonTree)input.LT(1);
-			char_literal18=(CommonTree)match(input,22,FOLLOW_22_in_virtual_dim829); 
+			char_literal18=(CommonTree)match(input,22,FOLLOW_22_in_virtual_dim830); 
 			char_literal18_tree = (CommonTree)adaptor.dupNode(char_literal18);
 
 
 			root_1 = (CommonTree)adaptor.becomeRoot(char_literal18_tree, root_1);
 
 			match(input, Token.DOWN, null); 
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:777:13: (a= dim )+
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:788:13: (a= dim )+
 			int cnt14=0;
 			loop14:
 			while (true) {
@@ -2280,10 +2291,10 @@ public class aexptree17 extends TreeParser {
 
 				switch (alt14) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:777:14: a= dim
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:788:14: a= dim
 					{
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_dim_in_virtual_dim833);
+					pushFollow(FOLLOW_dim_in_virtual_dim834);
 					a=dim();
 					state._fsp--;
 
@@ -2308,7 +2319,7 @@ public class aexptree17 extends TreeParser {
 
 
 			_last = (CommonTree)input.LT(1);
-			string_literal19=(CommonTree)match(input,34,FOLLOW_34_in_virtual_dim838); 
+			string_literal19=(CommonTree)match(input,34,FOLLOW_34_in_virtual_dim839); 
 			string_literal19_tree = (CommonTree)adaptor.dupNode(string_literal19);
 
 
@@ -2340,7 +2351,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "set_of_dimSets"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:783:1: set_of_dimSets returns [Set<DimensionSet> dimset_set] : ( '{' a= dimSet '}' | '{' ^( ',' (a= dimSet )+ ) '}' );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:794:1: set_of_dimSets returns [Set<DimensionSet> dimset_set] : ( '{' a= dimSet '}' | '{' ^( ',' (a= dimSet )+ ) '}' );
 	public final aexptree17.set_of_dimSets_return set_of_dimSets() throws RecognitionException {
 		aexptree17.set_of_dimSets_return retval = new aexptree17.set_of_dimSets_return();
 		retval.start = input.LT(1);
@@ -2370,7 +2381,7 @@ public class aexptree17 extends TreeParser {
 		    retval.dimset_set = new HashSet<>();
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:795:3: ( '{' a= dimSet '}' | '{' ^( ',' (a= dimSet )+ ) '}' )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:806:3: ( '{' a= dimSet '}' | '{' ^( ',' (a= dimSet )+ ) '}' )
 			int alt16=2;
 			int LA16_0 = input.LA(1);
 			if ( (LA16_0==31) ) {
@@ -2404,20 +2415,20 @@ public class aexptree17 extends TreeParser {
 
 			switch (alt16) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:796:3: '{' a= dimSet '}'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:807:3: '{' a= dimSet '}'
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					char_literal20=(CommonTree)match(input,31,FOLLOW_31_in_set_of_dimSets881); 
+					char_literal20=(CommonTree)match(input,31,FOLLOW_31_in_set_of_dimSets882); 
 					char_literal20_tree = (CommonTree)adaptor.dupNode(char_literal20);
 
 
 					adaptor.addChild(root_0, char_literal20_tree);
 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_dimSet_in_set_of_dimSets888);
+					pushFollow(FOLLOW_dimSet_in_set_of_dimSets889);
 					a=dimSet();
 					state._fsp--;
 
@@ -2428,7 +2439,7 @@ public class aexptree17 extends TreeParser {
 					      retval.dimset_set.add(ds);
 					  
 					_last = (CommonTree)input.LT(1);
-					char_literal21=(CommonTree)match(input,32,FOLLOW_32_in_set_of_dimSets897); 
+					char_literal21=(CommonTree)match(input,32,FOLLOW_32_in_set_of_dimSets898); 
 					char_literal21_tree = (CommonTree)adaptor.dupNode(char_literal21);
 
 
@@ -2437,13 +2448,13 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:804:3: '{' ^( ',' (a= dimSet )+ ) '}'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:815:3: '{' ^( ',' (a= dimSet )+ ) '}'
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					char_literal22=(CommonTree)match(input,31,FOLLOW_31_in_set_of_dimSets905); 
+					char_literal22=(CommonTree)match(input,31,FOLLOW_31_in_set_of_dimSets906); 
 					char_literal22_tree = (CommonTree)adaptor.dupNode(char_literal22);
 
 
@@ -2455,14 +2466,14 @@ public class aexptree17 extends TreeParser {
 					CommonTree _first_1 = null;
 					CommonTree root_1 = (CommonTree)adaptor.nil();
 					_last = (CommonTree)input.LT(1);
-					char_literal23=(CommonTree)match(input,22,FOLLOW_22_in_set_of_dimSets910); 
+					char_literal23=(CommonTree)match(input,22,FOLLOW_22_in_set_of_dimSets911); 
 					char_literal23_tree = (CommonTree)adaptor.dupNode(char_literal23);
 
 
 					root_1 = (CommonTree)adaptor.becomeRoot(char_literal23_tree, root_1);
 
 					match(input, Token.DOWN, null); 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:806:3: (a= dimSet )+
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:817:3: (a= dimSet )+
 					int cnt15=0;
 					loop15:
 					while (true) {
@@ -2474,10 +2485,10 @@ public class aexptree17 extends TreeParser {
 
 						switch (alt15) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:806:4: a= dimSet
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:817:4: a= dimSet
 							{
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_dimSet_in_set_of_dimSets917);
+							pushFollow(FOLLOW_dimSet_in_set_of_dimSets918);
 							a=dimSet();
 							state._fsp--;
 
@@ -2504,7 +2515,7 @@ public class aexptree17 extends TreeParser {
 
 
 					_last = (CommonTree)input.LT(1);
-					char_literal24=(CommonTree)match(input,32,FOLLOW_32_in_set_of_dimSets934); 
+					char_literal24=(CommonTree)match(input,32,FOLLOW_32_in_set_of_dimSets935); 
 					char_literal24_tree = (CommonTree)adaptor.dupNode(char_literal24);
 
 
@@ -2542,7 +2553,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "dim"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:816:1: dim returns [Dimension d] : ID ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:827:1: dim returns [Dimension d] : ID ;
 	public final aexptree17.dim_return dim() throws RecognitionException {
 		aexptree17.dim_return retval = new aexptree17.dim_return();
 		retval.start = input.LT(1);
@@ -2562,14 +2573,14 @@ public class aexptree17 extends TreeParser {
 		    System.out.println("In dim");
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:827:3: ( ID )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:828:3: ID
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:838:3: ( ID )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:839:3: ID
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
 			_last = (CommonTree)input.LT(1);
-			ID25=(CommonTree)match(input,ID,FOLLOW_ID_in_dim976); 
+			ID25=(CommonTree)match(input,ID,FOLLOW_ID_in_dim977); 
 			ID25_tree = (CommonTree)adaptor.dupNode(ID25);
 
 
@@ -2617,7 +2628,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "tags"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:844:1: tags returns [Set<Tag> tagSet] : ( '{' a= tag '}' | '{' ^( ',' (a= tag )+ ) '}' |c= tag );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:855:1: tags returns [Set<Tag> tagSet] : ( '{' a= tag '}' | '{' ^( ',' (a= tag )+ ) '}' |c= tag );
 	public final aexptree17.tags_return tags() throws RecognitionException {
 		aexptree17.tags_return retval = new aexptree17.tags_return();
 		retval.start = input.LT(1);
@@ -2648,7 +2659,7 @@ public class aexptree17 extends TreeParser {
 		    System.out.println("Initializing tagset");
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:856:3: ( '{' a= tag '}' | '{' ^( ',' (a= tag )+ ) '}' |c= tag )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:867:3: ( '{' a= tag '}' | '{' ^( ',' (a= tag )+ ) '}' |c= tag )
 			int alt18=3;
 			int LA18_0 = input.LA(1);
 			if ( (LA18_0==31) ) {
@@ -2685,20 +2696,20 @@ public class aexptree17 extends TreeParser {
 
 			switch (alt18) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:857:3: '{' a= tag '}'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:868:3: '{' a= tag '}'
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					char_literal26=(CommonTree)match(input,31,FOLLOW_31_in_tags1020); 
+					char_literal26=(CommonTree)match(input,31,FOLLOW_31_in_tags1021); 
 					char_literal26_tree = (CommonTree)adaptor.dupNode(char_literal26);
 
 
 					adaptor.addChild(root_0, char_literal26_tree);
 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_tag_in_tags1024);
+					pushFollow(FOLLOW_tag_in_tags1025);
 					a=tag();
 					state._fsp--;
 
@@ -2706,7 +2717,7 @@ public class aexptree17 extends TreeParser {
 
 					retval.tagSet.add((a!=null?((aexptree17.tag_return)a).tag:null));
 					_last = (CommonTree)input.LT(1);
-					char_literal27=(CommonTree)match(input,32,FOLLOW_32_in_tags1027); 
+					char_literal27=(CommonTree)match(input,32,FOLLOW_32_in_tags1028); 
 					char_literal27_tree = (CommonTree)adaptor.dupNode(char_literal27);
 
 
@@ -2715,13 +2726,13 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:859:3: '{' ^( ',' (a= tag )+ ) '}'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:870:3: '{' ^( ',' (a= tag )+ ) '}'
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					char_literal28=(CommonTree)match(input,31,FOLLOW_31_in_tags1035); 
+					char_literal28=(CommonTree)match(input,31,FOLLOW_31_in_tags1036); 
 					char_literal28_tree = (CommonTree)adaptor.dupNode(char_literal28);
 
 
@@ -2733,14 +2744,14 @@ public class aexptree17 extends TreeParser {
 					CommonTree _first_1 = null;
 					CommonTree root_1 = (CommonTree)adaptor.nil();
 					_last = (CommonTree)input.LT(1);
-					char_literal29=(CommonTree)match(input,22,FOLLOW_22_in_tags1037); 
+					char_literal29=(CommonTree)match(input,22,FOLLOW_22_in_tags1038); 
 					char_literal29_tree = (CommonTree)adaptor.dupNode(char_literal29);
 
 
 					root_1 = (CommonTree)adaptor.becomeRoot(char_literal29_tree, root_1);
 
 					match(input, Token.DOWN, null); 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:859:11: (a= tag )+
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:870:11: (a= tag )+
 					int cnt17=0;
 					loop17:
 					while (true) {
@@ -2752,10 +2763,10 @@ public class aexptree17 extends TreeParser {
 
 						switch (alt17) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:859:12: a= tag
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:870:12: a= tag
 							{
 							_last = (CommonTree)input.LT(1);
-							pushFollow(FOLLOW_tag_in_tags1041);
+							pushFollow(FOLLOW_tag_in_tags1042);
 							a=tag();
 							state._fsp--;
 
@@ -2780,7 +2791,7 @@ public class aexptree17 extends TreeParser {
 
 
 					_last = (CommonTree)input.LT(1);
-					char_literal30=(CommonTree)match(input,32,FOLLOW_32_in_tags1046); 
+					char_literal30=(CommonTree)match(input,32,FOLLOW_32_in_tags1047); 
 					char_literal30_tree = (CommonTree)adaptor.dupNode(char_literal30);
 
 
@@ -2789,13 +2800,13 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 3 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:861:3: c= tag
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:872:3: c= tag
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_tag_in_tags1056);
+					pushFollow(FOLLOW_tag_in_tags1057);
 					c=tag();
 					state._fsp--;
 
@@ -2836,7 +2847,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "tag"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:868:1: tag returns [Tag tag] : ( tagScheme | '_' ) ':' ID ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:879:1: tag returns [Tag tag] : ( tagScheme | '_' ) ':' ID ;
 	public final aexptree17.tag_return tag() throws RecognitionException {
 		aexptree17.tag_return retval = new aexptree17.tag_return();
 		retval.start = input.LT(1);
@@ -2862,13 +2873,13 @@ public class aexptree17 extends TreeParser {
 		    retval.tag = new Tag();
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:884:3: ( ( tagScheme | '_' ) ':' ID )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:885:3: ( tagScheme | '_' ) ':' ID
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:895:3: ( ( tagScheme | '_' ) ':' ID )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:896:3: ( tagScheme | '_' ) ':' ID
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:885:3: ( tagScheme | '_' )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:896:3: ( tagScheme | '_' )
 			int alt19=2;
 			int LA19_0 = input.LA(1);
 			if ( (LA19_0==ID) ) {
@@ -2886,10 +2897,10 @@ public class aexptree17 extends TreeParser {
 
 			switch (alt19) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:886:3: tagScheme
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:897:3: tagScheme
 					{
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_tagScheme_in_tag1104);
+					pushFollow(FOLLOW_tagScheme_in_tag1105);
 					tagScheme31=tagScheme();
 					state._fsp--;
 
@@ -2901,10 +2912,10 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:891:3: '_'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:902:3: '_'
 					{
 					_last = (CommonTree)input.LT(1);
-					char_literal32=(CommonTree)match(input,30,FOLLOW_30_in_tag1117); 
+					char_literal32=(CommonTree)match(input,30,FOLLOW_30_in_tag1118); 
 					char_literal32_tree = (CommonTree)adaptor.dupNode(char_literal32);
 
 
@@ -2919,14 +2930,14 @@ public class aexptree17 extends TreeParser {
 			}
 
 			_last = (CommonTree)input.LT(1);
-			char_literal33=(CommonTree)match(input,25,FOLLOW_25_in_tag1129); 
+			char_literal33=(CommonTree)match(input,25,FOLLOW_25_in_tag1130); 
 			char_literal33_tree = (CommonTree)adaptor.dupNode(char_literal33);
 
 
 			adaptor.addChild(root_0, char_literal33_tree);
 
 			_last = (CommonTree)input.LT(1);
-			ID34=(CommonTree)match(input,ID,FOLLOW_ID_in_tag1131); 
+			ID34=(CommonTree)match(input,ID,FOLLOW_ID_in_tag1132); 
 			ID34_tree = (CommonTree)adaptor.dupNode(ID34);
 
 
@@ -2969,7 +2980,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "tagScheme"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:902:1: tagScheme returns [TagScheme targetTagScheme] : ID ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:913:1: tagScheme returns [TagScheme targetTagScheme] : ID ;
 	public final aexptree17.tagScheme_return tagScheme() throws RecognitionException {
 		aexptree17.tagScheme_return retval = new aexptree17.tagScheme_return();
 		retval.start = input.LT(1);
@@ -2985,14 +2996,14 @@ public class aexptree17 extends TreeParser {
 		CommonTree ID35_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:903:3: ( ID )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:904:3: ID
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:914:3: ( ID )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:915:3: ID
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
 			_last = (CommonTree)input.LT(1);
-			ID35=(CommonTree)match(input,ID,FOLLOW_ID_in_tagScheme1156); 
+			ID35=(CommonTree)match(input,ID,FOLLOW_ID_in_tagScheme1157); 
 			ID35_tree = (CommonTree)adaptor.dupNode(ID35);
 
 
@@ -3039,7 +3050,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "dimSet"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:926:1: dimSet returns [Set<DimensionSet> dimensionSet] : ( ALL | ID );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:937:1: dimSet returns [Set<DimensionSet> dimensionSet] : ( ALL | ID );
 	public final aexptree17.dimSet_return dimSet() throws RecognitionException {
 		aexptree17.dimSet_return retval = new aexptree17.dimSet_return();
 		retval.start = input.LT(1);
@@ -3061,7 +3072,7 @@ public class aexptree17 extends TreeParser {
 		    System.out.println("Finding dimSet");
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:937:3: ( ALL | ID )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:948:3: ( ALL | ID )
 			int alt20=2;
 			int LA20_0 = input.LA(1);
 			if ( (LA20_0==ALL) ) {
@@ -3079,13 +3090,13 @@ public class aexptree17 extends TreeParser {
 
 			switch (alt20) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:938:3: ALL
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:949:3: ALL
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					ALL36=(CommonTree)match(input,ALL,FOLLOW_ALL_in_dimSet1207); 
+					ALL36=(CommonTree)match(input,ALL,FOLLOW_ALL_in_dimSet1208); 
 					ALL36_tree = (CommonTree)adaptor.dupNode(ALL36);
 
 
@@ -3099,13 +3110,13 @@ public class aexptree17 extends TreeParser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:945:3: ID
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:956:3: ID
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
 
 					_last = (CommonTree)input.LT(1);
-					ID37=(CommonTree)match(input,ID,FOLLOW_ID_in_dimSet1220); 
+					ID37=(CommonTree)match(input,ID,FOLLOW_ID_in_dimSet1221); 
 					ID37_tree = (CommonTree)adaptor.dupNode(ID37);
 
 
@@ -3161,7 +3172,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "durations"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:967:1: durations returns [List<Period> durationList] : '{' ^( ';' (b= duration )+ ) '}' ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:978:1: durations returns [List<Period> durationList] : '{' ^( ';' (b= duration )+ ) '}' ;
 	public final aexptree17.durations_return durations() throws RecognitionException {
 		aexptree17.durations_return retval = new aexptree17.durations_return();
 		retval.start = input.LT(1);
@@ -3185,14 +3196,14 @@ public class aexptree17 extends TreeParser {
 		    retval.durationList = new LinkedList<>();
 		  
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:977:3: ( '{' ^( ';' (b= duration )+ ) '}' )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:978:3: '{' ^( ';' (b= duration )+ ) '}'
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:988:3: ( '{' ^( ';' (b= duration )+ ) '}' )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:989:3: '{' ^( ';' (b= duration )+ ) '}'
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
 			_last = (CommonTree)input.LT(1);
-			char_literal38=(CommonTree)match(input,31,FOLLOW_31_in_durations1262); 
+			char_literal38=(CommonTree)match(input,31,FOLLOW_31_in_durations1263); 
 			char_literal38_tree = (CommonTree)adaptor.dupNode(char_literal38);
 
 
@@ -3204,14 +3215,14 @@ public class aexptree17 extends TreeParser {
 			CommonTree _first_1 = null;
 			CommonTree root_1 = (CommonTree)adaptor.nil();
 			_last = (CommonTree)input.LT(1);
-			char_literal39=(CommonTree)match(input,26,FOLLOW_26_in_durations1264); 
+			char_literal39=(CommonTree)match(input,26,FOLLOW_26_in_durations1265); 
 			char_literal39_tree = (CommonTree)adaptor.dupNode(char_literal39);
 
 
 			root_1 = (CommonTree)adaptor.becomeRoot(char_literal39_tree, root_1);
 
 			match(input, Token.DOWN, null); 
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:978:12: (b= duration )+
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:989:12: (b= duration )+
 			int cnt21=0;
 			loop21:
 			while (true) {
@@ -3223,10 +3234,10 @@ public class aexptree17 extends TreeParser {
 
 				switch (alt21) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:978:13: b= duration
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:989:13: b= duration
 					{
 					_last = (CommonTree)input.LT(1);
-					pushFollow(FOLLOW_duration_in_durations1269);
+					pushFollow(FOLLOW_duration_in_durations1270);
 					b=duration();
 					state._fsp--;
 
@@ -3251,7 +3262,7 @@ public class aexptree17 extends TreeParser {
 
 
 			_last = (CommonTree)input.LT(1);
-			char_literal40=(CommonTree)match(input,32,FOLLOW_32_in_durations1274); 
+			char_literal40=(CommonTree)match(input,32,FOLLOW_32_in_durations1275); 
 			char_literal40_tree = (CommonTree)adaptor.dupNode(char_literal40);
 
 
@@ -3287,7 +3298,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "duration"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:981:1: duration returns [Period duration] : starttime= start_time ',' endtime= end_time ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:992:1: duration returns [Period duration] : starttime= start_time ',' endtime= end_time ;
 	public final aexptree17.duration_return duration() throws RecognitionException {
 		aexptree17.duration_return retval = new aexptree17.duration_return();
 		retval.start = input.LT(1);
@@ -3305,28 +3316,28 @@ public class aexptree17 extends TreeParser {
 		CommonTree char_literal41_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:986:3: (starttime= start_time ',' endtime= end_time )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:987:3: starttime= start_time ',' endtime= end_time
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:997:3: (starttime= start_time ',' endtime= end_time )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:998:3: starttime= start_time ',' endtime= end_time
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
 			_last = (CommonTree)input.LT(1);
-			pushFollow(FOLLOW_start_time_in_duration1303);
+			pushFollow(FOLLOW_start_time_in_duration1304);
 			starttime=start_time();
 			state._fsp--;
 
 			adaptor.addChild(root_0, starttime.getTree());
 
 			_last = (CommonTree)input.LT(1);
-			char_literal41=(CommonTree)match(input,22,FOLLOW_22_in_duration1305); 
+			char_literal41=(CommonTree)match(input,22,FOLLOW_22_in_duration1306); 
 			char_literal41_tree = (CommonTree)adaptor.dupNode(char_literal41);
 
 
 			adaptor.addChild(root_0, char_literal41_tree);
 
 			_last = (CommonTree)input.LT(1);
-			pushFollow(FOLLOW_end_time_in_duration1309);
+			pushFollow(FOLLOW_end_time_in_duration1310);
 			endtime=end_time();
 			state._fsp--;
 
@@ -3365,7 +3376,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "start_time"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:994:1: start_time returns [String value] : INT ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:1005:1: start_time returns [String value] : INT ;
 	public final aexptree17.start_time_return start_time() throws RecognitionException {
 		aexptree17.start_time_return retval = new aexptree17.start_time_return();
 		retval.start = input.LT(1);
@@ -3381,14 +3392,14 @@ public class aexptree17 extends TreeParser {
 		CommonTree INT42_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:995:3: ( INT )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:996:3: INT
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:1006:3: ( INT )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:1007:3: INT
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
 			_last = (CommonTree)input.LT(1);
-			INT42=(CommonTree)match(input,INT,FOLLOW_INT_in_start_time1332); 
+			INT42=(CommonTree)match(input,INT,FOLLOW_INT_in_start_time1333); 
 			INT42_tree = (CommonTree)adaptor.dupNode(INT42);
 
 
@@ -3423,7 +3434,7 @@ public class aexptree17 extends TreeParser {
 
 
 	// $ANTLR start "end_time"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:1002:1: end_time returns [String value] : INT ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:1013:1: end_time returns [String value] : INT ;
 	public final aexptree17.end_time_return end_time() throws RecognitionException {
 		aexptree17.end_time_return retval = new aexptree17.end_time_return();
 		retval.start = input.LT(1);
@@ -3439,14 +3450,14 @@ public class aexptree17 extends TreeParser {
 		CommonTree INT43_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:1003:3: ( INT )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:1004:3: INT
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:1014:3: ( INT )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:1015:3: INT
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
 			_last = (CommonTree)input.LT(1);
-			INT43=(CommonTree)match(input,INT,FOLLOW_INT_in_end_time1355); 
+			INT43=(CommonTree)match(input,INT,FOLLOW_INT_in_end_time1356); 
 			INT43_tree = (CommonTree)adaptor.dupNode(INT43);
 
 
@@ -3475,85 +3486,85 @@ public class aexptree17 extends TreeParser {
 
 
 
-	public static final BitSet FOLLOW_r_exp_in_start88 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_period_exp_in_r_exp135 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_set_in_r_exp151 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_r_exp_in_r_exp159 = new BitSet(new long[]{0x00000000D9A80210L});
-	public static final BitSet FOLLOW_period_exp_in_r_exp163 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_NOT_in_r_exp181 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_r_exp_in_r_exp185 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_star_exp_in_period_exp233 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_slash_exp_in_star_exp287 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_21_in_star_exp301 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_star_exp_in_star_exp305 = new BitSet(new long[]{0x00000000D9880210L});
-	public static final BitSet FOLLOW_slash_exp_in_star_exp309 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_24_in_slash_exp354 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_slash_exp_in_slash_exp358 = new BitSet(new long[]{0x0000000080800210L});
-	public static final BitSet FOLLOW_atom2_in_slash_exp362 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_27_in_slash_exp378 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_slash_exp_in_slash_exp382 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_atom_in_slash_exp403 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_23_in_slash_exp417 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_slash_exp_in_slash_exp421 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_durations_in_slash_exp425 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_set_of_dims_in_atom2479 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_dimSet_in_atom2493 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_23_in_atom2510 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_atom2_in_atom2514 = new BitSet(new long[]{0x0000000080000000L});
-	public static final BitSet FOLLOW_durations_in_atom2518 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_dims_in_atom570 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_tags_in_atom584 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_19_in_atom597 = new BitSet(new long[]{0x00000000D9B85230L});
-	public static final BitSet FOLLOW_r_exp_in_atom605 = new BitSet(new long[]{0x00000000D9B85230L});
-	public static final BitSet FOLLOW_20_in_atom616 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_28_in_atom624 = new BitSet(new long[]{0x0000000080000210L});
-	public static final BitSet FOLLOW_dimSet_in_atom635 = new BitSet(new long[]{0x0000000020000000L});
-	public static final BitSet FOLLOW_set_of_dimSets_in_atom649 = new BitSet(new long[]{0x0000000020000000L});
-	public static final BitSet FOLLOW_29_in_atom659 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ALL_in_dims699 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_dim_in_dims715 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_set_of_dims_in_dims729 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_31_in_set_of_dims771 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_dim_in_set_of_dims778 = new BitSet(new long[]{0x0000000100000000L});
-	public static final BitSet FOLLOW_32_in_set_of_dims787 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_31_in_set_of_dims796 = new BitSet(new long[]{0x0000000000400000L});
-	public static final BitSet FOLLOW_22_in_set_of_dims798 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_dim_in_set_of_dims802 = new BitSet(new long[]{0x0000000000000208L});
-	public static final BitSet FOLLOW_32_in_set_of_dims807 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_33_in_virtual_dim827 = new BitSet(new long[]{0x0000000000400000L});
-	public static final BitSet FOLLOW_22_in_virtual_dim829 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_dim_in_virtual_dim833 = new BitSet(new long[]{0x0000000000000208L});
-	public static final BitSet FOLLOW_34_in_virtual_dim838 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_31_in_set_of_dimSets881 = new BitSet(new long[]{0x0000000000000210L});
-	public static final BitSet FOLLOW_dimSet_in_set_of_dimSets888 = new BitSet(new long[]{0x0000000100000000L});
-	public static final BitSet FOLLOW_32_in_set_of_dimSets897 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_31_in_set_of_dimSets905 = new BitSet(new long[]{0x0000000000400000L});
-	public static final BitSet FOLLOW_22_in_set_of_dimSets910 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_dimSet_in_set_of_dimSets917 = new BitSet(new long[]{0x0000000000000218L});
-	public static final BitSet FOLLOW_32_in_set_of_dimSets934 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_dim976 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_31_in_tags1020 = new BitSet(new long[]{0x0000000040000200L});
-	public static final BitSet FOLLOW_tag_in_tags1024 = new BitSet(new long[]{0x0000000100000000L});
-	public static final BitSet FOLLOW_32_in_tags1027 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_31_in_tags1035 = new BitSet(new long[]{0x0000000000400000L});
-	public static final BitSet FOLLOW_22_in_tags1037 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_tag_in_tags1041 = new BitSet(new long[]{0x0000000040000208L});
-	public static final BitSet FOLLOW_32_in_tags1046 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_tag_in_tags1056 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_tagScheme_in_tag1104 = new BitSet(new long[]{0x0000000002000000L});
-	public static final BitSet FOLLOW_30_in_tag1117 = new BitSet(new long[]{0x0000000002000000L});
-	public static final BitSet FOLLOW_25_in_tag1129 = new BitSet(new long[]{0x0000000000000200L});
-	public static final BitSet FOLLOW_ID_in_tag1131 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_tagScheme1156 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ALL_in_dimSet1207 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_dimSet1220 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_31_in_durations1262 = new BitSet(new long[]{0x0000000004000000L});
-	public static final BitSet FOLLOW_26_in_durations1264 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_duration_in_durations1269 = new BitSet(new long[]{0x0000000000000408L});
-	public static final BitSet FOLLOW_32_in_durations1274 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_start_time_in_duration1303 = new BitSet(new long[]{0x0000000000400000L});
-	public static final BitSet FOLLOW_22_in_duration1305 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_end_time_in_duration1309 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INT_in_start_time1332 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INT_in_end_time1355 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_r_exp_in_start89 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_period_exp_in_r_exp136 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_set_in_r_exp152 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_r_exp_in_r_exp160 = new BitSet(new long[]{0x00000000D9A80210L});
+	public static final BitSet FOLLOW_period_exp_in_r_exp164 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_NOT_in_r_exp182 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_r_exp_in_r_exp186 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_star_exp_in_period_exp234 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_slash_exp_in_star_exp288 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_21_in_star_exp302 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_star_exp_in_star_exp306 = new BitSet(new long[]{0x00000000D9880210L});
+	public static final BitSet FOLLOW_slash_exp_in_star_exp310 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_24_in_slash_exp355 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_slash_exp_in_slash_exp359 = new BitSet(new long[]{0x0000000080800210L});
+	public static final BitSet FOLLOW_atom2_in_slash_exp363 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_27_in_slash_exp379 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_slash_exp_in_slash_exp383 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_atom_in_slash_exp404 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_23_in_slash_exp418 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_slash_exp_in_slash_exp422 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_durations_in_slash_exp426 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_set_of_dims_in_atom2480 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_dimSet_in_atom2494 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_23_in_atom2511 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_atom2_in_atom2515 = new BitSet(new long[]{0x0000000080000000L});
+	public static final BitSet FOLLOW_durations_in_atom2519 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_dims_in_atom571 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_tags_in_atom585 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_19_in_atom598 = new BitSet(new long[]{0x00000000D9B85230L});
+	public static final BitSet FOLLOW_r_exp_in_atom606 = new BitSet(new long[]{0x00000000D9B85230L});
+	public static final BitSet FOLLOW_20_in_atom617 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_28_in_atom625 = new BitSet(new long[]{0x0000000080000210L});
+	public static final BitSet FOLLOW_dimSet_in_atom636 = new BitSet(new long[]{0x0000000020000000L});
+	public static final BitSet FOLLOW_set_of_dimSets_in_atom650 = new BitSet(new long[]{0x0000000020000000L});
+	public static final BitSet FOLLOW_29_in_atom660 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ALL_in_dims700 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_dim_in_dims716 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_set_of_dims_in_dims730 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_31_in_set_of_dims772 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_dim_in_set_of_dims779 = new BitSet(new long[]{0x0000000100000000L});
+	public static final BitSet FOLLOW_32_in_set_of_dims788 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_31_in_set_of_dims797 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_22_in_set_of_dims799 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_dim_in_set_of_dims803 = new BitSet(new long[]{0x0000000000000208L});
+	public static final BitSet FOLLOW_32_in_set_of_dims808 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_33_in_virtual_dim828 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_22_in_virtual_dim830 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_dim_in_virtual_dim834 = new BitSet(new long[]{0x0000000000000208L});
+	public static final BitSet FOLLOW_34_in_virtual_dim839 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_31_in_set_of_dimSets882 = new BitSet(new long[]{0x0000000000000210L});
+	public static final BitSet FOLLOW_dimSet_in_set_of_dimSets889 = new BitSet(new long[]{0x0000000100000000L});
+	public static final BitSet FOLLOW_32_in_set_of_dimSets898 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_31_in_set_of_dimSets906 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_22_in_set_of_dimSets911 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_dimSet_in_set_of_dimSets918 = new BitSet(new long[]{0x0000000000000218L});
+	public static final BitSet FOLLOW_32_in_set_of_dimSets935 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_dim977 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_31_in_tags1021 = new BitSet(new long[]{0x0000000040000200L});
+	public static final BitSet FOLLOW_tag_in_tags1025 = new BitSet(new long[]{0x0000000100000000L});
+	public static final BitSet FOLLOW_32_in_tags1028 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_31_in_tags1036 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_22_in_tags1038 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_tag_in_tags1042 = new BitSet(new long[]{0x0000000040000208L});
+	public static final BitSet FOLLOW_32_in_tags1047 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_tag_in_tags1057 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_tagScheme_in_tag1105 = new BitSet(new long[]{0x0000000002000000L});
+	public static final BitSet FOLLOW_30_in_tag1118 = new BitSet(new long[]{0x0000000002000000L});
+	public static final BitSet FOLLOW_25_in_tag1130 = new BitSet(new long[]{0x0000000000000200L});
+	public static final BitSet FOLLOW_ID_in_tag1132 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_tagScheme1157 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ALL_in_dimSet1208 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_dimSet1221 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_31_in_durations1263 = new BitSet(new long[]{0x0000000004000000L});
+	public static final BitSet FOLLOW_26_in_durations1265 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_duration_in_durations1270 = new BitSet(new long[]{0x0000000000000408L});
+	public static final BitSet FOLLOW_32_in_durations1275 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_start_time_in_duration1304 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_22_in_duration1306 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_end_time_in_duration1310 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INT_in_start_time1333 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INT_in_end_time1356 = new BitSet(new long[]{0x0000000000000002L});
 }

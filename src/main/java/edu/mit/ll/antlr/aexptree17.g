@@ -22,10 +22,12 @@ import edu.mit.ll.aexpression.*;
 import java.util.LinkedList;
 import java.util.Set;
 import java.util.HashSet;
+import org.antlr.runtime.tree.CommonTree;
 
 }
 
 @members{
+CommonTree t = null;
 boolean debug = false;
 DimensionSets allDimensionSets = new DimensionSets();
 Dimensions allDimensions = new Dimensions();
@@ -35,6 +37,10 @@ Tables allTables = new Tables();
 VirtualDimensions allVirtualDimensions = new VirtualDimensions();
 public static String folderlocation = null;
 boolean caseInsensitive = false;
+String expression = "";
+public void setExpression(String expression){
+  this.expression = expression;
+}
 public void setFolderLocation(String folder)
 {
   File dot = new File(".").getAbsoluteFile();
@@ -45,9 +51,12 @@ public void setFolderLocation(String folder)
 public void enableCaseInsensitive(boolean caseInsensitive) {
 this.caseInsensitive = caseInsensitive;    
 }
+public void setTree(CommonTree t){
+this.t = t;
+}
 
 public void enableDebug(boolean value)
-{
+{ 
 this.debug = value;
 }
 
@@ -97,12 +106,12 @@ start returns [Result r]
   {
     preconfigure();
   }
-	:
+	: 
 	a=r_exp  
-	{
-	  if(this.debug)
+	{ 
+	  if(this.debug) 
 	  System.out.println("Evaluating rexp");
-	  $r = $a.r;
+	  $r = $a.r; 
 	}
 	;
 r_exp returns [Result r]
@@ -110,6 +119,8 @@ r_exp returns [Result r]
   {
     $r = new Result();
     $r.provenance.setData($r, ProvenanceDataStructure.TYPE.REXP);
+    $r.provenance.setTree(t);
+    $r.provenance.setExpression(expression);
   }
   @after
   {
@@ -486,7 +497,7 @@ slash_exp returns[IntermediateResult sr]
 //    $sr.provenance.setData("Finding the tables that contain the following dimensions( in a dimensionset)"+inputds.getDimSet()+" result:"+resultlist);
     //Set up the 2 sublevels
     ProvenanceDataStructure operation = new ProvenanceDataStructure("/",ProvenanceDataStructure.TYPE.OPERATION);
-    
+    $sr.provenance.join(operation);
     $sr.provenance.join($b.a2.provenance);
     $sr.provenance.join($f.sr.provenance);
   }

@@ -62,7 +62,7 @@ public class ProvenanceTest2 {
             	processor.setFolderlocation("src/main/resources/json/");
             	processor.enableDebug(true);
             	Result r1 = processor.process(aexpqueries.get(i),true);
-            	r1.provenance.fullPrint = false;
+            	r1.provenance.fullPrint = true;
             	System.out.println(r1.provenance);
             } catch (RecognitionException e) {
                 e.printStackTrace();

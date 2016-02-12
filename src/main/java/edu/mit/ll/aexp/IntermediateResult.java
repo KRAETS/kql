@@ -174,17 +174,50 @@ public class IntermediateResult {
 	public void setIntermediate_set_of_dims(Set<Dimension> intermediate_set_of_dims) {
 		this.intermediate_set_of_dims = intermediate_set_of_dims;
 	}
+	public boolean isEmpty(){
+		return intermediate_atom==null 
+		&& intermediate_atom2==null&&
+		intermediate_dimset==null
+		&&
+		intermediate_dimsets==null&&
+		intermediate_fields==null
+		&&
+		intermediate_set_of_dims==null&&intermediate_tables==null&&intermediate_tags==null;
+		
+	}
 	@Override
 	public String toString() {
-		return "IntermediateResult [intermediate_atom=" + intermediate_atom
-				+ ", intermediate_atom2=" + intermediate_atom2
-				+ ", intermediate_dimset=" + intermediate_dimset
-				+ ", intermediate_dimsets=" + intermediate_dimsets
-				+ ", intermediate_fields=" + intermediate_fields
-				+ ", intermediate_set_of_dims=" + intermediate_set_of_dims
-				+ ", intermediate_tables=" + intermediate_tables
-				+ ", alltables=" + alltables + ", intermediate_tags="
-				+ intermediate_tags + "]";
+		String rs = "IntermediateResult:";
+		if(intermediate_atom!=null){
+			rs+=intermediate_atom;
+		}
+		if(intermediate_atom2!=null){
+			rs+=intermediate_atom2;
+		}
+		if(intermediate_dimset!=null){
+			rs+="DimensionSet:"+intermediate_dimset;
+		}
+		if(intermediate_dimsets!=null){
+			if(intermediate_dimsets.size()!=0)
+			rs+=intermediate_dimsets;
+		}
+		if(intermediate_fields!=null){
+			if(intermediate_fields.size()!=0)
+			rs+=intermediate_fields;
+		}
+		if(intermediate_set_of_dims!=null){
+			if(intermediate_set_of_dims.size()!=0)
+			rs+=intermediate_set_of_dims;
+		}
+		if(intermediate_tables!=null){
+			if(intermediate_tables.size()!=0)
+			rs+=intermediate_tables;
+		}
+		if(intermediate_tags!=null){
+			if(intermediate_tags.size()!=0)
+			rs+=intermediate_tags;
+		}
+		return rs;
 	}
 	
 }

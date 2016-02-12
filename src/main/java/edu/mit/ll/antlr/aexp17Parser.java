@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g 2015-12-17 08:35:21
+// $ANTLR 3.5.2 /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g 2016-02-03 00:31:23
 
 package edu.mit.ll.antlr;
 
@@ -74,7 +74,7 @@ public class aexp17Parser extends Parser {
 		return adaptor;
 	}
 	@Override public String[] getTokenNames() { return aexp17Parser.tokenNames; }
-	@Override public String getGrammarFileName() { return "/Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g"; }
+	@Override public String getGrammarFileName() { return "/Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g"; }
 
 
 	boolean debug = false;
@@ -96,7 +96,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "start"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:35:1: start : r_exp ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:35:1: start : r_exp ;
 	public final aexp17Parser.start_return start() throws RecognitionException {
 		aexp17Parser.start_return retval = new aexp17Parser.start_return();
 		retval.start = input.LT(1);
@@ -107,8 +107,8 @@ public class aexp17Parser extends Parser {
 
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:36:3: ( r_exp )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:37:3: r_exp
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:36:3: ( r_exp )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:37:3: r_exp
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
@@ -152,7 +152,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "r_exp"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:44:1: r_exp : ( period_exp ( ( AND ^| OR ^) period_exp )* | NOT r_exp -> ^( NOT r_exp ) );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:44:1: r_exp : ( period_exp ( ( AND ^| OR ^) period_exp )* | NOT r_exp -> ^( NOT r_exp ) );
 	public final aexp17Parser.r_exp_return r_exp() throws RecognitionException {
 		aexp17Parser.r_exp_return retval = new aexp17Parser.r_exp_return();
 		retval.start = input.LT(1);
@@ -173,7 +173,7 @@ public class aexp17Parser extends Parser {
 		RewriteRuleSubtreeStream stream_r_exp=new RewriteRuleSubtreeStream(adaptor,"rule r_exp");
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:45:3: ( period_exp ( ( AND ^| OR ^) period_exp )* | NOT r_exp -> ^( NOT r_exp ) )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:45:3: ( period_exp ( ( AND ^| OR ^) period_exp )* | NOT r_exp -> ^( NOT r_exp ) )
 			int alt3=2;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0==ALL||LA3_0==ID||LA3_0==19||LA3_0==28||(LA3_0 >= 30 && LA3_0 <= 31)) ) {
@@ -191,7 +191,7 @@ public class aexp17Parser extends Parser {
 
 			switch (alt3) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:46:3: period_exp ( ( AND ^| OR ^) period_exp )*
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:46:3: period_exp ( ( AND ^| OR ^) period_exp )*
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -202,7 +202,7 @@ public class aexp17Parser extends Parser {
 
 					adaptor.addChild(root_0, period_exp2.getTree());
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:46:14: ( ( AND ^| OR ^) period_exp )*
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:46:14: ( ( AND ^| OR ^) period_exp )*
 					loop2:
 					while (true) {
 						int alt2=2;
@@ -213,9 +213,9 @@ public class aexp17Parser extends Parser {
 
 						switch (alt2) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:46:15: ( AND ^| OR ^) period_exp
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:46:15: ( AND ^| OR ^) period_exp
 							{
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:46:15: ( AND ^| OR ^)
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:46:15: ( AND ^| OR ^)
 							int alt1=2;
 							int LA1_0 = input.LA(1);
 							if ( (LA1_0==AND) ) {
@@ -233,7 +233,7 @@ public class aexp17Parser extends Parser {
 
 							switch (alt1) {
 								case 1 :
-									// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:46:16: AND ^
+									// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:46:16: AND ^
 									{
 									AND3=(Token)match(input,AND,FOLLOW_AND_in_r_exp101); 
 									AND3_tree = (CommonTree)adaptor.create(AND3);
@@ -242,7 +242,7 @@ public class aexp17Parser extends Parser {
 									}
 									break;
 								case 2 :
-									// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:46:21: OR ^
+									// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:46:21: OR ^
 									{
 									OR4=(Token)match(input,OR,FOLLOW_OR_in_r_exp104); 
 									OR4_tree = (CommonTree)adaptor.create(OR4);
@@ -270,7 +270,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:48:3: NOT r_exp
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:48:3: NOT r_exp
 					{
 					NOT6=(Token)match(input,NOT,FOLLOW_NOT_in_r_exp118);  
 					stream_NOT.add(NOT6);
@@ -281,7 +281,7 @@ public class aexp17Parser extends Parser {
 
 					stream_r_exp.add(r_exp7.getTree());
 					// AST REWRITE
-					// elements: r_exp, NOT
+					// elements: NOT, r_exp
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -293,7 +293,7 @@ public class aexp17Parser extends Parser {
 					root_0 = (CommonTree)adaptor.nil();
 					// 48:13: -> ^( NOT r_exp )
 					{
-						// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:48:15: ^( NOT r_exp )
+						// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:48:15: ^( NOT r_exp )
 						{
 						CommonTree root_1 = (CommonTree)adaptor.nil();
 						root_1 = (CommonTree)adaptor.becomeRoot(stream_NOT.nextNode(), root_1);
@@ -337,7 +337,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "period_exp"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:51:1: period_exp : star_exp ( '#' ^ star_exp )* ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:51:1: period_exp : star_exp ( '#' ^ star_exp )* ;
 	public final aexp17Parser.period_exp_return period_exp() throws RecognitionException {
 		aexp17Parser.period_exp_return retval = new aexp17Parser.period_exp_return();
 		retval.start = input.LT(1);
@@ -351,8 +351,8 @@ public class aexp17Parser extends Parser {
 		CommonTree char_literal9_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:52:3: ( star_exp ( '#' ^ star_exp )* )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:53:3: star_exp ( '#' ^ star_exp )*
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:52:3: ( star_exp ( '#' ^ star_exp )* )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:53:3: star_exp ( '#' ^ star_exp )*
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
@@ -363,7 +363,7 @@ public class aexp17Parser extends Parser {
 
 			adaptor.addChild(root_0, star_exp8.getTree());
 
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:53:13: ( '#' ^ star_exp )*
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:53:13: ( '#' ^ star_exp )*
 			loop4:
 			while (true) {
 				int alt4=2;
@@ -374,7 +374,7 @@ public class aexp17Parser extends Parser {
 
 				switch (alt4) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:53:14: '#' ^ star_exp
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:53:14: '#' ^ star_exp
 					{
 					char_literal9=(Token)match(input,18,FOLLOW_18_in_period_exp149); 
 					char_literal9_tree = (CommonTree)adaptor.create(char_literal9);
@@ -423,7 +423,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "star_exp"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:56:1: star_exp : slash_exp ( '*' ^ slash_exp )* ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:56:1: star_exp : slash_exp ( '*' ^ slash_exp )* ;
 	public final aexp17Parser.star_exp_return star_exp() throws RecognitionException {
 		aexp17Parser.star_exp_return retval = new aexp17Parser.star_exp_return();
 		retval.start = input.LT(1);
@@ -437,8 +437,8 @@ public class aexp17Parser extends Parser {
 		CommonTree char_literal12_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:57:3: ( slash_exp ( '*' ^ slash_exp )* )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:58:3: slash_exp ( '*' ^ slash_exp )*
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:57:3: ( slash_exp ( '*' ^ slash_exp )* )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:58:3: slash_exp ( '*' ^ slash_exp )*
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
@@ -449,7 +449,7 @@ public class aexp17Parser extends Parser {
 
 			adaptor.addChild(root_0, slash_exp11.getTree());
 
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:58:13: ( '*' ^ slash_exp )*
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:58:13: ( '*' ^ slash_exp )*
 			loop5:
 			while (true) {
 				int alt5=2;
@@ -460,7 +460,7 @@ public class aexp17Parser extends Parser {
 
 				switch (alt5) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:58:14: '*' ^ slash_exp
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:58:14: '*' ^ slash_exp
 					{
 					char_literal12=(Token)match(input,21,FOLLOW_21_in_star_exp172); 
 					char_literal12_tree = (CommonTree)adaptor.create(char_literal12);
@@ -509,7 +509,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "slash_exp"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:60:1: slash_exp : ( atom2 ( '/' ^ atom2 )+ | atom2 ( '?' ^)+ | atom ( '.' ^ durations )* );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:60:1: slash_exp : ( atom2 ( '/' ^ atom2 )+ | atom2 ( '?' ^)+ | atom ( '.' ^ durations )* );
 	public final aexp17Parser.slash_exp_return slash_exp() throws RecognitionException {
 		aexp17Parser.slash_exp_return retval = new aexp17Parser.slash_exp_return();
 		retval.start = input.LT(1);
@@ -530,12 +530,12 @@ public class aexp17Parser extends Parser {
 		CommonTree char_literal20_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:61:3: ( atom2 ( '/' ^ atom2 )+ | atom2 ( '?' ^)+ | atom ( '.' ^ durations )* )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:61:3: ( atom2 ( '/' ^ atom2 )+ | atom2 ( '?' ^)+ | atom ( '.' ^ durations )* )
 			int alt9=3;
 			alt9 = dfa9.predict(input);
 			switch (alt9) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:62:3: atom2 ( '/' ^ atom2 )+
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:62:3: atom2 ( '/' ^ atom2 )+
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -546,7 +546,7 @@ public class aexp17Parser extends Parser {
 
 					adaptor.addChild(root_0, atom214.getTree());
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:62:9: ( '/' ^ atom2 )+
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:62:9: ( '/' ^ atom2 )+
 					int cnt6=0;
 					loop6:
 					while (true) {
@@ -558,7 +558,7 @@ public class aexp17Parser extends Parser {
 
 						switch (alt6) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:62:10: '/' ^ atom2
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:62:10: '/' ^ atom2
 							{
 							char_literal15=(Token)match(input,24,FOLLOW_24_in_slash_exp194); 
 							char_literal15_tree = (CommonTree)adaptor.create(char_literal15);
@@ -584,7 +584,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:64:3: atom2 ( '?' ^)+
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:64:3: atom2 ( '?' ^)+
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -595,7 +595,7 @@ public class aexp17Parser extends Parser {
 
 					adaptor.addChild(root_0, atom217.getTree());
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:64:9: ( '?' ^)+
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:64:9: ( '?' ^)+
 					int cnt7=0;
 					loop7:
 					while (true) {
@@ -607,7 +607,7 @@ public class aexp17Parser extends Parser {
 
 						switch (alt7) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:64:10: '?' ^
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:64:10: '?' ^
 							{
 							char_literal18=(Token)match(input,27,FOLLOW_27_in_slash_exp210); 
 							char_literal18_tree = (CommonTree)adaptor.create(char_literal18);
@@ -627,7 +627,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:66:3: atom ( '.' ^ durations )*
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:66:3: atom ( '.' ^ durations )*
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -638,7 +638,7 @@ public class aexp17Parser extends Parser {
 
 					adaptor.addChild(root_0, atom19.getTree());
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:66:8: ( '.' ^ durations )*
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:66:8: ( '.' ^ durations )*
 					loop8:
 					while (true) {
 						int alt8=2;
@@ -649,7 +649,7 @@ public class aexp17Parser extends Parser {
 
 						switch (alt8) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:66:9: '.' ^ durations
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:66:9: '.' ^ durations
 							{
 							char_literal20=(Token)match(input,23,FOLLOW_23_in_slash_exp224); 
 							char_literal20_tree = (CommonTree)adaptor.create(char_literal20);
@@ -700,7 +700,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "atom2"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:68:1: atom2 : ( set_of_dims ( '.' ^ durations )* | dimSet ( '.' ^ durations )* );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:68:1: atom2 : ( set_of_dims ( '.' ^ durations )* | dimSet ( '.' ^ durations )* );
 	public final aexp17Parser.atom2_return atom2() throws RecognitionException {
 		aexp17Parser.atom2_return retval = new aexp17Parser.atom2_return();
 		retval.start = input.LT(1);
@@ -718,7 +718,7 @@ public class aexp17Parser extends Parser {
 		CommonTree char_literal26_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:69:3: ( set_of_dims ( '.' ^ durations )* | dimSet ( '.' ^ durations )* )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:69:3: ( set_of_dims ( '.' ^ durations )* | dimSet ( '.' ^ durations )* )
 			int alt12=2;
 			int LA12_0 = input.LA(1);
 			if ( (LA12_0==31) ) {
@@ -736,7 +736,7 @@ public class aexp17Parser extends Parser {
 
 			switch (alt12) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:70:3: set_of_dims ( '.' ^ durations )*
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:70:3: set_of_dims ( '.' ^ durations )*
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -747,7 +747,7 @@ public class aexp17Parser extends Parser {
 
 					adaptor.addChild(root_0, set_of_dims22.getTree());
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:70:15: ( '.' ^ durations )*
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:70:15: ( '.' ^ durations )*
 					loop10:
 					while (true) {
 						int alt10=2;
@@ -758,7 +758,7 @@ public class aexp17Parser extends Parser {
 
 						switch (alt10) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:70:16: '.' ^ durations
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:70:16: '.' ^ durations
 							{
 							char_literal23=(Token)match(input,23,FOLLOW_23_in_atom2247); 
 							char_literal23_tree = (CommonTree)adaptor.create(char_literal23);
@@ -781,7 +781,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:72:3: dimSet ( '.' ^ durations )*
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:72:3: dimSet ( '.' ^ durations )*
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -792,7 +792,7 @@ public class aexp17Parser extends Parser {
 
 					adaptor.addChild(root_0, dimSet25.getTree());
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:72:10: ( '.' ^ durations )*
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:72:10: ( '.' ^ durations )*
 					loop11:
 					while (true) {
 						int alt11=2;
@@ -803,7 +803,7 @@ public class aexp17Parser extends Parser {
 
 						switch (alt11) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:72:11: '.' ^ durations
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:72:11: '.' ^ durations
 							{
 							char_literal26=(Token)match(input,23,FOLLOW_23_in_atom2264); 
 							char_literal26_tree = (CommonTree)adaptor.create(char_literal26);
@@ -854,7 +854,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "atom"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:75:1: atom : ( dims | tags | '(' ( r_exp )* ')' | '[' ( dimSet | set_of_dimSets ) ']' );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:75:1: atom : ( dims | tags | '(' ( r_exp )* ')' | '[' ( dimSet | set_of_dimSets ) ']' );
 	public final aexp17Parser.atom_return atom() throws RecognitionException {
 		aexp17Parser.atom_return retval = new aexp17Parser.atom_return();
 		retval.start = input.LT(1);
@@ -877,7 +877,7 @@ public class aexp17Parser extends Parser {
 		CommonTree char_literal36_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:76:3: ( dims | tags | '(' ( r_exp )* ')' | '[' ( dimSet | set_of_dimSets ) ']' )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:76:3: ( dims | tags | '(' ( r_exp )* ')' | '[' ( dimSet | set_of_dimSets ) ']' )
 			int alt15=4;
 			switch ( input.LA(1) ) {
 			case ALL:
@@ -976,7 +976,7 @@ public class aexp17Parser extends Parser {
 			}
 			switch (alt15) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:77:3: dims
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:77:3: dims
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -990,7 +990,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:79:3: tags
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:79:3: tags
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -1004,7 +1004,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:81:3: '(' ( r_exp )* ')'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:81:3: '(' ( r_exp )* ')'
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -1013,7 +1013,7 @@ public class aexp17Parser extends Parser {
 					char_literal30_tree = (CommonTree)adaptor.create(char_literal30);
 					adaptor.addChild(root_0, char_literal30_tree);
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:81:7: ( r_exp )*
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:81:7: ( r_exp )*
 					loop13:
 					while (true) {
 						int alt13=2;
@@ -1024,7 +1024,7 @@ public class aexp17Parser extends Parser {
 
 						switch (alt13) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:81:7: r_exp
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:81:7: r_exp
 							{
 							pushFollow(FOLLOW_r_exp_in_atom304);
 							r_exp31=r_exp();
@@ -1051,7 +1051,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 4 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:87:3: '[' ( dimSet | set_of_dimSets ) ']'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:87:3: '[' ( dimSet | set_of_dimSets ) ']'
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -1060,7 +1060,7 @@ public class aexp17Parser extends Parser {
 					char_literal33_tree = (CommonTree)adaptor.create(char_literal33);
 					adaptor.addChild(root_0, char_literal33_tree);
 
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:87:7: ( dimSet | set_of_dimSets )
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:87:7: ( dimSet | set_of_dimSets )
 					int alt14=2;
 					int LA14_0 = input.LA(1);
 					if ( (LA14_0==ALL||LA14_0==ID) ) {
@@ -1078,7 +1078,7 @@ public class aexp17Parser extends Parser {
 
 					switch (alt14) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:87:8: dimSet
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:87:8: dimSet
 							{
 							pushFollow(FOLLOW_dimSet_in_atom322);
 							dimSet34=dimSet();
@@ -1089,7 +1089,7 @@ public class aexp17Parser extends Parser {
 							}
 							break;
 						case 2 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:87:15: set_of_dimSets
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:87:15: set_of_dimSets
 							{
 							pushFollow(FOLLOW_set_of_dimSets_in_atom324);
 							set_of_dimSets35=set_of_dimSets();
@@ -1137,7 +1137,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "dims"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:90:1: dims : ( ALL | dim | set_of_dims );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:90:1: dims : ( ALL | dim | set_of_dims );
 	public final aexp17Parser.dims_return dims() throws RecognitionException {
 		aexp17Parser.dims_return retval = new aexp17Parser.dims_return();
 		retval.start = input.LT(1);
@@ -1151,7 +1151,7 @@ public class aexp17Parser extends Parser {
 		CommonTree ALL37_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:91:3: ( ALL | dim | set_of_dims )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:91:3: ( ALL | dim | set_of_dims )
 			int alt16=3;
 			switch ( input.LA(1) ) {
 			case ALL:
@@ -1176,7 +1176,7 @@ public class aexp17Parser extends Parser {
 			}
 			switch (alt16) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:92:3: ALL
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:92:3: ALL
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -1188,7 +1188,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:94:3: dim
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:94:3: dim
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -1202,7 +1202,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:96:3: set_of_dims
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:96:3: set_of_dims
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -1244,7 +1244,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "set_of_dims"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:99:1: set_of_dims : ( '{' dim '}' -> '{' dim '}' | '{' dim ( ',' dim )+ '}' -> '{' ^( ',' ( dim )+ ) '}' );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:99:1: set_of_dims : ( '{' dim '}' -> '{' dim '}' | '{' dim ( ',' dim )+ '}' -> '{' ^( ',' ( dim )+ ) '}' );
 	public final aexp17Parser.set_of_dims_return set_of_dims() throws RecognitionException {
 		aexp17Parser.set_of_dims_return retval = new aexp17Parser.set_of_dims_return();
 		retval.start = input.LT(1);
@@ -1271,7 +1271,7 @@ public class aexp17Parser extends Parser {
 		RewriteRuleSubtreeStream stream_dim=new RewriteRuleSubtreeStream(adaptor,"rule dim");
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:100:3: ( '{' dim '}' -> '{' dim '}' | '{' dim ( ',' dim )+ '}' -> '{' ^( ',' ( dim )+ ) '}' )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:100:3: ( '{' dim '}' -> '{' dim '}' | '{' dim ( ',' dim )+ '}' -> '{' ^( ',' ( dim )+ ) '}' )
 			int alt18=2;
 			int LA18_0 = input.LA(1);
 			if ( (LA18_0==31) ) {
@@ -1323,7 +1323,7 @@ public class aexp17Parser extends Parser {
 
 			switch (alt18) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:101:3: '{' dim '}'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:101:3: '{' dim '}'
 					{
 					char_literal40=(Token)match(input,31,FOLLOW_31_in_set_of_dims377);  
 					stream_31.add(char_literal40);
@@ -1337,7 +1337,7 @@ public class aexp17Parser extends Parser {
 					stream_32.add(char_literal42);
 
 					// AST REWRITE
-					// elements: 31, dim, 32
+					// elements: dim, 32, 31
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1360,7 +1360,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:103:3: '{' dim ( ',' dim )+ '}'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:103:3: '{' dim ( ',' dim )+ '}'
 					{
 					char_literal43=(Token)match(input,31,FOLLOW_31_in_set_of_dims397);  
 					stream_31.add(char_literal43);
@@ -1370,7 +1370,7 @@ public class aexp17Parser extends Parser {
 					state._fsp--;
 
 					stream_dim.add(dim44.getTree());
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:103:11: ( ',' dim )+
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:103:11: ( ',' dim )+
 					int cnt17=0;
 					loop17:
 					while (true) {
@@ -1382,7 +1382,7 @@ public class aexp17Parser extends Parser {
 
 						switch (alt17) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:103:12: ',' dim
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:103:12: ',' dim
 							{
 							char_literal45=(Token)match(input,22,FOLLOW_22_in_set_of_dims402);  
 							stream_22.add(char_literal45);
@@ -1407,7 +1407,7 @@ public class aexp17Parser extends Parser {
 					stream_32.add(char_literal47);
 
 					// AST REWRITE
-					// elements: dim, 32, 22, 31
+					// elements: 32, dim, 22, 31
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1420,7 +1420,7 @@ public class aexp17Parser extends Parser {
 					// 103:27: -> '{' ^( ',' ( dim )+ ) '}'
 					{
 						adaptor.addChild(root_0, stream_31.nextNode());
-						// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:103:33: ^( ',' ( dim )+ )
+						// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:103:33: ^( ',' ( dim )+ )
 						{
 						CommonTree root_1 = (CommonTree)adaptor.nil();
 						root_1 = (CommonTree)adaptor.becomeRoot(stream_22.nextNode(), root_1);
@@ -1472,7 +1472,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "set_of_dimSets"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:106:1: set_of_dimSets : ( '{' dimSet '}' -> '{' dimSet '}' | '{' dimSet ( ',' dimSet )+ '}' -> '{' ^( ',' ( dimSet )+ ) '}' );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:106:1: set_of_dimSets : ( '{' dimSet '}' -> '{' dimSet '}' | '{' dimSet ( ',' dimSet )+ '}' -> '{' ^( ',' ( dimSet )+ ) '}' );
 	public final aexp17Parser.set_of_dimSets_return set_of_dimSets() throws RecognitionException {
 		aexp17Parser.set_of_dimSets_return retval = new aexp17Parser.set_of_dimSets_return();
 		retval.start = input.LT(1);
@@ -1499,7 +1499,7 @@ public class aexp17Parser extends Parser {
 		RewriteRuleSubtreeStream stream_dimSet=new RewriteRuleSubtreeStream(adaptor,"rule dimSet");
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:107:3: ( '{' dimSet '}' -> '{' dimSet '}' | '{' dimSet ( ',' dimSet )+ '}' -> '{' ^( ',' ( dimSet )+ ) '}' )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:107:3: ( '{' dimSet '}' -> '{' dimSet '}' | '{' dimSet ( ',' dimSet )+ '}' -> '{' ^( ',' ( dimSet )+ ) '}' )
 			int alt20=2;
 			int LA20_0 = input.LA(1);
 			if ( (LA20_0==31) ) {
@@ -1551,7 +1551,7 @@ public class aexp17Parser extends Parser {
 
 			switch (alt20) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:108:3: '{' dimSet '}'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:108:3: '{' dimSet '}'
 					{
 					char_literal48=(Token)match(input,31,FOLLOW_31_in_set_of_dimSets436);  
 					stream_31.add(char_literal48);
@@ -1565,7 +1565,7 @@ public class aexp17Parser extends Parser {
 					stream_32.add(char_literal50);
 
 					// AST REWRITE
-					// elements: 31, 32, dimSet
+					// elements: 32, 31, dimSet
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1588,7 +1588,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:110:3: '{' dimSet ( ',' dimSet )+ '}'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:110:3: '{' dimSet ( ',' dimSet )+ '}'
 					{
 					char_literal51=(Token)match(input,31,FOLLOW_31_in_set_of_dimSets456);  
 					stream_31.add(char_literal51);
@@ -1598,7 +1598,7 @@ public class aexp17Parser extends Parser {
 					state._fsp--;
 
 					stream_dimSet.add(dimSet52.getTree());
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:110:14: ( ',' dimSet )+
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:110:14: ( ',' dimSet )+
 					int cnt19=0;
 					loop19:
 					while (true) {
@@ -1610,7 +1610,7 @@ public class aexp17Parser extends Parser {
 
 						switch (alt19) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:110:15: ',' dimSet
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:110:15: ',' dimSet
 							{
 							char_literal53=(Token)match(input,22,FOLLOW_22_in_set_of_dimSets461);  
 							stream_22.add(char_literal53);
@@ -1635,7 +1635,7 @@ public class aexp17Parser extends Parser {
 					stream_32.add(char_literal55);
 
 					// AST REWRITE
-					// elements: 32, dimSet, 22, 31
+					// elements: dimSet, 32, 31, 22
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1648,7 +1648,7 @@ public class aexp17Parser extends Parser {
 					// 110:33: -> '{' ^( ',' ( dimSet )+ ) '}'
 					{
 						adaptor.addChild(root_0, stream_31.nextNode());
-						// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:110:39: ^( ',' ( dimSet )+ )
+						// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:110:39: ^( ',' ( dimSet )+ )
 						{
 						CommonTree root_1 = (CommonTree)adaptor.nil();
 						root_1 = (CommonTree)adaptor.becomeRoot(stream_22.nextNode(), root_1);
@@ -1700,7 +1700,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "dim"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:112:1: dim : ID ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:112:1: dim : ID ;
 	public final aexp17Parser.dim_return dim() throws RecognitionException {
 		aexp17Parser.dim_return retval = new aexp17Parser.dim_return();
 		retval.start = input.LT(1);
@@ -1712,8 +1712,8 @@ public class aexp17Parser extends Parser {
 		CommonTree ID56_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:113:3: ( ID )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:114:3: ID
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:113:3: ( ID )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:114:3: ID
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
@@ -1751,7 +1751,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "tags"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:116:1: tags : ( '{' tag '}' -> '{' tag '}' | '{' tag ( ',' tag )+ '}' -> '{' ^( ',' ( tag )+ ) '}' | tag );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:116:1: tags : ( '{' tag '}' -> '{' tag '}' | '{' tag ( ',' tag )+ '}' -> '{' ^( ',' ( tag )+ ) '}' | tag );
 	public final aexp17Parser.tags_return tags() throws RecognitionException {
 		aexp17Parser.tags_return retval = new aexp17Parser.tags_return();
 		retval.start = input.LT(1);
@@ -1779,7 +1779,7 @@ public class aexp17Parser extends Parser {
 		RewriteRuleSubtreeStream stream_tag=new RewriteRuleSubtreeStream(adaptor,"rule tag");
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:117:3: ( '{' tag '}' -> '{' tag '}' | '{' tag ( ',' tag )+ '}' -> '{' ^( ',' ( tag )+ ) '}' | tag )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:117:3: ( '{' tag '}' -> '{' tag '}' | '{' tag ( ',' tag )+ '}' -> '{' ^( ',' ( tag )+ ) '}' | tag )
 			int alt22=3;
 			int LA22_0 = input.LA(1);
 			if ( (LA22_0==31) ) {
@@ -1930,7 +1930,7 @@ public class aexp17Parser extends Parser {
 
 			switch (alt22) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:118:3: '{' tag '}'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:118:3: '{' tag '}'
 					{
 					char_literal57=(Token)match(input,31,FOLLOW_31_in_tags510);  
 					stream_31.add(char_literal57);
@@ -1967,7 +1967,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:120:3: '{' tag ( ',' tag )+ '}'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:120:3: '{' tag ( ',' tag )+ '}'
 					{
 					char_literal60=(Token)match(input,31,FOLLOW_31_in_tags530);  
 					stream_31.add(char_literal60);
@@ -1977,7 +1977,7 @@ public class aexp17Parser extends Parser {
 					state._fsp--;
 
 					stream_tag.add(tag61.getTree());
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:120:11: ( ',' tag )+
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:120:11: ( ',' tag )+
 					int cnt21=0;
 					loop21:
 					while (true) {
@@ -1989,7 +1989,7 @@ public class aexp17Parser extends Parser {
 
 						switch (alt21) {
 						case 1 :
-							// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:120:12: ',' tag
+							// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:120:12: ',' tag
 							{
 							char_literal62=(Token)match(input,22,FOLLOW_22_in_tags535);  
 							stream_22.add(char_literal62);
@@ -2014,7 +2014,7 @@ public class aexp17Parser extends Parser {
 					stream_32.add(char_literal64);
 
 					// AST REWRITE
-					// elements: 31, 32, 22, tag
+					// elements: 22, tag, 31, 32
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2027,7 +2027,7 @@ public class aexp17Parser extends Parser {
 					// 120:26: -> '{' ^( ',' ( tag )+ ) '}'
 					{
 						adaptor.addChild(root_0, stream_31.nextNode());
-						// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:120:32: ^( ',' ( tag )+ )
+						// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:120:32: ^( ',' ( tag )+ )
 						{
 						CommonTree root_1 = (CommonTree)adaptor.nil();
 						root_1 = (CommonTree)adaptor.becomeRoot(stream_22.nextNode(), root_1);
@@ -2051,7 +2051,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:122:3: tag
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:122:3: tag
 					{
 					root_0 = (CommonTree)adaptor.nil();
 
@@ -2093,7 +2093,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "tag"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:125:1: tag : ( tagScheme | '_' ) ':' ID ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:125:1: tag : ( tagScheme | '_' ) ':' ID ;
 	public final aexp17Parser.tag_return tag() throws RecognitionException {
 		aexp17Parser.tag_return retval = new aexp17Parser.tag_return();
 		retval.start = input.LT(1);
@@ -2110,13 +2110,13 @@ public class aexp17Parser extends Parser {
 		CommonTree ID69_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:126:3: ( ( tagScheme | '_' ) ':' ID )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:127:3: ( tagScheme | '_' ) ':' ID
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:126:3: ( ( tagScheme | '_' ) ':' ID )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:127:3: ( tagScheme | '_' ) ':' ID
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:127:3: ( tagScheme | '_' )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:127:3: ( tagScheme | '_' )
 			int alt23=2;
 			int LA23_0 = input.LA(1);
 			if ( (LA23_0==ID) ) {
@@ -2134,7 +2134,7 @@ public class aexp17Parser extends Parser {
 
 			switch (alt23) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:127:4: tagScheme
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:127:4: tagScheme
 					{
 					pushFollow(FOLLOW_tagScheme_in_tag577);
 					tagScheme66=tagScheme();
@@ -2145,7 +2145,7 @@ public class aexp17Parser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:127:14: '_'
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:127:14: '_'
 					{
 					char_literal67=(Token)match(input,30,FOLLOW_30_in_tag579); 
 					char_literal67_tree = (CommonTree)adaptor.create(char_literal67);
@@ -2193,7 +2193,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "tagScheme"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:130:1: tagScheme : ID ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:130:1: tagScheme : ID ;
 	public final aexp17Parser.tagScheme_return tagScheme() throws RecognitionException {
 		aexp17Parser.tagScheme_return retval = new aexp17Parser.tagScheme_return();
 		retval.start = input.LT(1);
@@ -2205,8 +2205,8 @@ public class aexp17Parser extends Parser {
 		CommonTree ID70_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:131:3: ( ID )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:132:3: ID
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:131:3: ( ID )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:132:3: ID
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
@@ -2244,7 +2244,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "dimSet"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:135:1: dimSet : ( ALL | ID );
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:135:1: dimSet : ( ALL | ID );
 	public final aexp17Parser.dimSet_return dimSet() throws RecognitionException {
 		aexp17Parser.dimSet_return retval = new aexp17Parser.dimSet_return();
 		retval.start = input.LT(1);
@@ -2256,8 +2256,8 @@ public class aexp17Parser extends Parser {
 		CommonTree set71_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:136:3: ( ALL | ID )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:136:3: ( ALL | ID )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
@@ -2301,7 +2301,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "durations"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:142:1: durations : '{' duration ( ';' duration )* '}' -> '{' ^( ';' ( duration )+ ) '}' ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:142:1: durations : '{' duration ( ';' duration )* '}' -> '{' ^( ';' ( duration )+ ) '}' ;
 	public final aexp17Parser.durations_return durations() throws RecognitionException {
 		aexp17Parser.durations_return retval = new aexp17Parser.durations_return();
 		retval.start = input.LT(1);
@@ -2323,8 +2323,8 @@ public class aexp17Parser extends Parser {
 		RewriteRuleSubtreeStream stream_duration=new RewriteRuleSubtreeStream(adaptor,"rule duration");
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:143:3: ( '{' duration ( ';' duration )* '}' -> '{' ^( ';' ( duration )+ ) '}' )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:144:3: '{' duration ( ';' duration )* '}'
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:143:3: ( '{' duration ( ';' duration )* '}' -> '{' ^( ';' ( duration )+ ) '}' )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:144:3: '{' duration ( ';' duration )* '}'
 			{
 			char_literal72=(Token)match(input,31,FOLLOW_31_in_durations643);  
 			stream_31.add(char_literal72);
@@ -2334,7 +2334,7 @@ public class aexp17Parser extends Parser {
 			state._fsp--;
 
 			stream_duration.add(duration73.getTree());
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:144:16: ( ';' duration )*
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:144:16: ( ';' duration )*
 			loop24:
 			while (true) {
 				int alt24=2;
@@ -2345,7 +2345,7 @@ public class aexp17Parser extends Parser {
 
 				switch (alt24) {
 				case 1 :
-					// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:144:17: ';' duration
+					// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:144:17: ';' duration
 					{
 					char_literal74=(Token)match(input,26,FOLLOW_26_in_durations648);  
 					stream_26.add(char_literal74);
@@ -2367,7 +2367,7 @@ public class aexp17Parser extends Parser {
 			stream_32.add(char_literal76);
 
 			// AST REWRITE
-			// elements: duration, 31, 32, 26
+			// elements: 26, 31, duration, 32
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
@@ -2380,7 +2380,7 @@ public class aexp17Parser extends Parser {
 			// 144:36: -> '{' ^( ';' ( duration )+ ) '}'
 			{
 				adaptor.addChild(root_0, stream_31.nextNode());
-				// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:144:42: ^( ';' ( duration )+ )
+				// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:144:42: ^( ';' ( duration )+ )
 				{
 				CommonTree root_1 = (CommonTree)adaptor.nil();
 				root_1 = (CommonTree)adaptor.becomeRoot(stream_26.nextNode(), root_1);
@@ -2430,7 +2430,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "duration"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:147:1: duration : start_time ',' end_time ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:147:1: duration : start_time ',' end_time ;
 	public final aexp17Parser.duration_return duration() throws RecognitionException {
 		aexp17Parser.duration_return retval = new aexp17Parser.duration_return();
 		retval.start = input.LT(1);
@@ -2444,8 +2444,8 @@ public class aexp17Parser extends Parser {
 		CommonTree char_literal78_tree=null;
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:147:9: ( start_time ',' end_time )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:148:3: start_time ',' end_time
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:147:9: ( start_time ',' end_time )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:148:3: start_time ',' end_time
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
@@ -2495,7 +2495,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "start_time"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:150:1: start_time : INT -> INT ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:150:1: start_time : INT -> INT ;
 	public final aexp17Parser.start_time_return start_time() throws RecognitionException {
 		aexp17Parser.start_time_return retval = new aexp17Parser.start_time_return();
 		retval.start = input.LT(1);
@@ -2508,8 +2508,8 @@ public class aexp17Parser extends Parser {
 		RewriteRuleTokenStream stream_INT=new RewriteRuleTokenStream(adaptor,"token INT");
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:151:3: ( INT -> INT )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:152:3: INT
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:151:3: ( INT -> INT )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:152:3: INT
 			{
 			INT80=(Token)match(input,INT,FOLLOW_INT_in_start_time695);  
 			stream_INT.add(INT80);
@@ -2562,7 +2562,7 @@ public class aexp17Parser extends Parser {
 
 
 	// $ANTLR start "end_time"
-	// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:154:1: end_time : INT -> INT ;
+	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:154:1: end_time : INT -> INT ;
 	public final aexp17Parser.end_time_return end_time() throws RecognitionException {
 		aexp17Parser.end_time_return retval = new aexp17Parser.end_time_return();
 		retval.start = input.LT(1);
@@ -2575,8 +2575,8 @@ public class aexp17Parser extends Parser {
 		RewriteRuleTokenStream stream_INT=new RewriteRuleTokenStream(adaptor,"token INT");
 
 		try {
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:155:3: ( INT -> INT )
-			// /Users/su22797/eclipse-kepler-workspace/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:156:3: INT
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:155:3: ( INT -> INT )
+			// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g:156:3: INT
 			{
 			INT81=(Token)match(input,INT,FOLLOW_INT_in_end_time714);  
 			stream_INT.add(INT81);

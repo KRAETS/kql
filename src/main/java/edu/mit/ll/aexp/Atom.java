@@ -70,6 +70,28 @@ public class Atom {
 	
 	@Override
 	public String toString(){
-		return "[type:"+this.getAtomType()+" dimSet:"+this.getDimSet()+" dimSetSet:"+this.getDimSetSet()+" result:"+this.getResult()+" tagSet:"+this.getTagSet()+"]";
+		String res= "[type:"+this.getAtomType();
+		if(this.getDimSet()!=null){
+			if(this.getDimSet().size()!=0){
+				res+=" dimSet:"+this.getDimSet();
+			}
+		}
+		if(this.getDimSetSet()!=null){
+			if(this.getDimSet().size()!=0){
+				res+=" dimSetSet:"+this.getDimSetSet();
+			}
+		}
+		if(this.getResult()!=null){
+			if(!result.isEmpty()){
+				res+=" result:"+this.getResult();
+			}
+		}
+		if(this.getTagSet()!=null){
+			if(this.getTagSet().size()!=0){
+				res+=" tagSet:"+this.getTagSet();
+			}
+		}
+		res+="]";
+		return res;
 	}
 }

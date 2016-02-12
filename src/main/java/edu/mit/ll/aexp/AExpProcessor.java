@@ -19,6 +19,7 @@ public class AExpProcessor {
 	private boolean debug = false;
 
 	private boolean caseInsensitive;;
+	
 
 	public Result process(String input, boolean save) throws RecognitionException {
 		//Stream in the input
@@ -44,6 +45,9 @@ public class AExpProcessor {
 		walker.enableCaseInsensitive(true);
 		walker.setFolderLocation(folderlocation);
 		walker.enableDebug(debug);
+		walker.setTree(t);
+		walker.setExpression(input);
+		
 		if(this.debug)
 			System.out.println("Interpreting Expression");
 		//Walk the tree to get a result

@@ -20,7 +20,7 @@ public class Result {
 		try{
 			this.resultFields = (Set<Field>) result;
 			for(Field f: resultFields){
-				System.out.println(f);
+//				System.out.println(f);
 			}
 		}
 		catch(ClassCastException e){
@@ -29,7 +29,7 @@ public class Result {
 		try{
 			this.resultTables = (Set<Table>) result;
 			for(Table f: resultTables){
-				System.out.println(f);
+//				System.out.println(f);
 			}
 
 		}
@@ -70,5 +70,10 @@ public class Result {
 		
 		returnstring+="}";
 		return returnstring;
+	}
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		
+		return this.getResultFields()==null&&this.getResultTables()==null;
 	}
 }
