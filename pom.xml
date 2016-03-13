@@ -59,10 +59,17 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
+<!-- 		<dependency>
+			<groupId></groupId>
+			<artifactId>unityjdbc</artifactId>
+			<version>1</version>
+		</dependency> -->
 		<dependency>
 			<groupId>mongodb.jdbc</groupId>
 			<artifactId>unityjdbc</artifactId>
 			<version>1</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/unityjdbc.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.mongodb</groupId>

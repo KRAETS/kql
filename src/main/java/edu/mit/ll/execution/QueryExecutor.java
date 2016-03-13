@@ -2,6 +2,8 @@ package edu.mit.ll.execution;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,11 +21,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import edu.mit.ll.aexp.AExpProcessor;
+import edu.mit.ll.datastoreutils.ConnectionManager;
+import edu.mit.ll.datastoreutils.Joiner;
+import edu.mit.ll.datastoreutils.Parser;
+import edu.mit.ll.datastoreutils.SqlToMongoMapper;
+import edu.mit.ll.datastoreutils.Utils;
 import edu.mit.ll.php.JavaPhpSqlWrapper;
-import edu.mit.ll.sqlutils.Joiner;
-import edu.mit.ll.sqlutils.Parser;
-import edu.mit.ll.sqlutils.SqlToMongoMapper;
-import edu.mit.ll.sqlutils.Utils;
 
 public class QueryExecutor {
 	private List<String> queryList = new LinkedList<>();
@@ -62,8 +65,6 @@ public class QueryExecutor {
 	private String query = "";
 	//Connection to database
 	private Connection con;
-	//Database URI
-	private String url = "jdbc:mongo://localhost:27017/enron_mail_clean?rebuildschema=true";
 	//Output file
 	private File outputfile = new File("OUTPUT/outfile");
 	//Replacement string
@@ -92,34 +93,50 @@ public class QueryExecutor {
 	 * @param query
 	 * @param rowLimit
 	 * @throws SQLException
+	 * @throws MalformedURLException 
 	 */
-	public QueryExecutor(String query, int rowLimit) throws SQLException{
+	public QueryExecutor(String query, int rowLimit) throws SQLException, MalformedURLException{
 		this.rowLimit = rowLimit;
 		this.query=query;
-		Date start = new Date();
-		System.out.println("Making a connection to: " + url);
-		con = DriverManager.getConnection(url, "dbuser", "");
-		System.out.println("Connection successful.\n");
-		Date finish = new Date();
-		long time = finish.getTime() - start.getTime();
-		System.out.println("It took this many seconds to initialize the connection:"+Long.toString(time));
+		
 	}
 	/**
 	 * Initialize the object with default values and create a connection
 	 * @throws SQLException 
+	 * @throws MalformedURLException 
 	 */
-	public QueryExecutor() throws SQLException{
-		Date start = new Date();
+	public QueryExecutor() throws SQLException, MalformedURLException{
+//		Date start = new Date();
 
+//		System.out.println("Making a connection to: " + url);
+//		initializeConnection(url, user, password);
+//		System.out.println("Connection successful.\n");
+//		Date finish = new Date();
+//		long time = finish.getTime() - start.getTime();
+//		System.out.println("It took this many seconds to initialize the connection:"+Long.toString(time));
+
+	}
+
+	public void initializeConnection() throws MalformedURLException, SQLException {
+		// TODO Auto-generated method stub
+		Date start = new Date();
 		System.out.println("Making a connection to: " + url);
-		con = DriverManager.getConnection(url, "dbuser", "dbuser");
+//		con = DriverManager.getConnection(url, "dbuser", "");
+		URL connectionUrl = new URL(url);
+		
+		if(connectionUrl.getProtocol().contains("elk")){
+			con = ConnectionManager.getELKConnection(url,user,password);
+		}
+		else{
+			con = ConnectionManager.getDBConnection(url,user,password);
+		}
 		System.out.println("Connection successful.\n");
 		Date finish = new Date();
 		long time = finish.getTime() - start.getTime();
 		System.out.println("It took this many seconds to initialize the connection:"+Long.toString(time));
-
+			
+			
 	}
-
 	/**
 	 * Executes the query passed in and either saves it to a file or returns the result set from the query
 	 * @param query
@@ -178,8 +195,8 @@ public class QueryExecutor {
 			//Process wether to write to file or not
 			
 			String countsql = "SELECT COUNT(*) FROM ("+sql+") as Dummy";
-
-			ResultSet countresult = (new SqlToMongoMapper(countsql)).runQuery(this.con, false); //calls UnityJDBC
+			boolean printout = false;
+			ResultSet countresult = ConnectionManager.runQuery(countsql,this.con, printout); //calls UnityJDBC
 			boolean nextres = countresult.next();
 			Object var = countresult.getObject(1);
 			long count = Long.parseLong(var.toString());
@@ -308,6 +325,9 @@ public class QueryExecutor {
 	}
 	private boolean debug = false;
 	private boolean caseInsensitive;
+	private String url;
+	private String user;
+	private String password;
 	public List<String> getQueryList() {
 		return queryList;
 	}
@@ -329,5 +349,17 @@ public class QueryExecutor {
 	public void enableCaseInsensitive(boolean b) {
 		this.caseInsensitive = b;
 		
+	}
+	public void setUrl(String optionValue) {
+		// TODO Auto-generated method stub
+		this.url = optionValue;
+	}
+	public void setUser(String optionValue) {
+		// TODO Auto-generated method stub
+		this.user = optionValue;
+	}
+	public void setPassword(String optionValue) {
+		// TODO Auto-generated method stub
+		this.password = optionValue;
 	}
 }

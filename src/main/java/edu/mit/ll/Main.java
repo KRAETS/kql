@@ -2,6 +2,7 @@ package edu.mit.ll;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import org.apache.commons.cli.ParseException;
 import edu.mit.ll.execution.QueryExecutor;
 
 public class Main {
+	private String url = "jdbc:mongo://localhost:27017/enron_mail_clean?rebuildschema=true";
 	private QueryExecutor executor;
 	private File jsonOutput = new File("jout.json");
 	/**
@@ -41,6 +43,9 @@ public class Main {
 		options.addOption("fol", "file-output-limit", true, "Limit of rows before printing result to file");
 		options.addOption("out", "output-file", true, "File with results from query");
 		options.addOption("ci","case-insensitive", false,"Case insensitivity for Dimenaions and tags");
+		options.addOption("url", "url",true,"Data store url");
+		options.addOption("u","user",true,"Data store user");
+		options.addOption("p","password", true, "Data store password");
 		Option option = new Option("ql", "query-list");
 		// Set option c to take 1 to oo arguments
 		option.setArgs(Option.UNLIMITED_VALUES); //This must be the last option
@@ -113,6 +118,35 @@ public class Main {
 			if(cmd.hasOption("ci")){
 				m.enableCaseInsensitive(true);
 			}
+			if(cmd.hasOption("url")){
+				m.setUrl(cmd.getOptionValue("url"));
+			}
+			else{
+				System.err.println("Connection url not specified.  Exiting...");
+				formatter.printHelp("kql", options);
+			}
+			if(cmd.hasOption("user")){
+				m.setUser(cmd.getOptionValue("user"));
+			}
+			else{
+				System.err.println("Connection user not specified.  Exiting...");
+				formatter.printHelp("kql", options);
+			}
+			if(cmd.hasOption("password")){
+				m.setPassword(cmd.getOptionValue("password"));
+			}
+			else{
+				System.err.println("Connection password not specified.  Exiting...");
+				formatter.printHelp("kql", options);
+			}
+			try{
+				m.initiateConnection();
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+				System.err.println("Could not initialize connection");
+				return;
+			}
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -144,6 +178,22 @@ public class Main {
 		
 		System.exit(0);
 	}
+	private void initiateConnection() throws MalformedURLException, SQLException {
+		// TODO Auto-generated method stub
+		this.executor.initializeConnection();
+	}
+	private void setUrl(String optionValue) {
+		// TODO Auto-generated method stub
+		this.executor.setUrl(optionValue);
+	}
+	private void setUser(String optionValue) {
+		// TODO Auto-generated method stub
+		this.executor.setUser(optionValue);
+	}
+	private void setPassword(String optionValue) {
+		// TODO Auto-generated method stub
+		this.executor.setPassword(optionValue);
+	}
 	private void enableCaseInsensitive(boolean b) {
 		this.executor.enableCaseInsensitive(b);
 		
@@ -160,7 +210,7 @@ public class Main {
 	public void setOutputFile(File f){
 		this.executor.setOutputfile(f);
 	}
-	public QueryExecutor instantiateExecutor() throws SQLException{
+	public QueryExecutor instantiateExecutor() throws SQLException, MalformedURLException{
 		this.executor = new QueryExecutor();
 		return this.executor;
 	}

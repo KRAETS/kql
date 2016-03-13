@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g 2016-02-03 00:31:23
+// $ANTLR 3.5.2 /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexp17.g 2016-03-13 07:51:52
 
 package edu.mit.ll.antlr;
 
@@ -281,7 +281,7 @@ public class aexp17Parser extends Parser {
 
 					stream_r_exp.add(r_exp7.getTree());
 					// AST REWRITE
-					// elements: NOT, r_exp
+					// elements: r_exp, NOT
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1265,9 +1265,9 @@ public class aexp17Parser extends Parser {
 		CommonTree char_literal43_tree=null;
 		CommonTree char_literal45_tree=null;
 		CommonTree char_literal47_tree=null;
-		RewriteRuleTokenStream stream_32=new RewriteRuleTokenStream(adaptor,"token 32");
-		RewriteRuleTokenStream stream_31=new RewriteRuleTokenStream(adaptor,"token 31");
 		RewriteRuleTokenStream stream_22=new RewriteRuleTokenStream(adaptor,"token 22");
+		RewriteRuleTokenStream stream_31=new RewriteRuleTokenStream(adaptor,"token 31");
+		RewriteRuleTokenStream stream_32=new RewriteRuleTokenStream(adaptor,"token 32");
 		RewriteRuleSubtreeStream stream_dim=new RewriteRuleSubtreeStream(adaptor,"rule dim");
 
 		try {
@@ -1407,7 +1407,7 @@ public class aexp17Parser extends Parser {
 					stream_32.add(char_literal47);
 
 					// AST REWRITE
-					// elements: 32, dim, 22, 31
+					// elements: dim, 22, 31, 32
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1493,9 +1493,9 @@ public class aexp17Parser extends Parser {
 		CommonTree char_literal51_tree=null;
 		CommonTree char_literal53_tree=null;
 		CommonTree char_literal55_tree=null;
-		RewriteRuleTokenStream stream_32=new RewriteRuleTokenStream(adaptor,"token 32");
-		RewriteRuleTokenStream stream_31=new RewriteRuleTokenStream(adaptor,"token 31");
 		RewriteRuleTokenStream stream_22=new RewriteRuleTokenStream(adaptor,"token 22");
+		RewriteRuleTokenStream stream_31=new RewriteRuleTokenStream(adaptor,"token 31");
+		RewriteRuleTokenStream stream_32=new RewriteRuleTokenStream(adaptor,"token 32");
 		RewriteRuleSubtreeStream stream_dimSet=new RewriteRuleSubtreeStream(adaptor,"rule dimSet");
 
 		try {
@@ -1635,7 +1635,7 @@ public class aexp17Parser extends Parser {
 					stream_32.add(char_literal55);
 
 					// AST REWRITE
-					// elements: dimSet, 32, 31, 22
+					// elements: dimSet, 32, 22, 31
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -1773,9 +1773,9 @@ public class aexp17Parser extends Parser {
 		CommonTree char_literal60_tree=null;
 		CommonTree char_literal62_tree=null;
 		CommonTree char_literal64_tree=null;
-		RewriteRuleTokenStream stream_32=new RewriteRuleTokenStream(adaptor,"token 32");
-		RewriteRuleTokenStream stream_31=new RewriteRuleTokenStream(adaptor,"token 31");
 		RewriteRuleTokenStream stream_22=new RewriteRuleTokenStream(adaptor,"token 22");
+		RewriteRuleTokenStream stream_31=new RewriteRuleTokenStream(adaptor,"token 31");
+		RewriteRuleTokenStream stream_32=new RewriteRuleTokenStream(adaptor,"token 32");
 		RewriteRuleSubtreeStream stream_tag=new RewriteRuleSubtreeStream(adaptor,"rule tag");
 
 		try {
@@ -2014,7 +2014,7 @@ public class aexp17Parser extends Parser {
 					stream_32.add(char_literal64);
 
 					// AST REWRITE
-					// elements: 22, tag, 31, 32
+					// elements: 31, 22, tag, 32
 					// token labels: 
 					// rule labels: retval
 					// token list labels: 
@@ -2317,9 +2317,9 @@ public class aexp17Parser extends Parser {
 		CommonTree char_literal72_tree=null;
 		CommonTree char_literal74_tree=null;
 		CommonTree char_literal76_tree=null;
-		RewriteRuleTokenStream stream_32=new RewriteRuleTokenStream(adaptor,"token 32");
-		RewriteRuleTokenStream stream_31=new RewriteRuleTokenStream(adaptor,"token 31");
 		RewriteRuleTokenStream stream_26=new RewriteRuleTokenStream(adaptor,"token 26");
+		RewriteRuleTokenStream stream_31=new RewriteRuleTokenStream(adaptor,"token 31");
+		RewriteRuleTokenStream stream_32=new RewriteRuleTokenStream(adaptor,"token 32");
 		RewriteRuleSubtreeStream stream_duration=new RewriteRuleSubtreeStream(adaptor,"rule duration");
 
 		try {
@@ -2367,7 +2367,7 @@ public class aexp17Parser extends Parser {
 			stream_32.add(char_literal76);
 
 			// AST REWRITE
-			// elements: 26, 31, duration, 32
+			// elements: duration, 31, 32, 26
 			// token labels: 
 			// rule labels: retval
 			// token list labels: 
