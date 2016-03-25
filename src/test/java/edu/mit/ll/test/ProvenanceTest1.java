@@ -17,6 +17,9 @@
 package edu.mit.ll.test;
 
 import java.util.List;
+
+import javax.naming.CannotProceedException;
+
 import org.antlr.runtime.RecognitionException;
 import org.apache.log4j.Logger;
 import org.junit.*;
@@ -24,6 +27,7 @@ import org.junit.rules.ExpectedException;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 import edu.mit.ll.aexp.AExpProcessor;
 import edu.mit.ll.aexp.Result;
@@ -49,7 +53,7 @@ public class ProvenanceTest1 {
     }
     
     @Test
-    public void test() {
+    public void test() throws JsonSyntaxException, CannotProceedException {
     	String query = "SELECT \\ALL* Dimension1\\";
     	Parser p = new Parser();
         List<String> aexpqueries = p.stringExtractor("\\\\",query,"POTATO");

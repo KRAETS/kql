@@ -8,10 +8,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.naming.CannotProceedException;
 
 import org.antlr.runtime.RecognitionException;
 
@@ -30,10 +33,11 @@ import edu.mit.ll.php.JavaPhpSqlWrapper;
 
 public class QueryExecutor {
 	private List<String> queryList = new LinkedList<>();
+	private String aexpMapFolderLocation = "src/main/resources/jsonemail/";
 	public void addQuery(String query){
 		queryList.add(query);
 	}
-	public void executeQueryList() throws RecognitionException, ParseException, SQLException, IOException{
+	public void executeQueryList() throws RecognitionException, ParseException, SQLException, IOException, CannotProceedException{
 		this.persistConnection = true;
 		
 		String basefilename = "output/outfile";
@@ -146,8 +150,9 @@ public class QueryExecutor {
 	 * @throws ParseException  Thrown if final SQL expression cannot be processed
 	 * @throws SQLException 
 	 * @throws IOException 
+	 * @throws CannotProceedException 
 	 */
-	public ResultSet executeQuery(String query, int rowLimit) throws RecognitionException, ParseException, SQLException, IOException{
+	public ResultSet executeQuery(String query, int rowLimit) throws RecognitionException, ParseException, SQLException, IOException, CannotProceedException{
 		try{
 			//Intermediate step will replace AExp with this string
 
@@ -165,13 +170,19 @@ public class QueryExecutor {
 			String phpres = sqlprocessor.execPHP(null,sqlprocessor.getQuery());
 			if(debug)
 				System.out.println(phpres);
-			
-			JsonObject result = (JsonObject)parser.parse(phpres);
+			JsonObject result = null;
+			try{
+				result = (JsonObject)parser.parse(phpres);
+			}
+			catch (Exception e){
+				throw new CannotProceedException("Problem with:"+phpres.toString());
+			}
 
 			//Actual processor of AExp takes the AExp and parses, lexes and interprets it
 			AExpProcessor procesor = new AExpProcessor();
 			procesor.enableCaseInsensitive(this.caseInsensitive);
 			procesor.enableDebug(this.debug);
+			procesor.setFolderlocation(this.getAexpMapFolderLocation());
 			for(int i=0; i<aexpqueries.size()-1;i++){
 				try {
 					//Process the query and store the results inside the processor object
@@ -185,7 +196,7 @@ public class QueryExecutor {
 			//We can print additional info before we actually print
 
 			//Joins the result of the AExp with the SQL expression so it can be executed
-			String sql = (new Joiner()).join(procesor.getStoredOperationResults(), p.lastResult(), stringtoreplacewith, result);
+			String sql = this.translateQuery(query);
 
 			//Wrapper to execute the sql query in mongo db
 //			ResultSet finalresult = (new SqlToMongoMapper(sql)).runQuery(this.con, debug);
@@ -248,6 +259,11 @@ public class QueryExecutor {
 			ex.printStackTrace();
 			throw ex;
 		}
+		catch(CannotProceedException ex){
+			System.out.println("Error parsing sql query: " + ex);
+			ex.printStackTrace();
+			throw ex;
+		}
 		catch(Exception ex){
 			System.out.println("Something went wrong: "+ex);
 			ex.printStackTrace();
@@ -279,8 +295,9 @@ public class QueryExecutor {
 	 * @throws RecognitionException 
 	 * @throws SQLException 
 	 * @throws IOException 
+	 * @throws CannotProceedException 
 	 */
-	public ResultSet executeQuery(String query) throws RecognitionException, ParseException, SQLException, IOException{
+	public ResultSet executeQuery(String query) throws RecognitionException, ParseException, SQLException, IOException, CannotProceedException{
 		return executeQuery(query,this.getRowLimit());
 	}
 	/**
@@ -290,8 +307,9 @@ public class QueryExecutor {
 	 * @throws RecognitionException 
 	 * @throws SQLException 
 	 * @throws IOException 
+	 * @throws CannotProceedException 
 	 */
-	public ResultSet executeQuery() throws RecognitionException, ParseException, SQLException, IOException{
+	public ResultSet executeQuery() throws RecognitionException, ParseException, SQLException, IOException, CannotProceedException{
 		return executeQuery(this.getQuery(),this.getRowLimit());
 	}
 	/**
@@ -361,5 +379,119 @@ public class QueryExecutor {
 	public void setPassword(String optionValue) {
 		// TODO Auto-generated method stub
 		this.password = optionValue;
+	}
+	
+	public String translateQuery() throws RecognitionException, ParseException, CannotProceedException{
+		//Parses AExp from SQL query
+		Parser p = new Parser(); //Extract A-Expressions and replace each with a substitute
+		List<String> aexpqueries = p.stringExtractor(matchstring,query,stringtoreplacewith);
+
+		//Transforms SQL query into a JSON Object for easier handling later
+		JavaPhpSqlWrapper sqlprocessor = new JavaPhpSqlWrapper(aexpqueries.get(aexpqueries.size()-1));
+		JsonParser parser = new JsonParser();
+		sqlprocessor.enableDebug(this.debug);
+		String phpres = sqlprocessor.execPHP(null,sqlprocessor.getQuery());
+		if(debug)
+			System.out.println(phpres);
+		JsonObject result = null;
+		try{
+			result = (JsonObject)parser.parse(phpres);
+		}
+		catch (Exception e){
+			throw new CannotProceedException("Problem with:"+phpres.toString());
+		}
+
+		//Actual processor of AExp takes the AExp and parses, lexes and interprets it
+		AExpProcessor procesor = new AExpProcessor();
+		procesor.enableCaseInsensitive(this.caseInsensitive);
+		procesor.enableDebug(this.debug);
+		procesor.setFolderlocation(this.getAexpMapFolderLocation());
+		for(int i=0; i<aexpqueries.size()-1;i++){
+			try {
+				//Process the query and store the results inside the processor object
+				
+				procesor.process(aexpqueries.get(i),true);
+			} catch (RecognitionException e) {
+				e.printStackTrace();
+				throw e;
+			}
+		}
+
+		//We can print additional info before we actually print
+
+		//Joins the result of the AExp with the SQL expression so it can be executed
+		String sql = (new Joiner()).join(procesor.getStoredOperationResults(), p.lastResult(), stringtoreplacewith, result);
+
+		return sql;
+	}
+	public String translateQuery(String query) throws RecognitionException, ParseException, CannotProceedException{
+		//Parses AExp from SQL query
+		Parser p = new Parser(); //Extract A-Expressions and replace each with a substitute
+		List<String> aexpqueries = p.stringExtractor(matchstring,query,stringtoreplacewith);
+
+		//Transforms SQL query into a JSON Object for easier handling later
+		JavaPhpSqlWrapper sqlprocessor = new JavaPhpSqlWrapper(aexpqueries.get(aexpqueries.size()-1));
+		sqlprocessor.setQuery(aexpqueries.get(aexpqueries.size()-1));
+		JsonParser parser = new JsonParser();
+		sqlprocessor.enableDebug(this.debug);
+		String phpres = sqlprocessor.execPHP(null,sqlprocessor.getQuery());
+		if(debug)
+			System.out.println(phpres);
+		JsonObject result = null;
+		try{
+			result = (JsonObject)parser.parse(phpres);
+		}
+		catch (Exception e){
+			throw new CannotProceedException("Problem with:"+phpres.toString());
+		}
+
+		//Actual processor of AExp takes the AExp and parses, lexes and interprets it
+		AExpProcessor procesor = null;
+		try{
+		procesor = new AExpProcessor();
+		procesor.enableCaseInsensitive(this.caseInsensitive);
+		procesor.enableDebug(this.debug);
+		procesor.setFolderlocation(this.getAexpMapFolderLocation());
+
+		for(int i=0; i<aexpqueries.size()-1;i++){
+			try {
+				//Process the query and store the results inside the processor object
+				procesor.process(aexpqueries.get(i),true);
+			} catch (RecognitionException e) {
+				e.printStackTrace();
+				throw e;
+			}
+		}
+		}
+		catch(Exception e){
+			throw new CannotProceedException("Analyzando queries"+e.toString());
+		}
+
+		//We can print additional info before we actually print
+
+		//Joins the result of the AExp with the SQL expression so it can be executed
+		String sql = null;
+		try{
+			sql = (new Joiner()).join(procesor.getStoredOperationResults(), p.lastResult(), stringtoreplacewith, result);
+		}
+		catch(Exception e){
+			throw new CannotProceedException("Sigh"+e.toString());
+		}
+		return sql;
+	}
+	
+	public String[] translateQueries() throws RecognitionException, ParseException, CannotProceedException{
+		ArrayList<String> queries = new ArrayList<>();
+		for(String query:this.getQueryList()){
+			String result = translateQuery(query);
+			queries.add(result);
+		}
+		return (String[]) queries.toArray();
+	}
+	public String getAexpMapFolderLocation() {
+		return aexpMapFolderLocation;
+	}
+	public void setAexpMapFolderLocation(String aexpMapFolderLocation) {
+		this.aexpMapFolderLocation = aexpMapFolderLocation;
 	}
 }

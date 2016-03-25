@@ -43,9 +43,9 @@ import edu.mit.ll.execution.QueryExecutor;
 import edu.mit.ll.php.JavaPhpSqlWrapper;
 
 
-public class Apitest7 {
+public class NadsApitest3 {
 
-    static String testName = "APITest2";    
+    static String testName = "APITest";    
     static Logger log = Logger.getLogger(Test1.class);
 
     @Rule
@@ -58,9 +58,13 @@ public class Apitest7 {
     
     @Test
     public void test() throws SQLException, RecognitionException, ParseException, IOException, CannotProceedException {
-    	//messages.find({"$or":[{"subFolder":"sent"},{"subFolder":"sent_items"}]}).distinct("headers.From")
-    	QueryExecutor ex = new QueryExecutor("select \\ALL*[emailmessage]\\ FROM \\ALL/{folder}/_:email_message\\ WHERE ( \\ALL*folder*_:email_message\\ = 'sent_items' OR \\ALL*folder*_:email_message\\= 'sent') AND ( \\ALL*email_address*_:sender\\='susan.scott@enron.com' )", 100);
+    	QueryExecutor ex = new QueryExecutor("SELECT \\ALL*datetime\\ from 'filebeat-*'", 100);
+    	ex.setFolderLocation("src/main/resources/jsonnads/");
+    	ex.setAexpMapFolderLocation("src/main/resources/jsonnads/");
     	ex.enableDebug(true);
-    	ResultSet res  = ex.executeQuery();
+    	ex.setReturnResultObject(true);
+    	String res = ex.translateQuery();
+    	System.out.println(res);
     }
+
 }

@@ -1,0 +1,50 @@
+{
+"f2dmap":
+        [
+          		{
+ 	                "table" : "auth_log",
+ 	                "field": "Date",
+                    "dimension": "datetime"
+  				},
+  				{
+ 	                "table" : "auth_log",
+ 	                "field": "HostName",
+                    "dimension": "name"
+  				},
+  				{
+ 	                "table" : "auth_log",
+ 	                "field": "DaemonName",
+                    "dimension": "protocol"
+  				},
+  				{
+ 	                "table" : "auth_log",
+ 	                "field": "DaemonPort",
+                    "dimension": "portnumber"
+  				},
+  				{
+ 	                "table" : "auth_log",
+ 	                "field": "Status",
+                    "dimension": "status"
+  				},
+  				{
+ 	                "table" : "auth_log",
+ 	                "field": "ClientIp",
+                    "dimension": "ip_address"
+  				},
+  				{
+ 	                "table" : "auth_log",
+ 	                "field": "UserName",
+                    "dimension": "id"
+  				},
+  				{
+ 	                "table" : "auth_log",
+ 	                "field": "ClientPort",
+                    "dimension": "portnumber"
+  				},
+  				{
+ 	                "table" : "auth_log",
+ 	                "field": "ClientDaemon",
+                    "dimension": "protocol"
+  				}
+  		]		
+}

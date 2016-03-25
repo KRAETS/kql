@@ -3,6 +3,8 @@ package edu.mit.ll.aexp;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.naming.CannotProceedException;
+
 import edu.mit.ll.antlr.*;
 
 import org.antlr.runtime.ANTLRStringStream;
@@ -21,7 +23,7 @@ public class AExpProcessor {
 	private boolean caseInsensitive;;
 	
 
-	public Result process(String input, boolean save) throws RecognitionException {
+	public Result process(String input, boolean save) throws RecognitionException, CannotProceedException {
 		//Stream in the input
 		ANTLRStringStream in = new ANTLRStringStream(input);
 		//Initialize the lexer

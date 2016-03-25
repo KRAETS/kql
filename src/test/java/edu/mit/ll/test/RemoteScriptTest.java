@@ -16,7 +16,13 @@
  ******************************************************************************/
 package edu.mit.ll.test;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -43,9 +49,9 @@ import edu.mit.ll.execution.QueryExecutor;
 import edu.mit.ll.php.JavaPhpSqlWrapper;
 
 
-public class Apitest7 {
+public class RemoteScriptTest {
 
-    static String testName = "APITest2";    
+    static String testName = "APITest";    
     static Logger log = Logger.getLogger(Test1.class);
 
     @Rule
@@ -57,10 +63,23 @@ public class Apitest7 {
     }
     
     @Test
-    public void test() throws SQLException, RecognitionException, ParseException, IOException, CannotProceedException {
-    	//messages.find({"$or":[{"subFolder":"sent"},{"subFolder":"sent_items"}]}).distinct("headers.From")
-    	QueryExecutor ex = new QueryExecutor("select \\ALL*[emailmessage]\\ FROM \\ALL/{folder}/_:email_message\\ WHERE ( \\ALL*folder*_:email_message\\ = 'sent_items' OR \\ALL*folder*_:email_message\\= 'sent') AND ( \\ALL*email_address*_:sender\\='susan.scott@enron.com' )", 100);
-    	ex.enableDebug(true);
-    	ResultSet res  = ex.executeQuery();
+    public void test() throws IOException {
+    	StringBuilder output2 = new StringBuilder();
+//		Process p = Runtime.getRuntime().exec(new String[]{"php5", finalScriptName, param});
+//		
+//		StringBuilder result = new StringBuilder();
+    	String urlstring = "http://192.168.0.114:8080/sqlparser/examples/simplerexample.php"+"?kqlq="+"SELECT hola FROM 'filebeat-*'";
+	      URL url = new URL(urlstring);
+	      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	      
+	      conn.setRequestMethod("GET");
+	      BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	      String line;
+	      while ((line = rd.readLine()) != null) {
+	         output2.append(line);
+	      }
+	      rd.close();
+	      System.out.println(output2.toString());
     }
+
 }

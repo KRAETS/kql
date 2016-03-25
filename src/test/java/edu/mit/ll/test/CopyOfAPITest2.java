@@ -21,6 +21,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.naming.CannotProceedException;
+
 import org.antlr.runtime.RecognitionException;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -55,7 +57,7 @@ public class CopyOfAPITest2 {
     }
     
     @Test
-    public void test() throws SQLException, RecognitionException, ParseException, IOException {
+    public void test() throws SQLException, RecognitionException, ParseException, IOException, CannotProceedException {
     	QueryExecutor ex = new QueryExecutor("SELECT DISTINCT \\ALL*email_address*_:source\\ FROM \\ALL/emailmessage}\\ WHERE ( \\ALL*folder\\ = 'sent_items' OR \\ALL*folder\\ = 'sent')", 100);
     	ex.enableDebug(true);
     	ex.setReturnResultObject(true);

@@ -1,0 +1,16 @@
+{
+"tables":
+        [
+          		{
+ 	                "name" : "auth_log",
+                    "fields":  [ 
+                    {"name": "Date"},
+                    {"name":"HostName"},
+                    {"name":"DaemonName"},{"name":"DaemonPort"},
+                    {"name":"Status"},{"name":"ClientIp"},
+                    {"name":"UserName"},{"name":"ClientPort"},
+                    {"name":"ClientDaemon"}],
+                    "durations": [{"start_time": "2001-01-01T00:00:00", "end_time": "2017-12-31T11:59:59"}]
+  				}
+  		]		
+}

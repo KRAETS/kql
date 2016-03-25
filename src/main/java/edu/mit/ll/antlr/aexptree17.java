@@ -18,6 +18,8 @@ import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
+import javax.naming.CannotProceedException;
+
 
 @SuppressWarnings("all")
 public class aexptree17 extends TreeParser {
@@ -120,7 +122,8 @@ public class aexptree17 extends TreeParser {
 	this.debug = value;
 	}
 
-	public void preconfigure(){
+	public void preconfigure() throws CannotProceedException{
+		
 	    RegistryOperators.debug = this.debug;
 	    String T2FMapFileName = folderlocation+"Table2FieldMap.json";
 	    String F2DMapFileName = folderlocation+"Field2DimensionMap.json";
@@ -146,18 +149,20 @@ public class aexptree17 extends TreeParser {
 	        //No operators set...
 	        
 	      }
-	      
-
+	    
+	    
 	    ffs.init();
 	    
 	    allVirtualDimensions = ffs.getVirtualDimensions();
 	    allTables = ffs.getTables();
+	    
 	    allDimensionSets = ffs.getDs2dmap();
 	    allDimensions = ffs.getDimensions();
 	    allTagSchemes = ffs.getTs2tmap();
 	    allFields = ffs.getFields();
 	    
 	    ProvenanceDataStructure.setFolderlocation(ffs);
+		
 	}
 
 
@@ -171,7 +176,7 @@ public class aexptree17 extends TreeParser {
 
 	// $ANTLR start "start"
 	// /Users/pedro/Documents/git/kraets/KRAETS/kql/src/main/java/edu/mit/ll/antlr/aexptree17.g:104:1: start returns [Result r] : a= r_exp ;
-	public final aexptree17.start_return start() throws RecognitionException {
+	public final aexptree17.start_return start() throws RecognitionException, CannotProceedException {
 		aexptree17.start_return retval = new aexptree17.start_return();
 		retval.start = input.LT(1);
 

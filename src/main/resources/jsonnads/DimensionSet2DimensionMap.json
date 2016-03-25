@@ -1,0 +1,18 @@
+{
+"dimensionSets":
+        [
+        {
+   			"name": "login",
+            "dimensions":  [ 
+	            {"name": "datetime"},
+	            {"name":"name"},
+	            {"name": "protocol"},
+	            {"name":"portnumber"},
+	            {"name": "status"},
+	            {"name":"id"},
+	            {"name": "ip_address"},
+	            {"name":"domain_name"}
+            ]
+		}
+  		]		
+}

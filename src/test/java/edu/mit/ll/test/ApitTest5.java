@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.naming.CannotProceedException;
+
 import org.antlr.runtime.RecognitionException;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -39,7 +41,7 @@ public class ApitTest5 {
     }
     
     @Test
-    public void test() throws SQLException, RecognitionException, ParseException, IOException {
+    public void test() throws SQLException, RecognitionException, ParseException, IOException, CannotProceedException {
     	//messages.find({"$or":[{"subFolder":"sent"},{"subFolder":"sent_items"}]}).distinct("headers.From")
     	QueryExecutor ex = new QueryExecutor("select \\ALL*_:email_message|ALL*email_address\\ FROM \\ALL/{folder}/_:email_message\\ WHERE ( \\ALL*folder*_:email_message\\ = 'sent_items' OR \\ALL*folder*_:email_message\\= 'sent') AND ( \\ALL*email_address*_:sender\\='susan.scott@enron.com' )", 100);
     	ex.enableDebug(true);

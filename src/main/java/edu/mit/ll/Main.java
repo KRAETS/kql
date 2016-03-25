@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.naming.CannotProceedException;
+
 import org.antlr.runtime.RecognitionException;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -30,8 +32,9 @@ public class Main {
 	 * @throws IOException 
 	 * @throws unity.parser.ParseException 
 	 * @throws RecognitionException 
+	 * @throws CannotProceedException 
 	 */
-	public static void main(String[] args) throws SQLException, RecognitionException, unity.parser.ParseException, IOException {
+	public static void main(String[] args) throws SQLException, RecognitionException, unity.parser.ParseException, IOException, CannotProceedException {
 		// TODO Auto-generated method stub
 		// create Options object
 		Options options = new Options();
@@ -196,7 +199,6 @@ public class Main {
 	}
 	private void enableCaseInsensitive(boolean b) {
 		this.executor.enableCaseInsensitive(b);
-		
 	}
 	public void enableDebug(boolean value){
 		this.executor.enableDebug(value);

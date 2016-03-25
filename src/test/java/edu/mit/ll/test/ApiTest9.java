@@ -21,6 +21,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.naming.CannotProceedException;
+
 import org.antlr.runtime.RecognitionException;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -55,7 +57,7 @@ public class ApiTest9 {
     }
     
     @Test
-    public void test() throws SQLException, RecognitionException, ParseException, IOException {
+    public void test() throws SQLException, RecognitionException, ParseException, IOException, CannotProceedException {
     	//messages.find({"$or":[{"subFolder":"sent"},{"subFolder":"sent_items"}]}).distinct("headers.From")
     	QueryExecutor ex = new QueryExecutor("SELECT \\ALL*[emailmessage]\\ FROM  (SELECT * FROM \\ALL/emailmessage}\\ WHERE \\ALL*email_address*_:sender\\='susan.scott@enron.com' ) as example WHERE ( \\ALL*folder\\ = 'sent_items' OR \\ALL*folder\\ = 'sent') and ( \\ALL*datetime*_:sender\\ >= '2000-01-01 00:00:00-07:00' AND \\ALL*datetime*_:sender\\ < '2003-01-01 00:00:00-07:00' )", 0);
     	ex.enableDebug(true);
