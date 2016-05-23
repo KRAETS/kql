@@ -16,8 +16,7 @@
  ******************************************************************************/
 package edu.mit.ll.test;
 
-import java.io.IOException;
-import java.sql.ResultSet;
+import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,16 +24,12 @@ import javax.naming.CannotProceedException;
 
 import org.antlr.runtime.RecognitionException;
 import org.apache.log4j.Logger;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
-
-import unity.parser.ParseException;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 import edu.mit.ll.aexp.AExpProcessor;
 import edu.mit.ll.aexp.Result;
@@ -43,11 +38,15 @@ import edu.mit.ll.execution.QueryExecutor;
 import edu.mit.ll.php.JavaPhpSqlWrapper;
 
 
-public class ApiTest9 {
 
-    static String testName = "APITest2";    
-    static Logger log = Logger.getLogger(Test1.class);
+public class ResolveAexpTest2 {
+	
 
+    static String testName = "Test1";    
+    static Logger log = Logger.getLogger(ResolveAexpTest2.class);
+
+
+    
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
@@ -57,11 +56,21 @@ public class ApiTest9 {
     }
     
     @Test
-    public void test() throws SQLException, RecognitionException, ParseException, IOException, CannotProceedException {
-    	//messages.find({"$or":[{"subFolder":"sent"},{"subFolder":"sent_items"}]}).distinct("headers.From")
-    	QueryExecutor ex = new QueryExecutor("SELECT \\ALL*[emailmessage]\\ FROM  (SELECT * FROM \\ALL/emailmessage\\ WHERE \\ALL*email_address*_:sender\\='susan.scott@enron.com' ) as example WHERE ( \\ALL*folder\\ = 'sent_items' OR \\ALL*folder\\ = 'sent') and ( \\ALL*datetime*_:sender\\ >= '2000-01-01 00:00:00-07:00' AND \\ALL*datetime*_:sender\\ < '2003-01-01 00:00:00-07:00' )", 0);
+    public void test() throws JsonSyntaxException, CannotProceedException {
+    	String query = "ALL*{protocol,portnumber,status,id,ip_address,datetime,name}";
+		QueryExecutor ex = new QueryExecutor();
+    	ex.setFolderLocation("src/main/resources/jsonnads/");
+    	ex.setAexpMapFolderLocation("src/main/resources/jsonnads/");
     	ex.enableDebug(true);
-    	String trans = ex.translateQuery();
-    	ResultSet res  = ex.executeQuery();
+    	ex.setReturnResultObject(true);
+
+		List<Result> res = ex.evaluateAexp(query);
+		System.out.println(res);
+		for(Result r:res){
+			System.out.println(r.toJsonString());
+		}
+		
     }
+
+
 }

@@ -2,47 +2,47 @@
 "f2dmap":
         [
           		{
- 	                "table" : "auth_log",
+ 	                "table" : "filebeat-*",
  	                "field": "Date",
                     "dimension": "datetime"
   				},
   				{
- 	                "table" : "auth_log",
+ 	                "table" : "filebeat-*",
  	                "field": "HostName",
                     "dimension": "name"
   				},
   				{
- 	                "table" : "auth_log",
+ 	                "table" : "filebeat-*",
  	                "field": "DaemonName",
                     "dimension": "protocol"
   				},
   				{
- 	                "table" : "auth_log",
+ 	                "table" : "filebeat-*",
  	                "field": "DaemonPort",
                     "dimension": "portnumber"
   				},
   				{
- 	                "table" : "auth_log",
+ 	                "table" : "filebeat-*",
  	                "field": "Status",
                     "dimension": "status"
   				},
   				{
- 	                "table" : "auth_log",
+ 	                "table" : "filebeat-*",
  	                "field": "ClientIp",
                     "dimension": "ip_address"
   				},
   				{
- 	                "table" : "auth_log",
+ 	                "table" : "filebeat-*",
  	                "field": "UserName",
                     "dimension": "id"
   				},
   				{
- 	                "table" : "auth_log",
+ 	                "table" : "filebeat-*",
  	                "field": "ClientPort",
                     "dimension": "portnumber"
   				},
   				{
- 	                "table" : "auth_log",
+ 	                "table" : "filebeat-*",
  	                "field": "ClientDaemon",
                     "dimension": "protocol"
   				}

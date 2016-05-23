@@ -1,7 +1,13 @@
 package edu.mit.ll.aexp;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 
 import edu.mit.ll.aexp.ProvenanceDataStructure.TYPE;
@@ -44,6 +50,32 @@ public class Result {
 	public Set<Table> getResultTables() {
 		return resultTables;
 	}
+	public String toJsonString(){
+		JsonObject result = new JsonObject();
+		
+		List<String> tables = new LinkedList<>();
+				
+		if(this.getResultTables()!=null)
+			for(Table t:this.getResultTables())
+				tables.add(t.getName());
+		
+		List<String> fields = new LinkedList<>();
+		
+		if(this.getResultFields()!=null){
+			for(Field f: this.getResultFields()){
+				fields.add(f.getName());
+			}
+		}
+	    Gson gson = new Gson();
+	    JsonElement tablesJson = gson.toJsonTree(tables);
+		result.add("tables", tablesJson);
+		JsonElement fieldsJson = gson.toJsonTree(fields);
+		result.add("fields", fieldsJson);
+		
+		return result.toString();
+	
+	}
+	
 	@Override 
 	public String toString(){
 		String returnstring = "{Tables:";

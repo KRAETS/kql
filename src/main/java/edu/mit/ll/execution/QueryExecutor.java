@@ -24,6 +24,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import edu.mit.ll.aexp.AExpProcessor;
+import edu.mit.ll.aexp.Result;
 import edu.mit.ll.datastoreutils.ConnectionManager;
 import edu.mit.ll.datastoreutils.Joiner;
 import edu.mit.ll.datastoreutils.Parser;
@@ -109,7 +110,7 @@ public class QueryExecutor {
 	 * @throws SQLException 
 	 * @throws MalformedURLException 
 	 */
-	public QueryExecutor() throws SQLException, MalformedURLException{
+	public QueryExecutor(){
 //		Date start = new Date();
 
 //		System.out.println("Making a connection to: " + url);
@@ -380,7 +381,21 @@ public class QueryExecutor {
 		// TODO Auto-generated method stub
 		this.password = optionValue;
 	}
-	
+	public List<Result> evaluateAexp(String s){
+		AExpProcessor procesor = new AExpProcessor();
+		procesor.enableCaseInsensitive(this.caseInsensitive);
+		procesor.enableDebug(this.debug);
+		procesor.setFolderlocation(this.getAexpMapFolderLocation());
+		
+		try {
+			procesor.process(s,true);
+		} catch (CannotProceedException | RecognitionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return procesor.getStoredOperationResults();
+	}
 	public String translateQuery() throws RecognitionException, ParseException, CannotProceedException{
 		//Parses AExp from SQL query
 		Parser p = new Parser(); //Extract A-Expressions and replace each with a substitute
@@ -424,6 +439,35 @@ public class QueryExecutor {
 
 		return sql;
 	}
+	
+	public String queryProvenance() throws RecognitionException, ParseException, CannotProceedException{
+		//Parses AExp from SQL query
+		Parser p = new Parser(); //Extract A-Expressions and replace each with a substitute
+		List<String> aexpqueries = p.stringExtractor(matchstring,query,stringtoreplacewith);
+
+
+		//Actual processor of AExp takes the AExp and parses, lexes and interprets it
+		AExpProcessor procesor = new AExpProcessor();
+		procesor.enableCaseInsensitive(this.caseInsensitive);
+		procesor.enableDebug(this.debug);
+		procesor.setFolderlocation(this.getAexpMapFolderLocation());
+		String sql = "";
+		for(int i=0; i<aexpqueries.size()-1;i++){
+			try {
+				//Process the query and store the results inside the processor object
+				
+				Result r1 = procesor.process(aexpqueries.get(i),true);
+            	r1.provenance.fullPrint = true;
+            	sql+=r1.provenance.toString()+"\n";
+			} catch (RecognitionException e) {
+				e.printStackTrace();
+				throw e;
+			}
+		}
+
+		return sql;
+	}
+	
 	public String translateQuery(String query) throws RecognitionException, ParseException, CannotProceedException{
 		//Parses AExp from SQL query
 		Parser p = new Parser(); //Extract A-Expressions and replace each with a substitute

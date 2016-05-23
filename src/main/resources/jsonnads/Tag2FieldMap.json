@@ -1,11 +1,11 @@
 {
 "tag2fieldItems":
         [
-          	{ "table" : "auth_log", "field": "HostName", "tagScheme": "_","tag": "servername"},
-          	{ "table" : "auth_log", "field": "ClientPort", "tagScheme": "_","tag": "client"},
-          	{ "table" : "auth_log", "field": "ClientIp", "tagScheme": "_","tag": "client"},
-          	{ "table" : "auth_log", "field": "DaemonName", "tagScheme": "_","tag": "host"},
-          	{ "table" : "auth_log", "field": "DaemonPort", "tagScheme": "_","tag": "host"},
-          	{ "table" : "auth_log", "field": "UserName", "tagScheme": "_","tag": "user"}
+          	{ "table" : "filebeat-*", "field": "HostName", "tagScheme": "_","tag": "servername"},
+          	{ "table" : "filebeat-*", "field": "ClientPort", "tagScheme": "_","tag": "client"},
+          	{ "table" : "filebeat-*", "field": "ClientIp", "tagScheme": "_","tag": "client"},
+          	{ "table" : "filebeat-*", "field": "DaemonName", "tagScheme": "_","tag": "host"},
+          	{ "table" : "filebeat-*", "field": "DaemonPort", "tagScheme": "_","tag": "host"},
+          	{ "table" : "filebeat-*", "field": "UserName", "tagScheme": "_","tag": "user"}
  		]		
 }

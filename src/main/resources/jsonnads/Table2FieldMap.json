@@ -2,7 +2,7 @@
 "tables":
         [
           		{
- 	                "name" : "auth_log",
+ 	                "name" : "filebeat-*",
                     "fields":  [ 
                     {"name": "Date"},
                     {"name":"HostName"},

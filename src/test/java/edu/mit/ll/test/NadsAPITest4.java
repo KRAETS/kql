@@ -43,9 +43,9 @@ import edu.mit.ll.execution.QueryExecutor;
 import edu.mit.ll.php.JavaPhpSqlWrapper;
 
 
-public class ApiTest9 {
+public class NadsAPITest4 {
 
-    static String testName = "APITest2";    
+    static String testName = "APITest";    
     static Logger log = Logger.getLogger(Test1.class);
 
     @Rule
@@ -58,10 +58,13 @@ public class ApiTest9 {
     
     @Test
     public void test() throws SQLException, RecognitionException, ParseException, IOException, CannotProceedException {
-    	//messages.find({"$or":[{"subFolder":"sent"},{"subFolder":"sent_items"}]}).distinct("headers.From")
-    	QueryExecutor ex = new QueryExecutor("SELECT \\ALL*[emailmessage]\\ FROM  (SELECT * FROM \\ALL/emailmessage\\ WHERE \\ALL*email_address*_:sender\\='susan.scott@enron.com' ) as example WHERE ( \\ALL*folder\\ = 'sent_items' OR \\ALL*folder\\ = 'sent') and ( \\ALL*datetime*_:sender\\ >= '2000-01-01 00:00:00-07:00' AND \\ALL*datetime*_:sender\\ < '2003-01-01 00:00:00-07:00' )", 0);
+    	QueryExecutor ex = new QueryExecutor("SELECT \\ ALL*{protocol,portnumber,status,id,ip_address} \\ from \\ ALL/{protocol,portnumber,status,id,ip_address} \\ ", 100);
+    	ex.setFolderLocation("src/main/resources/jsonnads/");
+    	ex.setAexpMapFolderLocation("src/main/resources/jsonnads/");
     	ex.enableDebug(true);
-    	String trans = ex.translateQuery();
-    	ResultSet res  = ex.executeQuery();
+    	ex.setReturnResultObject(true);
+    	String res = ex.translateQuery();
+    	System.out.println(res);
     }
+
 }

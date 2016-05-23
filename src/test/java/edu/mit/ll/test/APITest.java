@@ -61,6 +61,7 @@ public class APITest {
     	QueryExecutor ex = new QueryExecutor("SELECT \\ALL*{_:email_message}\\ from \\ALL/{email_address}\\ where \\ALL*email_address*{_:sender}\\='alan.aronowitz@enron.com'", 100);
     	ex.enableDebug(true);
     	ex.setReturnResultObject(true);
+    	String trans = ex.translateQuery();
     	ResultSet res  = ex.executeQuery();
     }
 

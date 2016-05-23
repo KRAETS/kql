@@ -20,7 +20,7 @@ import javax.naming.CannotProceedException;
 public class JavaPhpSqlWrapper {
 	private String query;
 	private String defaultScript = "plugins/sql/src/main/java/edu/mit/ll/php/sqlparser/examples/simplerexample.php";
-	private String remoteScript = "http://localhost:8080/sqlparser/examples/simplerexample.php";
+	private String remoteScript = "http://10.211.55.3:8001/sqlparser/examples/simplerexample.php";
 //	private String remoteScript2 = "http://localhost:8080/sqlparser/examples/simplerexample.php";
 
 	public String execPHP(String scriptName, final String param) throws CannotProceedException {
