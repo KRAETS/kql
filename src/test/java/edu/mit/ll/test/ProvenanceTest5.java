@@ -16,38 +16,34 @@
  ******************************************************************************/
 package edu.mit.ll.test;
 
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.naming.CannotProceedException;
 
 import org.antlr.runtime.RecognitionException;
 import org.apache.log4j.Logger;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.ExpectedException;
-
-import unity.parser.ParseException;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 import edu.mit.ll.aexp.AExpExtractor;
 import edu.mit.ll.aexp.AExpProcessor;
 import edu.mit.ll.aexp.Result;
-import edu.mit.ll.execution.QueryExecutor;
 import edu.mit.ll.php.JavaPhpSqlWrapper;
 
 
-public class Apitest6 {
 
-    static String testName = "APITest2";    
-    static Logger log = Logger.getLogger(Test1.class);
+public class ProvenanceTest5 {
+	
 
+    static String testName = "Test1";    
+    static Logger log = Logger.getLogger(ProvenanceTest5.class);
+
+
+    
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
@@ -57,10 +53,28 @@ public class Apitest6 {
     }
     
     @Test
-    public void test() throws SQLException, RecognitionException, ParseException, IOException, CannotProceedException {
-    	//messages.find({"$or":[{"subFolder":"sent"},{"subFolder":"sent_items"}]}).distinct("headers.From")
-    	QueryExecutor ex = new QueryExecutor("select * FROM \\ALL/{folder}/_:email_message\\ WHERE ( \\ALL*folder*_:email_message\\ = 'sent_items' OR \\ALL*folder*_:email_message\\= 'sent') AND ( \\ALL*email_address*_:sender\\='susan.scott@enron.com' )", 100);
-    	ex.enableDebug(true);
-    	ResultSet res  = ex.executeQuery();
+    public void test() throws JsonSyntaxException, CannotProceedException {
+    	String query = "SELECT \\ALL/DimensionSet2*Dimension3*TagScheme1:Tag3\\";
+    	AExpExtractor p = new AExpExtractor();
+        List<String> aexpqueries = p.stringExtractor("\\\\",query,"POTATO");
+        JavaPhpSqlWrapper sqlprocessor = new JavaPhpSqlWrapper(aexpqueries.get(aexpqueries.size()-1));
+        sqlprocessor.setRemoteProcessingUrl("http://10.211.55.3:8001/sqlparser/examples/simplerexample.php");
+        JsonParser parser = new JsonParser();
+        JsonObject result = (JsonObject)parser.parse(sqlprocessor.execPHP(null,sqlprocessor.getQuery()));
+        for(int i=0; i<aexpqueries.size()-1;i++){
+            try {
+            	AExpProcessor processor = new AExpProcessor();
+            	processor.setFolderlocation("src/main/resources/json/");
+            	processor.enableDebug(true);
+            	Result r1 = processor.process(aexpqueries.get(i),true);
+            	r1.provenance.fullPrint = true;
+            	System.out.println(r1.provenance);
+            } catch (RecognitionException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("Done");
     }
+
+
 }

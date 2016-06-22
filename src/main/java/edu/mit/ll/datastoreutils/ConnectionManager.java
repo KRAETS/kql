@@ -8,28 +8,16 @@ import java.sql.SQLException;
 public class ConnectionManager {
 
 	public static Connection getDBConnection(String url, String user, String password) throws SQLException {
-		// TODO Auto-generated method stub
 		Connection con = DriverManager.getConnection(url, user, password);
 		return con;
 	}
 
-	public static Connection getELKConnection(String url, String user,
-			String password) {
+	public static ResultSet runQuery(String query, Connection con, boolean printout,QueryMapperManager man) throws SQLException {
 		// TODO Auto-generated method stub
-		ELKConnection elkCon = new ELKConnection(url,user,password);
-		return null;
+		man.setQuery(query);
+		man.setConnection(con);
+		man.setLogOutput(printout);
+		return man.runQuery();
+	//(new SqlToMongoMapper(query)).runQuery(con, b);
 	}
-
-	public static ResultSet runQuery(String query, Connection con, boolean b) throws SQLException {
-		// TODO Auto-generated method stub
-		if(con instanceof ELKConnection){
-			return (new SqlToELKMapper(query)).runQuery(con,b);
-		}
-		else{
-			return (new SqlToMongoMapper(query)).runQuery(con, b);
-		}
-	}
-
-	
-
 }

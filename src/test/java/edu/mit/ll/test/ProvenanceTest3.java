@@ -29,9 +29,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
+import edu.mit.ll.aexp.AExpExtractor;
 import edu.mit.ll.aexp.AExpProcessor;
 import edu.mit.ll.aexp.Result;
-import edu.mit.ll.datastoreutils.Parser;
 import edu.mit.ll.php.JavaPhpSqlWrapper;
 
 
@@ -55,7 +55,7 @@ public class ProvenanceTest3 {
     @Test
     public void test() throws JsonSyntaxException, CannotProceedException {
     	String query = "select * FROM \\ALL/{folder}/_:email_message\\ WHERE ( \\ALL*folder*_:email_message\\ = 'sent_items' OR \\ALL*folder*_:email_message\\= 'sent') AND ( \\ALL*email_address*_:sender\\='susan.scott@enron.com' )";
-    	Parser p = new Parser();
+    	AExpExtractor p = new AExpExtractor();
         List<String> aexpqueries = p.stringExtractor("\\\\",query,"POTATO");
         JavaPhpSqlWrapper sqlprocessor = new JavaPhpSqlWrapper(aexpqueries.get(aexpqueries.size()-1));
         JsonParser parser = new JsonParser();

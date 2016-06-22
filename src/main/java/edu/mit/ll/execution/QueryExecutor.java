@@ -23,11 +23,12 @@ import unity.parser.ParseException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import edu.mit.ll.aexp.AExpExtractor;
 import edu.mit.ll.aexp.AExpProcessor;
 import edu.mit.ll.aexp.Result;
 import edu.mit.ll.datastoreutils.ConnectionManager;
 import edu.mit.ll.datastoreutils.Joiner;
-import edu.mit.ll.datastoreutils.Parser;
+import edu.mit.ll.datastoreutils.QueryMapperManager;
 import edu.mit.ll.datastoreutils.SqlToMongoMapper;
 import edu.mit.ll.datastoreutils.Utils;
 import edu.mit.ll.php.JavaPhpSqlWrapper;
@@ -129,12 +130,9 @@ public class QueryExecutor {
 //		con = DriverManager.getConnection(url, "dbuser", "");
 		URL connectionUrl = new URL(url);
 		
-		if(connectionUrl.getProtocol().contains("elk")){
-			con = ConnectionManager.getELKConnection(url,user,password);
-		}
-		else{
-			con = ConnectionManager.getDBConnection(url,user,password);
-		}
+		
+		con = ConnectionManager.getDBConnection(url,user,password);
+		
 		System.out.println("Connection successful.\n");
 		Date finish = new Date();
 		long time = finish.getTime() - start.getTime();
@@ -161,7 +159,7 @@ public class QueryExecutor {
 			Date start = Calendar.getInstance().getTime();
 
 			//Parses AExp from SQL query
-			Parser p = new Parser(); //Extract A-Expressions and replace each with a substitute
+			AExpExtractor p = new AExpExtractor(); //Extract A-Expressions and replace each with a substitute
 			List<String> aexpqueries = p.stringExtractor(matchstring,query,stringtoreplacewith);
 
 			//Transforms SQL query into a JSON Object for easier handling later
@@ -208,7 +206,8 @@ public class QueryExecutor {
 			
 			String countsql = "SELECT COUNT(*) FROM ("+sql+") as Dummy";
 			boolean printout = false;
-			ResultSet countresult = ConnectionManager.runQuery(countsql,this.con, printout); //calls UnityJDBC
+			QueryMapperManager man = new SqlToMongoMapper();
+			ResultSet countresult = ConnectionManager.runQuery(countsql, this.con, printout, man); //calls UnityJDBC
 			boolean nextres = countresult.next();
 			Object var = countresult.getObject(1);
 			long count = Long.parseLong(var.toString());
@@ -398,7 +397,7 @@ public class QueryExecutor {
 	}
 	public String translateQuery() throws RecognitionException, ParseException, CannotProceedException{
 		//Parses AExp from SQL query
-		Parser p = new Parser(); //Extract A-Expressions and replace each with a substitute
+		AExpExtractor p = new AExpExtractor(); //Extract A-Expressions and replace each with a substitute
 		List<String> aexpqueries = p.stringExtractor(matchstring,query,stringtoreplacewith);
 
 		//Transforms SQL query into a JSON Object for easier handling later
@@ -442,7 +441,7 @@ public class QueryExecutor {
 	
 	public String queryProvenance() throws RecognitionException, ParseException, CannotProceedException{
 		//Parses AExp from SQL query
-		Parser p = new Parser(); //Extract A-Expressions and replace each with a substitute
+		AExpExtractor p = new AExpExtractor(); //Extract A-Expressions and replace each with a substitute
 		List<String> aexpqueries = p.stringExtractor(matchstring,query,stringtoreplacewith);
 
 
@@ -470,7 +469,7 @@ public class QueryExecutor {
 	
 	public String translateQuery(String query) throws RecognitionException, ParseException, CannotProceedException{
 		//Parses AExp from SQL query
-		Parser p = new Parser(); //Extract A-Expressions and replace each with a substitute
+		AExpExtractor p = new AExpExtractor(); //Extract A-Expressions and replace each with a substitute
 		List<String> aexpqueries = p.stringExtractor(matchstring,query,stringtoreplacewith);
 
 		//Transforms SQL query into a JSON Object for easier handling later

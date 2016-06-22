@@ -29,8 +29,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
+import edu.mit.ll.aexp.AExpExtractor;
 import edu.mit.ll.aexp.AExpProcessor;
-import edu.mit.ll.datastoreutils.Parser;
 import edu.mit.ll.php.JavaPhpSqlWrapper;
 
 
@@ -55,7 +55,7 @@ public class Test4 {
     @Test
     public void test() throws JsonSyntaxException, CannotProceedException {
     	String query = "SELECT \\ALL/DimensionSet2\\";
-    	Parser p = new Parser();
+    	AExpExtractor p = new AExpExtractor();
         List<String> aexpqueries = p.stringExtractor("\\\\",query,"POTATO");
         JavaPhpSqlWrapper sqlprocessor = new JavaPhpSqlWrapper(aexpqueries.get(aexpqueries.size()-1));
         JsonParser parser = new JsonParser();
@@ -73,7 +73,7 @@ public class Test4 {
         }
         
         query = "SELECT \\ALL/{Dimension1, Dimension3}\\";
-    	p = new Parser();
+    	p = new AExpExtractor();
         aexpqueries = p.stringExtractor("\\\\",query,"POTATO");
          sqlprocessor = new JavaPhpSqlWrapper(aexpqueries.get(aexpqueries.size()-1));
          parser = new JsonParser();

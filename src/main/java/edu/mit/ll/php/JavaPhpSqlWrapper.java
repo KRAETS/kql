@@ -19,9 +19,10 @@ import javax.naming.CannotProceedException;
 
 public class JavaPhpSqlWrapper {
 	private String query;
-	private String defaultScript = "plugins/sql/src/main/java/edu/mit/ll/php/sqlparser/examples/simplerexample.php";
-	private String remoteScript = "http://10.211.55.3:8001/sqlparser/examples/simplerexample.php";
-//	private String remoteScript2 = "http://localhost:8080/sqlparser/examples/simplerexample.php";
+	private String defaultScript = "src/main/java/edu/mit/ll/php/sqlparser/examples/simplerexample.php";
+	//	private String remoteScript = "http://10.211.55.3:8001/sqlparser/examples/simplerexample.php";
+	private String remoteScript = null;
+	private boolean debug = false;
 
 	public String execPHP(String scriptName, final String param) throws CannotProceedException {
 		if(scriptName == null) {
@@ -34,72 +35,75 @@ public class JavaPhpSqlWrapper {
 			scriptName = s+this.defaultScript;
 		}
 		final String finalScriptName = scriptName;
+		if(remoteScript == null){
+			StringBuilder output2 = new StringBuilder();
+			try{
+				//Local processing
+				Process p = Runtime.getRuntime().exec(new String[]{"php", finalScriptName, param});
 
-//		StringBuilder output = null;
-//
-//		try {
-//			output = new StringBuilder();
-//			(new StringBuilder("php ")).append(scriptName).append(" ").append(param).toString();
+				BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+				String err;
+				while((err = input.readLine()) != null) {
+					output2.append(err);
+				}
+
+				input.close();
 
 
-
-
-
-//			Process p = Runtime.getRuntime().exec(new String[]{"php", scriptName, param});
-
-
+				return output2.toString();}
+			catch(Exception e){
+				throw new CannotProceedException("Error while executing PHP Parser:\n"+e.toString()+"\nQuery:"+param);
+			}
+		}
+		else{
 			try {
-//				String result = AccessController.doPrivileged(
-//						new PrivilegedExceptionAction<String>() {
-//							public String run() throws Exception {
-								StringBuilder output2 = new StringBuilder();
-//								Process p = Runtime.getRuntime().exec(new String[]{"php5", finalScriptName, param});
-//								
-//								StringBuilder result = new StringBuilder();
-							      URL url = new URL(remoteScript+"?kqlq="+param);
-							      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-							      
-							      conn.setRequestMethod("GET");
-							      BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-							      String line;
-							      while ((line = rd.readLine()) != null) {
-							         output2.append(line);
-							      }
-							      rd.close();
-//							      return result.toString();
-								
-//								Process p = Runtime.getRuntime().exec(finalScriptName);
-//
-//								BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-//								String err;
-//								while((err = input.readLine()) != null) {
-//									output2.append(err);
-//								}
-//								
-//								input.close();
-								
-								
-//								return output2.toString();
-//							}
-//						});
+				StringBuilder output2 = new StringBuilder();
+				//				
+				//				StringBuilder result = new StringBuilder();
+				URL url = new URL(remoteScript+"?kqlq="+param);
+				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+				conn.setRequestMethod("GET");
+				BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+				String line;
+				while ((line = rd.readLine()) != null) {
+					output2.append(line);
+				}
+				rd.close();
+				//			      return result.toString();
+
+
+				//			}
+				//		});
 				return output2.toString();
 			} catch (Exception e) {
-				// e.getException() should be an instance of FileNotFoundException,
-				// as only "checked" exceptions will be "wrapped" in a
-				// PrivilegedActionException.
-//				throw (Exception) e.getException();
-				throw new CannotProceedException("En el php"+e.toString()+"Query:"+param);
+				throw new CannotProceedException("Error while executing PHP Parser:\n"+e.toString()+"\nQuery:"+param);
 			}
+		}
+		//		StringBuilder output = null;
+		//
+		//		try {
+		//			output = new StringBuilder();
+		//			(new StringBuilder("php ")).append(scriptName).append(" ").append(param).toString();
 
 
 
 
-//		} catch (Exception var8) {
-//			var8.printStackTrace();
-//			throw new CannotProceedException(var8.toString());
-//		}
 
-//		return output.toString();
+		//			Process p = Runtime.getRuntime().exec(new String[]{"php", scriptName, param});
+
+
+
+
+
+
+
+		//		} catch (Exception var8) {
+		//			var8.printStackTrace();
+		//			throw new CannotProceedException(var8.toString());
+		//		}
+
+		//		return output.toString();
 	}
 
 	public JavaPhpSqlWrapper(String query) {
@@ -121,5 +125,8 @@ public class JavaPhpSqlWrapper {
 		// TODO Auto-generated method stub
 		this.debug = debug;
 	}
-	private boolean debug = false;
+
+	public void setRemoteProcessingUrl(String remote) {
+		this.remoteScript = remote;
+	}
 }
