@@ -20,7 +20,8 @@ import javax.naming.CannotProceedException;
 public class JavaPhpSqlWrapper {
 	private String query;
 	private String defaultScript = "src/main/java/edu/mit/ll/php/sqlparser/examples/simplerexample.php";
-	//	private String remoteScript = "http://10.211.55.3:8001/sqlparser/examples/simplerexample.php";
+//	private String remoteScript = "http://192.168.108.132:8001/sqlparser/examples/simplerexample.php";
+//	private String remoteScript = "http://localhost:8001/sqlparser/examples/simplerexample.php";
 	private String remoteScript = null;
 	private boolean debug = false;
 
@@ -52,7 +53,7 @@ public class JavaPhpSqlWrapper {
 
 				return output2.toString();}
 			catch(Exception e){
-				throw new CannotProceedException("Error while executing PHP Parser:\n"+e.toString()+"\nQuery:"+param);
+				throw new CannotProceedException("2Error while executing PHP Parser:\n"+e.toString()+"\nQuery:"+param);
 			}
 		}
 		else{
@@ -77,7 +78,7 @@ public class JavaPhpSqlWrapper {
 				//		});
 				return output2.toString();
 			} catch (Exception e) {
-				throw new CannotProceedException("Error while executing PHP Parser:\n"+e.toString()+"\nQuery:"+param);
+				throw new CannotProceedException("Error while executing PHP Parser:\n"+e.toString()+"\nQuery:"+param+"\n"+"URL:"+remoteScript+"?kqlq="+param);
 			}
 		}
 		//		StringBuilder output = null;

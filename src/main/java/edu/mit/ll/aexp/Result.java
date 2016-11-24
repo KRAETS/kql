@@ -94,7 +94,7 @@ public class Result {
 				length++;
 			}
 			if(length>0)
-				returnstring = returnstring.substring(0,returnstring.length()-2);
+				returnstring = returnstring.substring(0,returnstring.length()-1);
 		}
 		else
 			returnstring+="null";

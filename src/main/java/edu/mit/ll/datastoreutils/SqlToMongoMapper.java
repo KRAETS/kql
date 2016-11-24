@@ -35,7 +35,7 @@ public class SqlToMongoMapper extends QueryMapperManager{
 		System.out.println("\n\nExecuting query:      " + sql);
 		ResultSet rst = stmt.executeQuery(sql);
 
-		System.out.println("Executed Mongo query: " + ((MongoStatement) stmt).getQueryString());
+//		System.out.println("Executed Mongo query: " + ((MongoStatement) stmt).getQueryString());
 		System.out.println("Query execution complete.\n");
 		System.out.println("Results:\n");
 

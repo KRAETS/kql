@@ -13,14 +13,14 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.CommonTreeNodeStream;
 public class AExpProcessor {
-
+	//Folder that contains the ontology
 	private String folderlocation = "src/main/resources/jsonemail/";
-
+	//Store the results for future uses
 	private List<Result> storedOperationResults = new LinkedList<>();
-
+	//Enable debug
 	private boolean debug = false;
-
-	private boolean caseInsensitive;;
+	//Set case insensitive query
+	private boolean caseInsensitive = false;
 	
 
 	public Result process(String input, boolean save) throws RecognitionException, CannotProceedException {

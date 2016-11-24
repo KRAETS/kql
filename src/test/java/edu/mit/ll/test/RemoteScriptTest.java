@@ -68,7 +68,7 @@ public class RemoteScriptTest {
 //		Process p = Runtime.getRuntime().exec(new String[]{"php5", finalScriptName, param});
 //		
 //		StringBuilder result = new StringBuilder();
-    	String urlstring = "http://192.168.0.114:8080/sqlparser/examples/simplerexample.php"+"?kqlq="+"SELECT hola FROM 'filebeat-*'";
+    	String urlstring = "http://10.0.0.11:8001/sqlparser/examples/simplerexample.php"+"?kqlq="+"SELECT hola FROM 'filebeat-*'";
 	      URL url = new URL(urlstring);
 	      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	      

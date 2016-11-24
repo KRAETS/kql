@@ -104,7 +104,12 @@ public class Joiner {
 
 			}
 			else{
-				throw new ParseException("Could not identify entry type");
+//				sqlExpression+=" "+entry.getKey()+" ";
+				if(entry.getKey().toLowerCase().equals("limit")){
+//					sqlExpression+=" "+entry.getKey()+" 10000 ";
+				}
+				else
+					throw new ParseException("Parameters:"+aexpresults.toString()+" "+replacedString+" "+ replacementtext+" "+sql.toString()+" Could not identify entry type:"+entry.toString()+" "+entry.getKey()+ " "+ new String(entry.getValue().toString()));
 			}
 
 		}

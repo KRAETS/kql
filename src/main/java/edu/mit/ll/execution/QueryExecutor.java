@@ -2,10 +2,11 @@ package edu.mit.ll.execution;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class QueryExecutor {
 	}
 	public void executeQueryList() throws RecognitionException, ParseException, SQLException, IOException, CannotProceedException{
 		this.persistConnection = true;
-		
+
 		String basefilename = "output/outfile";
 		for(int i = 0; i<queryList.size();i++){
 			String tempFileName = basefilename + Integer.toString(i);
@@ -104,7 +105,7 @@ public class QueryExecutor {
 	public QueryExecutor(String query, int rowLimit) throws SQLException, MalformedURLException{
 		this.rowLimit = rowLimit;
 		this.query=query;
-		
+
 	}
 	/**
 	 * Initialize the object with default values and create a connection
@@ -112,33 +113,22 @@ public class QueryExecutor {
 	 * @throws MalformedURLException 
 	 */
 	public QueryExecutor(){
-//		Date start = new Date();
-
-//		System.out.println("Making a connection to: " + url);
-//		initializeConnection(url, user, password);
-//		System.out.println("Connection successful.\n");
-//		Date finish = new Date();
-//		long time = finish.getTime() - start.getTime();
-//		System.out.println("It took this many seconds to initialize the connection:"+Long.toString(time));
-
 	}
 
 	public void initializeConnection() throws MalformedURLException, SQLException {
 		// TODO Auto-generated method stub
 		Date start = new Date();
 		System.out.println("Making a connection to: " + url);
-//		con = DriverManager.getConnection(url, "dbuser", "");
-		URL connectionUrl = new URL(url);
-		
-		
+		//		con = DriverManager.getConnection(url, "dbuser", "");
+//		URL connectionUrl = new URL(url);
 		con = ConnectionManager.getDBConnection(url,user,password);
-		
+
 		System.out.println("Connection successful.\n");
 		Date finish = new Date();
 		long time = finish.getTime() - start.getTime();
 		System.out.println("It took this many seconds to initialize the connection:"+Long.toString(time));
-			
-			
+
+
 	}
 	/**
 	 * Executes the query passed in and either saves it to a file or returns the result set from the query
@@ -198,12 +188,12 @@ public class QueryExecutor {
 			String sql = this.translateQuery(query);
 
 			//Wrapper to execute the sql query in mongo db
-//			ResultSet finalresult = (new SqlToMongoMapper(sql)).runQuery(this.con, debug);
+			//			ResultSet finalresult = (new SqlToMongoMapper(sql)).runQuery(this.con, debug);
 
 			//Finish time for metrics
 
 			//Process wether to write to file or not
-			
+
 			String countsql = "SELECT COUNT(*) FROM ("+sql+") as Dummy";
 			boolean printout = false;
 			QueryMapperManager man = new SqlToMongoMapper();
@@ -366,7 +356,7 @@ public class QueryExecutor {
 	}
 	public void enableCaseInsensitive(boolean b) {
 		this.caseInsensitive = b;
-		
+
 	}
 	public void setUrl(String optionValue) {
 		// TODO Auto-generated method stub
@@ -385,14 +375,14 @@ public class QueryExecutor {
 		procesor.enableCaseInsensitive(this.caseInsensitive);
 		procesor.enableDebug(this.debug);
 		procesor.setFolderlocation(this.getAexpMapFolderLocation());
-		
+
 		try {
 			procesor.process(s,true);
 		} catch (CannotProceedException | RecognitionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return procesor.getStoredOperationResults();
 	}
 	public String translateQuery() throws RecognitionException, ParseException, CannotProceedException{
@@ -423,11 +413,16 @@ public class QueryExecutor {
 		for(int i=0; i<aexpqueries.size()-1;i++){
 			try {
 				//Process the query and store the results inside the processor object
-				
+
 				procesor.process(aexpqueries.get(i),true);
 			} catch (RecognitionException e) {
-				e.printStackTrace();
-				throw e;
+				StringWriter sw = new StringWriter();
+				PrintWriter pw = new PrintWriter(sw);
+				e.printStackTrace(pw);
+				sw.toString();
+				throw new CannotProceedException( e.toString()+"Stacktrace:"+sw.toString());
+//				e.printStackTrace();
+//				throw e;
 			}
 		}
 
@@ -438,7 +433,7 @@ public class QueryExecutor {
 
 		return sql;
 	}
-	
+
 	public String queryProvenance() throws RecognitionException, ParseException, CannotProceedException{
 		//Parses AExp from SQL query
 		AExpExtractor p = new AExpExtractor(); //Extract A-Expressions and replace each with a substitute
@@ -454,10 +449,10 @@ public class QueryExecutor {
 		for(int i=0; i<aexpqueries.size()-1;i++){
 			try {
 				//Process the query and store the results inside the processor object
-				
+
 				Result r1 = procesor.process(aexpqueries.get(i),true);
-            	r1.provenance.fullPrint = true;
-            	sql+=r1.provenance.toString()+"\n";
+				r1.provenance.fullPrint = true;
+				sql+=r1.provenance.toString()+"\n";
 			} catch (RecognitionException e) {
 				e.printStackTrace();
 				throw e;
@@ -466,7 +461,7 @@ public class QueryExecutor {
 
 		return sql;
 	}
-	
+
 	public String translateQuery(String query) throws RecognitionException, ParseException, CannotProceedException{
 		//Parses AExp from SQL query
 		AExpExtractor p = new AExpExtractor(); //Extract A-Expressions and replace each with a substitute
@@ -485,44 +480,54 @@ public class QueryExecutor {
 			result = (JsonObject)parser.parse(phpres);
 		}
 		catch (Exception e){
-			throw new CannotProceedException("Problem with:"+phpres.toString());
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			e.printStackTrace(pw);
+			sw.toString();
+			throw new CannotProceedException("Problem with:"+phpres.toString()+ e.toString()+"Stacktrace:"+sw.toString());
+//			throw new CannotProceedException("Problem with:"+phpres.toString());
 		}
 
 		//Actual processor of AExp takes the AExp and parses, lexes and interprets it
 		AExpProcessor procesor = null;
 		try{
-		procesor = new AExpProcessor();
-		procesor.enableCaseInsensitive(this.caseInsensitive);
-		procesor.enableDebug(this.debug);
-		procesor.setFolderlocation(this.getAexpMapFolderLocation());
+			procesor = new AExpProcessor();
+			procesor.enableCaseInsensitive(this.caseInsensitive);
+			procesor.enableDebug(this.debug);
+			procesor.setFolderlocation(this.getAexpMapFolderLocation());
 
-		for(int i=0; i<aexpqueries.size()-1;i++){
-			try {
-				//Process the query and store the results inside the processor object
-				procesor.process(aexpqueries.get(i),true);
-			} catch (RecognitionException e) {
-				e.printStackTrace();
-				throw e;
+			for(int i=0; i<aexpqueries.size()-1;i++){
+				try {
+					//Process the query and store the results inside the processor object
+					procesor.process(aexpqueries.get(i),true);
+				} catch (RecognitionException e) {
+					e.printStackTrace();
+					throw e;
+				}
 			}
 		}
-		}
 		catch(Exception e){
-			throw new CannotProceedException("Analyzando queries"+e.toString());
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			e.printStackTrace(pw);
+			sw.toString();
+			throw new CannotProceedException("Analyzing queries"+e.toString()+"Stacktrace:"+sw.toString());
 		}
-
-		//We can print additional info before we actually print
-
 		//Joins the result of the AExp with the SQL expression so it can be executed
 		String sql = null;
 		try{
 			sql = (new Joiner()).join(procesor.getStoredOperationResults(), p.lastResult(), stringtoreplacewith, result);
 		}
 		catch(Exception e){
-			throw new CannotProceedException("Sigh"+e.toString());
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			e.printStackTrace(pw);
+			sw.toString();
+			throw new CannotProceedException( e.toString()+"Stacktrace:"+sw.toString());
 		}
 		return sql;
 	}
-	
+
 	public String[] translateQueries() throws RecognitionException, ParseException, CannotProceedException{
 		ArrayList<String> queries = new ArrayList<>();
 		for(String query:this.getQueryList()){
@@ -532,6 +537,7 @@ public class QueryExecutor {
 		return (String[]) queries.toArray();
 	}
 	public String getAexpMapFolderLocation() {
+		System.out.println("Folder is"+aexpMapFolderLocation);
 		return aexpMapFolderLocation;
 	}
 	public void setAexpMapFolderLocation(String aexpMapFolderLocation) {
